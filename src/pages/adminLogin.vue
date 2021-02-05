@@ -26,7 +26,13 @@ export default {
     },
     methods:{
         loginButtonClick(){
-            this.tryLogin([this.login,this.password])
+            if(this.login=="abylai" && this.password=="tigr"){
+                this.tryLogin([this.login,this.password])
+            }
+            else{
+                this.login=""
+                this.password=""
+            }
             router.push("/admin-panel")
 
         },
