@@ -11,19 +11,19 @@
         </div>
         <div class="edit-row">
             <div class="edit-row-name"><p>Штук</p></div>
-            <div class="edit-row-input"><input class="edit-input" type="tel" v-model="item.piecesAmount"/></div>
+            <div class="edit-row-input"><input class="edit-input" type="tel" v-model="item.piecesAmount"  v-on:input="piecesAmountInput"/></div>
         </div>
         <div class="edit-row">
             <div class="edit-row-name"><p>Калорий</p></div>
-            <div class="edit-row-input"><input class="edit-input" type="tel" v-model="item.calories"/></div>
+            <div class="edit-row-input"><input class="edit-input" type="tel" v-model="item.calories"  v-on:input="caloriesInput"/></div>
         </div>
         <div class="edit-row">
-            <div class="edit-row-name"><p>Грам</p></div>
-            <div class="edit-row-input"><input type="tel" class="edit-input" v-model="item.weight"/></div>
+            <div class="edit-row-name"><p>Грамм</p></div>
+            <div class="edit-row-input"><input type="tel" class="edit-input" v-model="item.weight" v-on:input="weightInput"/></div>
         </div>
         <div class="edit-row">
             <div class="edit-row-name"><p>Цена</p></div>
-            <div class="edit-row-input"><input type="tel" class="edit-input" v-model="item.price"/></div>
+            <div class="edit-row-input"><input type="tel" class="edit-input" v-model="item.price" v-on:input="priceInput"/></div>
         </div>
         <div class="edit-row">
             <div class="edit-row-name"><p>Фото</p></div>
@@ -63,9 +63,30 @@ export default {
             if(this.selectedImage==null){
                 return
             }
-//code
+            //code
 
+        },
+        piecesAmountInput(){
+            if(!Number(this.item.piecesAmount) || this.item.piecesAmount>101){
+                this.item.piecesAmount = this.item.piecesAmount.slice(0,-1)
+            }
+        },
+        caloriesInput(){
+            if(!Number(this.item.calories) || this.item.calories>10001){
+                this.item.calories = this.item.calories.slice(0,-1)
+            }
+        },
+        weightInput(){
+            if(!Number(this.item.weight) || this.item.weight>10001){
+                this.item.weight = this.item.weight.slice(0,-1)
+            }
+        },
+        priceInput(){
+            if(!Number(this.item.price) || this.item.price>100001){
+                this.item.price = this.item.price.slice(0,-1)
+            }
         }
+
     },
     created(){
         // сonnect local state with store
@@ -108,6 +129,7 @@ export default {
 }
 .edit-input-description{
     height: 120px;
+    max-height: 150px;
 }
 .go-back{
     display: inline;

@@ -67,36 +67,36 @@ const router = new VueRouter({
     ],
 })
 
-// router.beforeEach((to,from,next)=>{
-//     window.scrollTo(0, 0)
-//     if(to.name == 'getOrder' && store.getters["shoppingCart/getAmount"]<=0){
-//         next('/korzina')
-//         return
-//     }
-//     else if(to.name == 'adminPanel' || to.name == 'adminMenu' || to.name == 'adminTextpages' || to.name == 'editMenu'){
-//         if(!store.getters["loginAdmin/getLoginned"]){
-//             next('/login')
-//             return
-//         }
-//     }
-//     else if(to.name == 'adminLogin' && store.getters["loginAdmin/getLoginned"]){
-//         next('/admin-panel')
-//         return
-//     }
-//     next()
-    
-// })
-
 router.beforeEach((to,from,next)=>{
-    if(to.name == 'adminLogin'){
-        next()
+    window.scrollTo(0, 0)
+    if(to.name == 'getOrder' && store.getters["shoppingCart/getAmount"]<=0){
+        next('/korzina')
+        return
     }
-    else if(!store.getters["loginAdmin/getLoginned"]){
-        next('/login')
+    else if(to.name == 'adminPanel' || to.name == 'adminMenu' || to.name == 'adminTextpages' || to.name == 'editMenu'){
+        if(!store.getters["loginAdmin/getLoginned"]){
+            next('/login')
+            return
+        }
     }
-    else{
-        next()
+    else if(to.name == 'adminLogin' && store.getters["loginAdmin/getLoginned"]){
+        next('/admin-panel')
+        return
     }
+    next()
+    
 })
+
+// router.beforeEach((to,from,next)=>{
+//     if(to.name == 'adminLogin'){
+//         next()
+//     }
+//     else if(!store.getters["loginAdmin/getLoginned"]){
+//         next('/login')
+//     }
+//     else{
+//         next()
+//     }
+// })
 
 export default router

@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="login-page">
+    <div class="login-page" v-on:keyup.enter="loginButtonClick">
         <div class="login-container">
             <div class="login-text">Логин</div>
             <input type="text" v-model="login" class="login"/>
