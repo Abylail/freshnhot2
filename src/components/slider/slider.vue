@@ -29,7 +29,8 @@ export default {
             itemsToShow: 1,
             centerMode: true,
             autoPlay:true,
-            playSpeed:10000
+            playSpeed:10000,
+            wheelControl: false,
           }
       }
   },

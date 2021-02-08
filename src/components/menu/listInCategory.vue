@@ -1,5 +1,5 @@
 <template>
-    <div class="category-container">
+    <div class="category-container" v-bind:id="elementId">
         <div class="pre-edge-container">
             <div class="category-name-conatiner">
                 <h2 class="name">{{category.name}}</h2>
@@ -33,10 +33,14 @@ export default {
     name:'listInCategory',
     data(){
         return{
+            elementId:"",
             subCategory:"",
         }
     },
     props:['category'],
+    mounted(){
+        this.elementId = "categoryid-"+this.category.id
+    },
     components:{
         onePositionMenu,
     },

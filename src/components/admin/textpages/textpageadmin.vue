@@ -16,7 +16,8 @@ export default {
     },
     mounted(){
         this.pageName = this.$route.params.linkname
-        this.storePath = this.pageName + "/getList"
+        this.storePath ='sales/getList'
+        console.log(this.storePath);
     },
     computed:{
         

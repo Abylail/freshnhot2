@@ -4,9 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = () =>({
-    list:[
-        
-    ]
+    list:[]
 })
 
 const getters = {
