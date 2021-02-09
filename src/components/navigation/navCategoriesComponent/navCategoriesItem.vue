@@ -12,7 +12,7 @@ export default {
     methods:{
         async itemClick(){
             let elemTop = document.getElementById("categoryid-"+this.category.id).offsetTop
-            window.scrollTo(0,elemTop-80)
+            window.scrollTo(0,elemTop-100)
         },
     }
 }

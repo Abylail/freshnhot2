@@ -6,7 +6,7 @@
                 <p>О Freshnhot</p>
             </div>
             <div class="links-container">
-                <router-link to="#" class="link">О компании</router-link>
+                <router-link to="/text/about" class="link">О компании</router-link>
                 <router-link to="#" class="link">Доставка</router-link>
                 <router-link to="#" class="link">Обратная связь</router-link>
                 <router-link to="#" class="link">Контакты</router-link>

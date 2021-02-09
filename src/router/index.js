@@ -7,6 +7,7 @@ import shoppingCart from '../pages/shoppingCart'
 import getOrder from '../pages/getOrder'
 import adminLogin from '../pages/adminLogin'
 import adminPanel from '../pages/adminPanel'
+import textPage from '../pages/textPage'
 
 //import little
 import store from '../store/index'
@@ -40,6 +41,11 @@ const router = new VueRouter({
             name:'adminLogin',
             path:'/login',
             component:adminLogin,
+        },
+        {
+            name:'textPage',
+            path:'/text/:pageName',
+            component:textPage,
         },
         {
             name:'adminPanel',

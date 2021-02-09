@@ -4,7 +4,13 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = () =>({
-    list:[]
+    list:[
+        {
+            id:0,
+            name:"О компании",
+            description:"Наша компания мы тут все красачики"
+        }
+    ]
 })
 
 const getters = {

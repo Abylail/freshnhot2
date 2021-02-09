@@ -64,6 +64,7 @@ export default {
                 return
             }
             //code
+            console.log(this.selectedImage)
 
         },
         piecesAmountInput(){
