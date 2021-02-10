@@ -89,7 +89,12 @@ export default {
         opacity:.2;
         margin-bottom:30px;
     }
+    .nav-categories-container{
+transition: .3s ease;
 
+        -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0); 
+box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
+    }
     .header-container{
         height: 60px;
     }
@@ -109,14 +114,20 @@ export default {
     }
     .categories{
         /* you must get heigth before nav-categoies */
-        background-color: black;
+        background-color: rgb(33 33 33);
+        position:static;
+        z-index:51;
+        opacity: .98;
     }
     .fixed-categories{
-        z-index: 40;
+        z-index: 51;
         position: fixed;
         top:60px;
         width:100%;
-        background-color:black;
+        background-color: rgb(33 33 33);
+
+        -webkit-box-shadow: 0px 11px 11px -3px rgba(0,0,0,0.9); 
+        box-shadow: 0px 11px 11px -3px rgba(0,0,0,0.9);
     }
     .list-container{
         margin-left:auto;

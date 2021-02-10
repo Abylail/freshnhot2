@@ -252,13 +252,13 @@ export default {
 
   
         background:
-            linear-gradient(red,red),
-            linear-gradient(red,red);
+            linear-gradient(rgb(160, 105, 4),rgb(160, 105, 4)),
+            linear-gradient(rgb(160, 105, 4),rgb(160, 105, 4));
         background-position:center;
         background-size: 70% 3px,3px 70%; /*thickness = 2px, length = 50% (25px)*/
         background-repeat:no-repeat;
 
-        border:2px solid red;
+        border:2px solid rgb(160, 105, 4);
     }
     .remove{
         margin-right: 8px;
@@ -285,7 +285,7 @@ export default {
     }
     p.price{
         font-size:26px;
-        color:red;
+        color:rgb(160, 105, 4);
         font-family: 'Montserrat', sans-serif;
         font-weight: 500;
         
@@ -316,7 +316,7 @@ export default {
             align-items: center;
             
             background-color: white;
-            color:blackж
+            color:black;
         }
         .image{
             height: 100%;

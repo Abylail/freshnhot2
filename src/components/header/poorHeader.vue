@@ -22,7 +22,7 @@ export default {
 <style scoped>
     header{
         height: 60px;
-        background-color: rgb(0, 0, 0);
+        background-color: rgb(33 33 33);
 
         padding-left:3%;
         padding-right:3%;
@@ -32,6 +32,7 @@ export default {
         justify-content: space-between;
         align-items: center;
         color:black;
+        opacity: .98;
     }
     .side{
         height: 100%;

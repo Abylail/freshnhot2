@@ -3,7 +3,7 @@
     <div class="shopping-cart-conatiner">
         <poorHeader/>
         <div v-if="getAmount>0" class="text-block">
-            <p class="name-page">Корзина ({{getAmount}})</p>
+            <p class="name-page">Корзина <span class="shopping-cart-amount">({{getAmount}})</span></p>
             <a class="clear" v-on:click="clearButtonClick">Очистить корзину</a>
         </div>
         <div v-else class="empty-cart-text-block">
@@ -28,8 +28,8 @@
         </div>
         <div v-if="getAmount>0" class="price-block">
             <div class="pruduct-price">
-                <p>Самая вкусная еда:</p>
-                <p>{{getAllprice+"тг"}}</p>
+                <p>К оплате:</p>
+                <p class="price-product-price">{{getAllprice+"тг"}}</p>
             </div>
             <div class="delivery-price">
                 <p>Доставка:</p>
@@ -107,6 +107,9 @@ export default {
 .big-conatiner{
     min-height: 80vh;
 }
+.shopping-cart-amount{
+    color:red;
+}
 .shopping-cart-conatiner{
     color:white;
 }
@@ -117,7 +120,7 @@ export default {
     justify-content: space-between;
 
 
-    margin-top:30px;
+    margin-top:10px;
     margin-bottom:20px;
 }
 .list-container{
@@ -137,7 +140,7 @@ export default {
     margin-bottom:7px;
 }
 .name-page{
-    font-size:32px;
+    font-size:22px;
 }
 .empty-cart-name-page{
     font-size:32px ;
@@ -200,8 +203,11 @@ export default {
     align-items: center;
     flex-direction: row;
 }
+.price-product-price{
+    color:red;
+}
 .pruduct-price p{
-    font-size: 18px;
+    font-size: 22px;
 }
 .delivery-price{
     display: flex;
