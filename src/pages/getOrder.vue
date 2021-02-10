@@ -188,6 +188,10 @@ export default {
     }
     .comment{
         height: 200px;
+        max-height: 250px;
+        min-height: 200px;
+        max-width: 95%;
+        min-width: 95%;
     }
     .input-radio-container{
         display: inline-block;

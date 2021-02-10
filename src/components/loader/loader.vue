@@ -4,6 +4,7 @@
             <div class="loader-logo-container">
                 <img src="../../assets/logo.svg" alt="logo"/>
                 <p>Fresh<span style="color:#fddc3b;">N</span>hot</p>
+                <p class="props-text" v-if="text && text!=''">{{text}}</p>
             </div>
             <div class="loader">
                 <span class="loader"></span>
@@ -14,6 +15,10 @@
 <script>
 export default {
     name:'loader',
+    props:['text'],
+    mounted(){
+      console.log("text",this.text);
+    }
 }
 </script>
 <style scoped>
@@ -51,6 +56,11 @@ export default {
 }
 .loader-logo-container p{
     font-size: 26px;
+    text-align: center;
+}
+.props-text{
+  color:red;
+  font-size:20px;
 }
 
 span.loader {

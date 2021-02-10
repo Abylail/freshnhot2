@@ -23,6 +23,7 @@
                                 </div>
                             </div>
                             <div class="extra-description-container-half">
+                                <p v-if="item.weight && item.piecesAmount" class="weightCaloriesDevider"> | </p>
                                 <p v-if="item.weight" class="weight">{{item.weight+" гр"}}</p>
                                 <p v-if="item.weight && item.calories" class="weightCaloriesDevider"> | </p>
                                 <p v-if="item.calories" class="calories">{{item.calories+" калл"}}</p>
@@ -30,7 +31,7 @@
                         </div>
                     </div>
                     <div class="price-add-container">
-                        <p v-if="item.price" class="price">{{item.price+"₸"}}</p>
+                        <p v-if="item.price" class="price">{{item.price+" ₸"}}</p>
                         <div class="shopping-cart">
                             <a v-on:click="addItemInShoppingCart" class="add button"></a>
                             <div v-if="getItemAmount(item.id)>0" class="counter">
@@ -87,6 +88,8 @@ export default {
 }
 </script>
 <style scoped> 
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,500;0,600;0,700;1,400&display=swap');
+
     .remove-button{
         position: relative;
         top:-43%;
@@ -120,15 +123,19 @@ export default {
     }
     .edge-container{
         height: 100%;
-        border-radius: 5px;
+        border-radius: 7px;
         overflow: hidden;
 
-        background-color: white;
+        background-color: rgb(231, 231, 231);
 
         display: flex;
         justify-content: space-around;
         align-items: center;
         flex-direction: column;
+
+        -webkit-box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.5);
+            box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.5);
     }
     .image-block{
         display: flex;
@@ -157,7 +164,9 @@ export default {
         width: 90%;
     }
     h3.item-name{
-        font-size: 20px;
+        font-size: 24px;
+        font-family:'Montserrat', sans-serif;
+        font-weight: 600;
 
         display: -webkit-box;
         overflow: hidden;
@@ -165,17 +174,18 @@ export default {
         -webkit-box-orient: vertical;
     }
     p.description{
-        font-size: 12px;
+        font-size: 10px;
+        padding-left:2px;
 
         display: -webkit-box;
         overflow: hidden;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
+
+        color:gray;
     }
     .extra-description-container{
         height: 30px;
-        margin-top:5px;
-
         display: flex;
         flex-direction: row;
     }
@@ -195,14 +205,14 @@ export default {
         align-items: center;
     }
     p.extra-description-amount{
-        border-radius: 5px;
+        /* border-radius: 5px;
         border:1.5px solid red;
-        color:red;
+        color:red; */
 
         
         
-        padding-left:4px;
-        padding-right:4px;
+        /* padding-left:4px;
+        padding-right:4px; */
     }
     p.weightCaloriesDevider{
         margin-left:2px;
@@ -227,7 +237,6 @@ export default {
         width: 30px;
 
         border-radius: 40px;
-        border:2px solid #CDF2A7;
 
         display:flex;
         justify-content: center;
@@ -241,15 +250,15 @@ export default {
         width:30px;
         height:30px;
 
-        border-color: #F2C53D;
   
         background:
-            linear-gradient(rgb(49, 49, 49),rgb(49, 49, 49)),
-            linear-gradient(rgb(49, 49, 49),rgb(49, 49, 49));
+            linear-gradient(red,red),
+            linear-gradient(red,red);
         background-position:center;
         background-size: 70% 3px,3px 70%; /*thickness = 2px, length = 50% (25px)*/
         background-repeat:no-repeat;
-        background-color: #F2C53D;
+
+        border:2px solid red;
     }
     .remove{
         margin-right: 8px;
@@ -260,7 +269,7 @@ export default {
         height:30px;
   
         background:
-            linear-gradient(#CDF2A7,#CDF2A7);
+            linear-gradient(#000000,#000000);
         background-position:center;
         background-size: 70% 3px,3px 70%; /*thickness = 2px, length = 50% (25px)*/
         background-repeat:no-repeat;
@@ -275,7 +284,11 @@ export default {
         font-size:22px;
     }
     p.price{
-        font-size:26px
+        font-size:26px;
+        color:red;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        
     }
 
 
@@ -291,7 +304,7 @@ export default {
     }
     @media (max-width:600px){
         .edge{
-            height: 160px;
+            height: 140px;
             width: 98%;
             padding:2%;
             padding-left: 3%;
@@ -302,18 +315,13 @@ export default {
             flex-direction: row;
             align-items: center;
             
-            background-color: rgb(49, 49, 49);
-            color:white;
-
-            -webkit-box-shadow: 0px 12px 9px 2px rgba(0, 0, 0, 0.3);
-            -moz-box-shadow: 0px 12px 9px 2px rgba(0, 0, 0, 0.3);
-            box-shadow: 0px 12px 9px 2px rgba(0, 0, 0, 0.3);
+            background-color: white;
+            color:blackж
         }
         .image{
             height: 100%;
             width: 100%;
 
-            border-radius: 5px;
         }
         .image-block{
             width: 40%;
@@ -321,14 +329,14 @@ export default {
 
         }
         .image-container{
-            height: 90%;
-            width: 90%;
+            height: 100%;
+            width: 100%;
         }
         div.name-container{
             margin-bottom:5px;
         }
         h3.item-name{
-            font-size:17px;
+            font-size:20px;
         }
         p.description{
             font-size: 12px;
@@ -339,6 +347,7 @@ export default {
         .text-block{
             width: 60%;
             height: 100%;
+            padding-left:10px;
         }
         .text-container{
             display: flex;
@@ -360,7 +369,7 @@ export default {
         }
         .weight,.weightCaloriesDevider,.calories{
             font-size: 13px;
-            color:gray;
+            color:rgb(0, 0, 0);
         }
         .button{
             height: 23px;

@@ -5,7 +5,15 @@ Vue.use(Vuex)
 
 const state = () =>({
     list:[
-        
+        {
+            id:0,
+            name:"О компании",
+            description:"Скидка если вас зовут Абылай"
+        },
+        {
+            id:1,
+            description:"Скидка если вас зовут Рустам"
+        }
     ]
 })
 

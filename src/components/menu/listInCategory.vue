@@ -63,10 +63,12 @@ export default {
     .menu-list{
         display:flex;
         flex-wrap: wrap;
+
+        transition: .3s ease;
     }
     .pre-edge-container{
         margin-top: 40px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
     .name{
         padding-left:1%;
@@ -77,17 +79,16 @@ export default {
 
     .subcategory-container{
         margin:0;
-        margin-top:20px;
-        height: 35px;
+        margin-top:25px;
+        height: 45px;
 
-        overflow-y: hidden;
+        /* overflow-y: hidden; */
         overflow-x:auto;
         width: 94%;
         white-space: nowrap;
 
         padding-left:3%;
         padding-right:3%;
-
 
     }
 
@@ -123,6 +124,10 @@ export default {
     .choosen{
         background-color: white;
         color:black;
+
+        -webkit-box-shadow: 0px 12px 12px -3px rgba(0, 0, 0, 0.6);
+        -moz-box-shadow: 0px 12px 12px -3px rgba(0, 0, 0, 0.6);
+        box-shadow: 0px 12px 12px -3px rgba(0, 0, 0, 0.6);
     }
     @media (max-width: 500px){
         .name{

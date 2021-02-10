@@ -1,9 +1,14 @@
 <template>
     <div class="opening-block">
         <div class="opening-block-promo-container" v-bind:style="{height:openingBlockHeightConst+'px'}">
-            <poorHeader/>
-            <div class="slider-container" v-bind:style="{'height':(openingBlockHeightConst-60)+'px'}">
+            <div class="header-container">
+                <poorHeader class="main-page-header" />
+            </div>
+            <div class="slider-container" v-bind:style="{'height':(openingBlockHeightConst-360)+'px'}">
                 <slider/>
+            </div>
+            <div class="main-text-container">
+
             </div>
         </div>
 
@@ -32,7 +37,7 @@ export default {
     name:'mainPage',
     data(){
         return {
-            openingBlockHeightConst:0,
+            openingBlockHeightConst:100,
             chosenCategory:'',
             showFixedHeader:false,
             headerHeight:80,
@@ -47,7 +52,7 @@ export default {
     },
     methods:{
         onScroll(){
-            if(window.scrollY>this.openingBlockHeightConst){
+            if(window.scrollY>this.openingBlockHeightConst-60){ 
                 this.showFixedHeader = true
             }
             else{
@@ -56,15 +61,12 @@ export default {
         },
     },
     created(){
-        this.onScroll()
+        // this.onScroll() 
         window.addEventListener('scroll',this.onScroll)
-        this.openingBlockHeightConst=window.innerHeight-this.headerHeight
+        this.openingBlockHeightConst = window.innerHeight-this.headerHeight
     },
     destroyed(){
         window.removeEventListener('scroll',this.onScroll)
-    },
-    mounted(){
-        
     },
     updated(){
         console.log("render mainpage");
@@ -76,7 +78,26 @@ export default {
     .displayNone{
         display: none;
     }
+    .slider-container{
+        min-height: 300px;
+    }
+    .main-text-container{
+        height: 270px;
+        background: url('../assets/logo.svg') center center;
+        background-size:contain;
+        background-repeat: no-repeat;
+        opacity:.2;
+        margin-bottom:30px;
+    }
 
+    .header-container{
+        height: 60px;
+    }
+    .main-page-header{
+        position:fixed;
+        width:94%;
+        z-index: 50;
+    }
     .opening-block{
         width: 100%;
     }
@@ -85,17 +106,15 @@ export default {
         margin-right: auto;
         max-width: 1500px;
         
-
-        background-color: blanchedalmond;
     }
     .categories{
         /* you must get heigth before nav-categoies */
         background-color: black;
     }
     .fixed-categories{
-        z-index: 99;
+        z-index: 40;
         position: fixed;
-        top:0;
+        top:60px;
         width:100%;
         background-color:black;
     }

@@ -7,7 +7,7 @@
         </div>
         <div class="right side">
             <div class="phone-container">
-                <a class="phone-button" href="tel:+77056707891">T</a>
+                <a class="phone-button" href="tel:+77056707891"><img src="https://img.icons8.com/ios-filled/100/ffffff/phone.png"/></a>
                 <p class="phone-number">8 (777) 777 77 77</p>
             </div>
         </div>
@@ -47,23 +47,36 @@ export default {
     .phone-number{
         color:black;
 
-        display: inline;
         font-family: Montserrat;
         font-weight: bold;
+        padding-top:3px;
     }
     .phone-button{
-        height: 35px;
-        width: 35px;
 
         margin-right: 5px;
-        display: inline;
+        background-color: black;
+
+        display: flex;
+
+        padding:5px;
+        border-radius: 30px;
+    }
+    .phone-button img{
+        height: 16px;
+        width: 16px;
     }
     .phone-container{
         background-color: white;
 
         border-radius: 40px;
         padding:12px;
-        padding-top:4px;
-        padding-bottom:5px;
+        padding-left:3px;
+        padding-top:3px;
+        padding-bottom:3px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
     }
 </style>

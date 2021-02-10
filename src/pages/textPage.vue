@@ -1,7 +1,7 @@
 <template>
     <div class="text-page">
         <poorHeader/>
-        <div class="text-edge" v-for="item in list" :key="item.id">
+        <div class="text-edge" v-for="item in getList" :key="item.id">
             <div v-if="item.name && item.name!='' && item.name!=null" class="text-name-container">
                 <h2 class="text-name">{{item.name}}</h2>
             </div>
@@ -15,28 +15,34 @@
     </div>
 </template>
 <script>
-import { mapGetters } from 'vuex';
+import { mapState } from 'vuex'
 import poorHeader from '../components/header/poorHeader'
 
 export default {
     name:'textPage',
     data(){
         return{
-            list:[],
+            pageName:''
         }
+    },
+    methods:{
+        setListByParam(){
+            console.log(this.pageName);
+        }
+    },
+    mounted(){
+        this.pageName = this.$route.params.pageName
     },
     components:{
         poorHeader,
     },
     computed:{
-        ...mapGetters({
-            getList:"about/getList"
-        })
+        ...mapState({
+            getList(state,getters){
+                return getters[`${this.pageName}/getList`]
+            }
+        }),
     },
-    mounted(){
-        console.log(this.$route.params.pageName);
-        this.list = this.getList
-    }
 }
 </script>
 <style scoped>

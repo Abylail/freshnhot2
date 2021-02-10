@@ -16,6 +16,7 @@ import store from '../store/index'
 import menuadmin from '../components/admin/menu/menuadmin'
 import textpageadmin from '../components/admin/textpages/textpageadmin'
 import editMenu from '../components/admin/edit/editMenu'
+import loader from '../components/loader/loader'
 
 Vue.use(VueRouter)
 
@@ -69,6 +70,12 @@ const router = new VueRouter({
                 }
                 
             ]
+        },
+        {
+            name:'not-founded',
+            path:'/:catch',
+            component:loader,
+            props:{text:"Страница не найдена"}
         }
     ],
 })

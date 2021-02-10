@@ -5,7 +5,15 @@ Vue.use(Vuex)
 
 const state = () =>({
     list:[
-        
+        {
+            id:0,
+            name:"Доставка",
+            description:"Довозим в черте города"
+        },
+        {
+            id:1,
+            description:"Заказы суммой 3500тг довозятся бесплатно"
+        }
     ]
 })
 
