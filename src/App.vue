@@ -21,6 +21,7 @@ export default {
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,500;0,600;0,700;1,400&display=swap');
     h1,h2,h3,p,a,textarea{
         margin:0;
         font-family: 'Open Sans', sans-serif;
@@ -34,7 +35,7 @@ export default {
   #app{
     margin:0;
     min-width: 350px;
-    background-color: #252525;
+    background-color: #2C2C2C;
   }
   .projectContainer{
     margin-left:auto;

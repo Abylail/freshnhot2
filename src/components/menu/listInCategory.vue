@@ -108,6 +108,7 @@ export default {
 
         font-size: 18px;
         color:rgb(143, 143, 143);
+        transition: .2s ease;
 
         padding:5px;
         padding-left:10px;
@@ -115,6 +116,10 @@ export default {
 
         -ms-overflow-style: none;  /* IE and Edge */
         scrollbar-width: none;  /* Firefox */
+
+        -webkit-box-shadow: 0px 0px 0px -3px rgba(0, 0, 0, 0);
+        -moz-box-shadow: 0px 0px 0px -3px rgba(0, 0, 0, 0);
+        box-shadow: 0px 0px 0px -3px rgba(0, 0, 0, 0);
     }
 
     .sub-category-edge::-webkit-scrollbar {

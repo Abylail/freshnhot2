@@ -33,17 +33,21 @@
             </div>
             <div class="delivery-price">
                 <p>Доставка:</p>
-                <p>{{deliveryPriceText()}}</p>
+                <p v-bind:class="{'free-delivery':getAllprice>getFreeDeliveryMinimumPrice}">{{deliveryPriceText()}}</p>
+            </div>
+            <div class="text-price-block">
+                <p>Цена доставки может измениться в зависимости от адреса доставки</p>
             </div>
             <div class="final-price">
                 <p>Итого: </p>
                 <p>{{priceWithDelivery()}}</p>
             </div>
-
-            <div class="order-button-container">
-                <router-link to="/order" class="order-button">Оформить заказ</router-link>
+            <div class="text-price-block">
+                <p>Нажимая на кнопку оформить вы должны быть готовы к очень вкусной еде</p>
             </div>
-
+            <div class="order-button-container">
+                <router-link to="/order" class="order-button">Оформить</router-link>
+            </div>
         </div>
     </div>
     <div class="info-container">
@@ -106,6 +110,10 @@ export default {
 <style scoped>
 .big-conatiner{
     min-height: 80vh;
+}
+.free-delivery{
+    font-family: 'Monstrat',sans-serif;
+    color:#f6d73b;
 }
 .shopping-cart-amount{
     color:red;
@@ -173,9 +181,28 @@ export default {
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
+
+    background-color:#f03a3a67;
+    padding:10px;
+    padding-top:5px;
+    padding-bottom:5px;
+
+    border-radius: 5px;
+
+    margin-bottom:22px;
 }
 .final-price p{
-    font-size:28px;
+    font-size:22px;
+}
+
+.text-price-block{
+    margin-top:20px;
+    margin-bottom:20px;
+    padding-right:30%;
+}
+.text-price-block p{
+    font-size:14px;
+    color:gray;
 }
 
 .order-button-container{
@@ -183,7 +210,7 @@ export default {
     margin-bottom:20px;
 }
 .order-button{
-    font-size:26px;
+    font-size:22px;
     color:white;
     background-color: red;
 
@@ -192,7 +219,7 @@ export default {
     align-items: center;
 
     padding:8px;
-    border-radius: 4px;
+    border-radius: 5px;
 
 
     text-decoration: none;
@@ -203,9 +230,9 @@ export default {
     align-items: center;
     flex-direction: row;
 }
-.price-product-price{
-    color:red;
-}
+/* .price-product-price{
+    color:#a8f662;
+} */
 .pruduct-price p{
     font-size: 22px;
 }
@@ -216,7 +243,7 @@ export default {
     flex-direction: row;
 }
 .delivery-price p{
-    font-size: 18px;    
+    font-size: 22px;    
 }
 
 .info-container{
@@ -232,10 +259,13 @@ export default {
 }
 .header-text{
     margin-bottom: 15px;
-    font-size: 20px;
+    font-size: 22px;
 }
 .main-text-block{
     padding-left: 10px;
+}
+.main-text-block p{
+    font-size:14px;
 }
 
 </style>

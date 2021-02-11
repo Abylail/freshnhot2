@@ -22,7 +22,7 @@
             <menuList/>
         </div>
 
-        <shoppingCartButton/>
+        <shoppingCartButton v-bind:showShoppingCartButton="this.showShoppingCartButton"/>
     </div>
 </template>
 <script> 
@@ -41,6 +41,7 @@ export default {
             chosenCategory:'',
             showFixedHeader:false,
             headerHeight:80,
+            showShoppingCartButton:false,
         }
     },
     components:{
@@ -53,10 +54,16 @@ export default {
     methods:{
         onScroll(){
             if(window.scrollY>this.openingBlockHeightConst-60){ 
+                if(!this.showFixedHeader){
                 this.showFixedHeader = true
+                this.showShoppingCartButton = true
+                }
             }
             else{
+                if(this.showFixedHeader){
                 this.showFixedHeader = false
+                this.showShoppingCartButton = false
+                }
             }
         },
     },
@@ -114,7 +121,7 @@ box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
     }
     .categories{
         /* you must get heigth before nav-categoies */
-        background-color: rgb(33 33 33);
+        background-color: #2C2C2C;
         position:static;
         z-index:51;
         opacity: .98;
@@ -124,7 +131,7 @@ box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
         position: fixed;
         top:60px;
         width:100%;
-        background-color: rgb(33 33 33);
+        background-color: #2C2C2C;
 
         -webkit-box-shadow: 0px 11px 11px -3px rgba(0,0,0,0.9); 
         box-shadow: 0px 11px 11px -3px rgba(0,0,0,0.9);

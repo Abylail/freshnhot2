@@ -1,5 +1,5 @@
 <template>
-    <router-link to="/korzina" class="shopping-cart-button">
+    <router-link to="/korzina" v-bind:class="{'shopping-cart-button':true,'shopping-cart-button-out':!showShoppingCartButton}">
         <p class="amount-indicator text">
             {{isEmty(getAllprice)}}
         </p>
@@ -9,6 +9,7 @@
 import { mapGetters } from 'vuex'
 export default {
     name:'shoppingCartButton',
+    props:["showShoppingCartButton"],
     methods:{
         isEmty(num){
             if(num===0){
@@ -41,11 +42,19 @@ export default {
         bottom: 40px;
         right:30px;
 
+        transition: .3s ease;
         opacity: 1;
         
         display: inline-flex;
         align-items: center;
         justify-content: center;
+
+        box-shadow: 0px 12px 12px -3px rgba(0, 0, 0, 0.6);
+        -webkit-box-shadow: 0px 12px 12px -3px rgba(0, 0, 0, 0.6);
+        -moz-box-shadow: 0px 12px 12px -3px rgba(0, 0, 0, 0.6);
+    }
+    .shopping-cart-button-out{
+        right:-100px;
     }
     .amount-indicator{
         position: absolute;

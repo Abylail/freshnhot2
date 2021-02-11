@@ -4,6 +4,13 @@
             <poorHeader/>
         </div>
         <div class="root">
+            <div class="navigation-conyainer">
+                <div class="navigation-history">
+                    <router-link class="navigation-link" to="/korzina">Корзина</router-link>
+                    <div class="arrow"></div>
+                    <router-link class="red-text navigation-link" to="">Оформление</router-link>
+                </div>
+            </div>
             <div class="name-container">
                 <p class="name-order">Оформление заказа</p>
             </div>
@@ -117,7 +124,7 @@ export default {
                 return
             }
             
-
+ 
 
             
             if(len==7 && this.mobile[len-2]!=")"){
@@ -144,26 +151,41 @@ export default {
 }
 </script>
 <style scoped>
-    .display-none{
-        display: none;
-    }
     .header-conrainer{
         height: 80px;
     }
     .root{
-        margin-top:50px;
+        
         padding:3%;
         color:white;
     }
-    .name-order{
-        font-size:32px;
+    .navigation-history{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top:10px;
         margin-bottom:30px;
+    }
+    .navigation-link{
+        color:white;
+        text-decoration: none;
+        font-size:14px;
+    }
+    .red-text{
+        color:red;
+    }
+    .name-order{
+        font-size:22px;
+        margin-bottom:20px;
+        text-align: center;
+        font-weight: bold;
+        font-family: 'Montserrat';
     }
     .input-block{
-        margin-bottom:30px;
+        margin-bottom:10px;
     }
     .input-block-title{
-        font-size: 22px;
+        font-size: 16px;
         
     }
     .input-block-title-container{
@@ -171,25 +193,24 @@ export default {
     }
     .input-block-input-container{
         margin-bottom: 15px;
+        transition: .3s ease;
     }
     .input-block-input{
         display: block;
-        height: 50px;
-        font-size: 20px;
-        padding:3px;
+        height: 35px;
+        font-size: 16px;
         padding-left:10px;
         padding-right:10px;
         width: 95%;
-        
 
         border-radius: 5px;
         border:none;
-        background-color: rgb(230, 230, 230);
+        background-color: #585858;
     }
     .comment{
-        height: 200px;
-        max-height: 250px;
-        min-height: 200px;
+        height: 100px;
+        max-height: 100px;
+        min-height: 100px;
         max-width: 95%;
         min-width: 95%;
     }
@@ -243,6 +264,55 @@ export default {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+    }
+
+
+    /* arrow */
+.arrow {
+  background: #fff;
+  height: 3px;
+  width: 35px;
+
+  position: relative;
+  cursor: pointer;
+}
+
+  ::before,
+  ::after {
+    content: "";
+    background: #fff;
+    position: absolute;
+    height: 3px;
+    width: 15px;
+  }
+
+  ::before {
+    right: -3px;
+    bottom: -4px;
+    transform: rotate(-45deg);
+  }
+
+  ::after {
+    right: -3px;
+    top: -4px;
+    transform: rotate(45deg);
+  }
+
+
+
+
+
+
+
+
+    .display-none{
+        height: 0;
+        overflow: hidden;
+    }
+
+    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: white;
+        opacity: 1; /* Firefox */
     }
         
 </style>

@@ -88,7 +88,6 @@ export default {
 }
 </script>
 <style scoped> 
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,500;0,600;0,700;1,400&display=swap');
 
     .remove-button{
         position: relative;
@@ -136,6 +135,9 @@ export default {
         -webkit-box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.5);
             -moz-box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.5);
             box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.5);
+    }
+    .description-container{
+        min-height: 50px;
     }
     .image-block{
         display: flex;
