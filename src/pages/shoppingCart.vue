@@ -2,6 +2,13 @@
 <div class="big-conatiner">
     <div class="shopping-cart-conatiner">
         <poorHeader/>
+        <div class="navigation-container">
+            <div class="navigation-history">
+                <router-link class="red-text navigation-link" to="">Корзина</router-link>
+                <div class="arrow"></div>
+                <router-link class="navigation-link" to="/order">Оформление</router-link>
+            </div>
+        </div>
         <div v-if="getAmount>0" class="text-block">
             <p class="name-page">Корзина <span class="shopping-cart-amount">({{getAmount}})</span></p>
             <a class="clear" v-on:click="clearButtonClick">Очистить корзину</a>
@@ -268,4 +275,61 @@ export default {
     font-size:14px;
 }
 
+
+.navigation-container{
+    padding-left:3%;
+    padding-right:3%;
+
+    margin-top:20px;
+}
+.navigation-history{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top:10px;
+    margin-bottom:15px;
+}
+.navigation-link{
+        color:white;
+        text-decoration: none;
+        font-size:14px;
+    }
+    .red-text{
+        color:red;
+    }
+
+
+        /* arrow */
+.arrow {
+  background: #fff;
+  height: 2px;
+  width: 35px;
+
+  position: relative;
+  cursor: pointer;
+
+  margin-left:15px;
+  margin-right:15px;
+}
+
+ .arrow::before,
+  .arrow::after {
+    content: "";
+    background: #fff;
+    position: absolute;
+    height: 3px;
+    width: 8px;
+  }
+
+  .arrow::before {
+    right: -3px;
+    bottom: -2.5px;
+    transform: rotate(-45deg);
+  }
+
+  .arrow::after {
+    right: -3px;
+    top: -2.5px;
+    transform: rotate(45deg);
+  }
 </style>

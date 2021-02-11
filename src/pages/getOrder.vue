@@ -4,7 +4,7 @@
             <poorHeader/>
         </div>
         <div class="root">
-            <div class="navigation-conyainer">
+            <div class="navigation-container">
                 <div class="navigation-history">
                     <router-link class="navigation-link" to="/korzina">Корзина</router-link>
                     <div class="arrow"></div>
@@ -32,12 +32,14 @@
                 </div>
                 <div class="input-block-input-container">
                     <div class="input-radio-container">
-                        <input type="radio" value='Доставка' v-model="deliveryType"/>
-                        <span>Доставка</span>
+                        <!-- <input type="radio" value='Доставка' v-model="deliveryType"/>
+                        <span>Доставка</span> -->
+                        <button class="choose-button" v-on:click="()=>{deliveryType='Доставка'}" v-bind:class="{'choose-button-active':deliveryType=='Доставка'}">Доставка</button>
                     </div>
                     <div class="input-radio-container">
-                        <input type="radio" value='Самовывоз' v-model="deliveryType"/>
-                        <span>Самовывоз</span>
+                        <!-- <input type="radio" value='Самовывоз' v-model="deliveryType"/>
+                        <span>Самовывоз</span> -->
+                        <button class="choose-button" v-on:click="()=>{deliveryType='Самовывоз'}" v-bind:class="{'choose-button-active':deliveryType=='Самовывоз'}">Самовывоз</button>
                     </div>
                 </div>
                 <div class="input-block-input-container">
@@ -57,12 +59,15 @@
                 </div>
                 <div class="input-block-input-container">
                     <div class="input-radio-container">
-                        <input type="radio" value='Kaspi' v-model="paytype"/>
-                        <span>Каспи перевод</span>
+                        <!-- <input type="radio" value='Kaspi' v-model="paytype"/>
+                        <span>Каспи перевод</span> -->
+                        <button class="choose-button" v-on:click="()=>{paytype='Kaspi'}" v-bind:class="{'choose-button-active':paytype=='Kaspi'}">Каспи перевод</button>
+
                     </div>
                     <div class="input-radio-container">
-                        <input type="radio" value='Cash' v-model="paytype"/>
-                        <span>Наличными <span v-bind:class="{'display-none':deliveryType!='Доставка'}">курьеру</span></span>
+                        <!-- <input type="radio" value='Cash' v-model="paytype"/>
+                        <span>Наличными <span v-bind:class="{'display-none':deliveryType!='Доставка'}">курьеру</span></span> -->
+                        <button class="choose-button" v-on:click="()=>{paytype='Cash'}" v-bind:class="{'choose-button-active':paytype=='Cash'}">Наличными</button>
                     </div>
                 </div>
                 <div class="input-block-input-container">
@@ -78,7 +83,7 @@
         </div>
         <div class="price-container">
             <p>К оплате:</p>
-            <p>{{getAllprice}}₸</p>
+            <p class="price-container-price">{{getAllprice}}₸</p>
         </div>
         <div class="create-order-container">
             <a class="create-order-button">Сделать заказ</a>
@@ -206,6 +211,7 @@ export default {
         border-radius: 5px;
         border:none;
         background-color: #585858;
+        color:white;
     }
     .comment{
         height: 100px;
@@ -217,8 +223,34 @@ export default {
     .input-radio-container{
         display: inline-block;
         width:45%;
+        margin-right:5%;
         font-size: 22px;
 
+
+    }
+    .choose-button{
+        display: block;
+        width:100%;
+        height: 35px;
+
+        background-color: #585858;
+        color:white;
+        border:none;
+        border-radius: 5px;
+        transition: .3s ease;
+        font-size: 16px;
+
+        -webkit-box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0);
+            -moz-box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0);
+            box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0);
+    }
+    .choose-button-active{
+        background-color: lightgray;
+        color:#585858;
+
+        -webkit-box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.3);
+            -moz-box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.3);
     }
     .input-radio-container input{
         height: 20px;
@@ -239,15 +271,19 @@ export default {
 
         padding-left:3%;
         padding-right:3%;
+
+        /* -webkit-box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.25);
+            -moz-box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.25);
+            box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.25); */
     }
     .create-order-button{
-        font-size:26px;
+        font-size:22px;
         padding: 8px;
-        border-radius: 4px;
+        border-radius: 10px;
         width: 94%;
 
-        background-color: red;
-        color:white;
+        border:4px solid #ff0000d9;
+        color:#ff0000d9;
 
         display: flex;
         justify-content: center;
@@ -257,7 +293,7 @@ export default {
         padding-left:3%;
         padding-right:3%;
 
-        font-size: 28px;
+        font-size: 22px;
         color:white;
 
         display: flex;
@@ -265,36 +301,44 @@ export default {
         justify-content: space-between;
         align-items: center;
     }
+    .price-container-price{
+        color:#ff0000d9;
+        font-weight: bold;
+        font-family: 'Montserrat';
+    }
 
 
     /* arrow */
 .arrow {
   background: #fff;
-  height: 3px;
+  height: 2px;
   width: 35px;
 
   position: relative;
   cursor: pointer;
+
+  margin-left:15px;
+  margin-right:15px;
 }
 
-  ::before,
-  ::after {
+  .arrow::before,
+  .arrow::after {
     content: "";
     background: #fff;
     position: absolute;
     height: 3px;
-    width: 15px;
+    width: 8px;
   }
 
-  ::before {
+  .arrow::before {
     right: -3px;
-    bottom: -4px;
+    bottom: -2.5px;
     transform: rotate(-45deg);
   }
 
-  ::after {
+  .arrow::after {
     right: -3px;
-    top: -4px;
+    top: -2.5px;
     transform: rotate(45deg);
   }
 
