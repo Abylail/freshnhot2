@@ -90,7 +90,7 @@ const state = () => ({
         {
             id:3,
             name:"Сеты",
-            imgSrc:"",
+            imgSrc:"https://media.flaticon.com/dist/min/img/logo/flaticon_negative.svg",
             subCategories:[
                 {
                     id:0,

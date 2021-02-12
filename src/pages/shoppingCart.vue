@@ -135,8 +135,8 @@ export default {
     justify-content: space-between;
 
 
-    margin-top:10px;
-    margin-bottom:20px;
+    margin-top:20px;
+    margin-bottom:10px;
 }
 .list-container{
     display: flex;
@@ -156,6 +156,8 @@ export default {
 }
 .name-page{
     font-size:22px;
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 .empty-cart-name-page{
     font-size:32px ;
@@ -230,6 +232,10 @@ export default {
 
 
     text-decoration: none;
+
+    -webkit-box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.3);
+            -moz-box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.3);
 }
 .pruduct-price{
     display: flex;
@@ -303,13 +309,13 @@ export default {
 .arrow {
   background: #fff;
   height: 2px;
-  width: 35px;
+  width: 25px;
 
   position: relative;
   cursor: pointer;
 
-  margin-left:15px;
-  margin-right:15px;
+  margin-left:10px;
+  margin-right:10px;
 }
 
  .arrow::before,

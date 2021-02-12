@@ -4,6 +4,7 @@
             <div class="loader-logo-container">
                 <img src="../../assets/logo.svg" alt="logo"/>
                 <p>Fresh<span style="color:#fddc3b;">N</span>hot</p>
+                <p class="props-error-text" v-if="errorText && errorText!=''">{{errorText}}</p>
                 <p class="props-text" v-if="text && text!=''">{{text}}</p>
             </div>
             <div class="loader">
@@ -13,11 +14,15 @@
     </div>
 </template>
 <script>
+import router from '../../router/index'
+
 export default {
     name:'loader',
-    props:['text'],
+    props:['errorText','text'],
     mounted(){
-      console.log("text",this.text);
+      if(this.errorText && this.errorText!="" && this.errorText!=null){
+        setTimeout(()=>router.push("/"),2000)
+      }
     }
 }
 </script>
@@ -58,9 +63,13 @@ export default {
     font-size: 26px;
     text-align: center;
 }
-.props-text{
+.props-error-text{
   color:red;
-  font-size:20px;
+  font-size:16px;
+}
+.props-text{
+  color:white;
+  font-size:16px;
 }
 
 span.loader {

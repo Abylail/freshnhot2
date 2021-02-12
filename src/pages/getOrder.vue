@@ -1,5 +1,6 @@
 <template>
     <div class="order-page">
+        <loader v-if="showLoader" text="Отправляем ваш заказ"/>
         <div class="header-container">
             <poorHeader/>
         </div>
@@ -47,7 +48,7 @@
                     <div class="input-block-input-container" v-bind:class="{'display-none':deliveryType!='Доставка'}">
                         <input type="text" class="input-block-input" placeholder="Адрес"/>
                     </div>
-                    <div class="input-block-input-container" v-bind:class="{'display-none':deliveryType!='Самовывоз'}">
+                    <div class="input-block-input-text" v-bind:class="{'display-none':deliveryType!='Самовывоз'}">
                         <p>Самовывоз по адресу:<br>Абылай красавчинская 777</p>
                     </div>
                 </div>
@@ -83,16 +84,21 @@
         </div>
         <div class="price-container">
             <p>К оплате:</p>
-            <p class="price-container-price">{{getAllprice}}₸</p>
+            <p class="price-container-price">{{priceWithDelivery()}}</p>
+        </div>
+        <div class="price-container-text">
+            <p>Стоимость может измениться в зависимости от адреса доставки</p>
         </div>
         <div class="create-order-container">
-            <a class="create-order-button">Сделать заказ</a>
+            <a class="create-order-button" v-on:click="createOrder">Сделать заказ</a>
         </div>
     </div>
 </template>
 <script>
 import { mapGetters } from 'vuex'
 import poorHeader from '../components/header/poorHeader'
+import loader from '../components/loader/loader'
+
 export default {
     name:'getOrder',
     data(){
@@ -102,9 +108,14 @@ export default {
             deliveryType:'Доставка',
 
             paytype:"Kaspi",
+
+            showLoader:false,
         }
     },
     methods:{
+        async createOrder(){
+            this.showLoader = true
+        },
         setMobile(){
             let len = this.mobile.length
             let lastChar = this.mobile[len-1]
@@ -143,14 +154,22 @@ export default {
                 }
             }
 
-        }
+        },
+        priceWithDelivery(){
+            if(this.getAllprice>this.getFreeDeliveryMinimumPrice || this.deliveryType=='Самовывоз'){
+                return this.getAllprice+"₸"
+            }
+            return (this.getAllprice+500)+"₸"
+        },
     },
     components:{
-        poorHeader
+        poorHeader,
+        loader
     },
     computed:{
         ...mapGetters({
             getAllprice:"shoppingCart/getAllprice",
+            getFreeDeliveryMinimumPrice:"listOfItems/getFreeDeliveryMinimumPrice"
         })
     },
 }
@@ -197,7 +216,8 @@ export default {
         margin-bottom: 15px;
     }
     .input-block-input-container{
-        margin-bottom: 15px;
+        margin-bottom: 5px;
+        margin-top:15px;
         transition: .3s ease;
     }
     .input-block-input{
@@ -280,14 +300,18 @@ export default {
         font-size:22px;
         padding: 8px;
         border-radius: 10px;
-        width: 94%;
+        width: 96%;
 
-        border:4px solid #ff0000d9;
-        color:#ff0000d9;
+        background-color: #ff0000d9;
+        color:white;
 
         display: flex;
         justify-content: center;
         align-items: center;
+
+        -webkit-box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.3);
+            -moz-box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.3);
     }
     .price-container{
         padding-left:3%;
@@ -302,9 +326,22 @@ export default {
         align-items: center;
     }
     .price-container-price{
-        color:#ff0000d9;
+        color:#ff0000e5;
         font-weight: bold;
         font-family: 'Montserrat';
+    }
+    .price-container-text{
+        margin-top:10px;
+        margin-bottom:15px;
+
+        padding-right: 3%;
+        padding-left: 3%;
+
+        font-size: 14px;
+        color:gray;
+    }
+    .price-container-text p{
+        padding-right:30px;
     }
 
 
@@ -312,13 +349,13 @@ export default {
 .arrow {
   background: #fff;
   height: 2px;
-  width: 35px;
+  width: 25px;
 
   position: relative;
   cursor: pointer;
 
-  margin-left:15px;
-  margin-right:15px;
+  margin-left:10px;
+  margin-right:10px;
 }
 
   .arrow::before,
@@ -352,6 +389,7 @@ export default {
     .display-none{
         height: 0;
         overflow: hidden;
+        margin:0;
     }
 
     ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */

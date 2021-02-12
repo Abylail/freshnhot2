@@ -1,7 +1,10 @@
 <template>
     <a class="root" v-on:click="itemClick">
         <!-- <router-link class="image-container" to="/korzina" >GO</router-link> -->
-        <div class="image-container"></div>
+        <div class="image-container">
+            <img :src="category.imgSrc"/>
+            <!-- <img src="@/assets/icons/sushi.svg"/>     -->
+        </div>
         <p class="itemName">{{category.name}}</p>
     </a>
 </template>
@@ -40,9 +43,12 @@ export default {
     .image-container{
         height:45px;
         width:45px;
-        border:1px solid white;
 
         margin-left:auto;
         margin-right:auto;
+    }
+    .image-container img{
+        height: 100%;
+
     }
 </style>

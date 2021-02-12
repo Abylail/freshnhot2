@@ -1,7 +1,6 @@
 <template>
     <div class="edge">
         <div class="edge-container">
-            <div v-if="isShoppingCart" v-on:click="removeAllItemInShopiingCart" class="remove-button"></div>
             <div class="image-block">
                 <div class="image-container">
                     <div class="image" v-bind:style="{'background-image':'url('+imgSrc+')'}"></div>
@@ -11,6 +10,7 @@
                 <div class="text-container">
                     <div class="name-container">
                         <h3 class="item-name">{{item.name}}</h3>
+                        <div v-if="isShoppingCart" v-on:click="removeAllItemInShopiingCart" class="remove-button"></div>
                     </div>
                     <div class="description-container">
                         <p class="description">{{item.description}}</p>
@@ -90,12 +90,12 @@ export default {
 <style scoped> 
 
     .remove-button{
-        position: relative;
-        top:-43%;
-        left:90%;
+        grid-area: remove-button;
+        height: 100%;
+        width: 100%;
     }
     .remove-button:before, .remove-button:after {
-  position: absolute;
+  position: relative;
   left: 15px;
   content: ' ';
   height: 16px;
@@ -336,8 +336,12 @@ export default {
         }
         div.name-container{
             margin-bottom:5px;
+            display: grid;
+            grid-template-areas: "name remove-button";
+            grid-template-columns:1fr 20px;
         }
         h3.item-name{
+            grid-area: name;
             font-size:20px;
         }
         p.description{

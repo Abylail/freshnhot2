@@ -4,11 +4,13 @@
             <div class="header-container">
                 <poorHeader class="main-page-header" />
             </div>
-            <div class="slider-container" v-bind:style="{'height':(openingBlockHeightConst-360)+'px'}">
-                <slider/>
-            </div>
-            <div class="main-text-container">
+            <div class="opening-block-promo-container-main" v-bind:style="{'height':(openingBlockHeightConst-60)+'px'}">
+                <div class="slider-container">
+                    <slider/>
+                </div>
+                <div class="main-text-container">
 
+                </div>
             </div>
         </div>
 
@@ -86,15 +88,20 @@ export default {
         display: none;
     }
     .slider-container{
-        min-height: 300px;
+        grid-area: slider;
+        height: 100%;
+        background-color: blanchedalmond;
+        width:100vw;
     }
     .main-text-container{
-        height: 270px;
+        grid-area: text-block;
+        height: 220px;
+        margin-top:15px;
         background: url('../assets/logo.svg') center center;
         background-size:contain;
+        -webkit-background-size:contain;
         background-repeat: no-repeat;
         opacity:.2;
-        margin-bottom:30px;
     }
     .nav-categories-container{
 transition: .3s ease;
@@ -144,6 +151,13 @@ box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
         padding-right:15px;
 
         max-width: 1500px;
+    }
+
+    .opening-block-promo-container-main{
+        display: grid;
+        grid-template-areas:"slider" "text-block";
+        grid-auto-rows: 1fr 250px;
+        min-height: 450px;
     }
     @media (max-width: 500px){
         .list-container{

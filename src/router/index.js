@@ -75,7 +75,7 @@ const router = new VueRouter({
             name:'not-founded',
             path:'/:catch',
             component:loader,
-            props:{text:"Страница не найдена"}
+            props:{errorText:"Страница не найдена"}
         }
     ],
 })
