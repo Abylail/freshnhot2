@@ -114,14 +114,14 @@ export default {
     },
     methods:{
         async createOrder(){
-            let url = "https://app.frontpad.ru/api/index.php?new_order"
+            let url = "https://app.frontpad.ru/api/index.php?new_order&secret=r6d9k9ez9hS5nhztzbHzb3RA2banK9Y3623e27DZdhRssbNRehah8RHYSH9sHTfDG7Ht49d7hYkBZ2d57da6YHRDeRTRA3e6ZQkNQsGZbYk2HrSFySAdndFyTn9fbea2YnBzG8hHSyzrNbY7Tha8kGs7Ysb2AbNfsaF29QyR9S7KYRGD2GBadT7298KAaiFsk9eiQB4NfZk4BYtnsTnyBifBhT2i5sEdsHn68dGd4Y7rFnFZ7Yfz6rZb8K&product=[1]&product_kol=[10]"
             let request = new XMLHttpRequest()
-            request.open('POST',url,true)
+            request.open('GET',url,true)
             request.onload = ()=>{
                 console.log(request)
             }
-            request.send("secret=r6d9k9ez9hS5nhztzbHzb3RA2banK9Y3623e27DZdhRssbNRehah8RHYSH9sHTfDG7Ht49d7hYkBZ2d57da6YHRDeRTRA3e6ZQkNQsGZbYk2HrSFySAdndFyTn9fbea2YnBzG8hHSyzrNbY7Tha8kGs7Ysb2AbNfsaF29QyR9S7KYRGD2GBadT7298KAaiFsk9eiQB4NfZk4BYtnsTnyBifBhT2i5sEdsHn68dGd4Y7rFnFZ7Yfz6rZb8K&product=[1]&product_kol=[10]")
-
+            // request.send("secret=r6d9k9ez9hS5nhztzbHzb3RA2banK9Y3623e27DZdhRssbNRehah8RHYSH9sHTfDG7Ht49d7hYkBZ2d57da6YHRDeRTRA3e6ZQkNQsGZbYk2HrSFySAdndFyTn9fbea2YnBzG8hHSyzrNbY7Tha8kGs7Ysb2AbNfsaF29QyR9S7KYRGD2GBadT7298KAaiFsk9eiQB4NfZk4BYtnsTnyBifBhT2i5sEdsHn68dGd4Y7rFnFZ7Yfz6rZb8K&product=[1]&product_kol=[10]")
+            request.send()
             this.showLoader = true
         },
         setMobile(){
