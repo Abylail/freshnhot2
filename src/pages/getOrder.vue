@@ -2,7 +2,12 @@
     <div class="order-page">
         <loader v-if="showLoader" text="Отправляем ваш заказ"/>
         <div class="header-container">
-            <poorHeader/>
+            <smartHeader 
+                :backButton="true"
+                :shadow="true"
+                :phone="true"
+                :fixed="true"
+            />
         </div>
         <div class="root">
             <div class="navigation-container">
@@ -82,6 +87,7 @@
                 </div>
             </div>
         </div>
+        <div class="error-message" v-bind="{'display-none':errorMessage == ''}"><p>{{errorMessage}}</p></div>
         <div class="price-container">
             <p>К оплате:</p>
             <p class="price-container-price">{{priceWithDelivery()}}</p>
@@ -96,7 +102,7 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
-import poorHeader from '../components/header/poorHeader'
+import smartHeader from '../components/header/smartHeader'
 import loader from '../components/loader/loader'
 
 export default {
@@ -104,25 +110,18 @@ export default {
     data(){
         return{
             mobile:"",
-
             deliveryType:'Доставка',
-
             paytype:"Kaspi",
-
+            errorMessage:"",
             showLoader:false,
         }
     },
     methods:{
-        async createOrder(){
-            let url = "https://app.frontpad.ru/api/index.php?new_order&secret=r6d9k9ez9hS5nhztzbHzb3RA2banK9Y3623e27DZdhRssbNRehah8RHYSH9sHTfDG7Ht49d7hYkBZ2d57da6YHRDeRTRA3e6ZQkNQsGZbYk2HrSFySAdndFyTn9fbea2YnBzG8hHSyzrNbY7Tha8kGs7Ysb2AbNfsaF29QyR9S7KYRGD2GBadT7298KAaiFsk9eiQB4NfZk4BYtnsTnyBifBhT2i5sEdsHn68dGd4Y7rFnFZ7Yfz6rZb8K&product=[1]&product_kol=[10]"
-            let request = new XMLHttpRequest()
-            request.open('GET',url,true)
-            request.onload = ()=>{
-                console.log(request)
-            }
-            // request.send("secret=r6d9k9ez9hS5nhztzbHzb3RA2banK9Y3623e27DZdhRssbNRehah8RHYSH9sHTfDG7Ht49d7hYkBZ2d57da6YHRDeRTRA3e6ZQkNQsGZbYk2HrSFySAdndFyTn9fbea2YnBzG8hHSyzrNbY7Tha8kGs7Ysb2AbNfsaF29QyR9S7KYRGD2GBadT7298KAaiFsk9eiQB4NfZk4BYtnsTnyBifBhT2i5sEdsHn68dGd4Y7rFnFZ7Yfz6rZb8K&product=[1]&product_kol=[10]")
-            request.send()
-            this.showLoader = true
+        validation(){
+            
+        },
+        createOrder(){
+
         },
         setMobile(){
             let len = this.mobile.length
@@ -171,7 +170,7 @@ export default {
         },
     },
     components:{
-        poorHeader,
+        smartHeader,
         loader
     },
     computed:{
@@ -183,6 +182,9 @@ export default {
 }
 </script>
 <style scoped>
+    .order-page{
+        padding-top:60px;
+    }
     .header-conrainer{
         height: 80px;
     }
@@ -398,6 +400,7 @@ export default {
         height: 0;
         overflow: hidden;
         margin:0;
+        padding:0;
     }
 
     ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -405,4 +408,15 @@ export default {
         opacity: 1; /* Firefox */
     }
         
+
+    .error-message{
+        padding-left:3%;
+        padding-right:3%;
+
+        margin-bottom:15px;
+        font-size:22px;
+    }
+    .error-message p{
+        color:red;
+    }
 </style>

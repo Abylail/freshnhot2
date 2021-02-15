@@ -1,7 +1,12 @@
 <template>
 <div class="big-conatiner">
     <div class="shopping-cart-conatiner">
-        <poorHeader/>
+        <smartHeader 
+            :backButton="true"
+            :shadow="true"
+            :phone="true"
+            :fixed="true"
+        />
         <div class="navigation-container">
             <div class="navigation-history">
                 <router-link class="red-text navigation-link" to="">Корзина</router-link>
@@ -74,14 +79,14 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 
-import poorHeader from '../components/header/poorHeader'
+import smartHeader from '../components/header/smartHeader'
 import onePositionMenu from '../components/menu/onePositionMenu'
 
 export default {
     name:'shoppingCart',
     components:{
-        poorHeader,
         onePositionMenu,
+        smartHeader
     },
     methods:{
         clearButtonClick(){
@@ -126,6 +131,7 @@ export default {
     color:red;
 }
 .shopping-cart-conatiner{
+    padding-top:60px;
     color:white;
 }
 .text-block{
@@ -292,8 +298,8 @@ export default {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top:10px;
-    margin-bottom:15px;
+    padding-top:20px;
+    margin-bottom:10px;
 }
 .navigation-link{
         color:white;

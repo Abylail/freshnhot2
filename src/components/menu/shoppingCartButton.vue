@@ -3,6 +3,9 @@
         <p class="amount-indicator text">
             {{isEmty(getAllprice)}}
         </p>
+        <div class="image-cointainer">
+            <img src="@/assets/icons/shopping-basket.svg"/>            
+        </div>
     </router-link>
 </template>
 <script>
@@ -32,14 +35,14 @@ export default {
     }
 
     .shopping-cart-button{
-        height: 50px;
-        width:50px;
+        height: 65px;
+        width:65px;
         background-color: red;
 
         border-radius: 30px;
 
         position: fixed;
-        bottom: 40px;
+        bottom: 60px;
         right:30px;
 
         transition: .3s ease;
@@ -74,5 +77,18 @@ export default {
     .text{
         font-size: 14px;
         color:white;
+    }
+
+    .image-cointainer{
+        height: 100%;
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .image-cointainer img{
+        height: 70%;
+        width: 70%;
     }
 </style>

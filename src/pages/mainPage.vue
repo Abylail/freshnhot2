@@ -2,7 +2,11 @@
     <div class="opening-block">
         <div class="opening-block-promo-container" v-bind:style="{height:openingBlockHeightConst+'px'}">
             <div class="header-container">
-                <poorHeader class="main-page-header" />
+                <smartHeader
+                    :fixed="true"
+                    :logo="true"
+                    :phone="true"
+                />
             </div>
             <div class="opening-block-promo-container-main" v-bind:style="{'height':(openingBlockHeightConst-60)+'px'}">
                 <div class="slider-container">
@@ -31,7 +35,7 @@
 import navCategories from '../components/navigation/navCategoriesComponent/navCategories';
 import menuList from '../components/menu/menuList'
 import shoppingCartButton from '../components/menu/shoppingCartButton'
-import poorHeader from '../components/header/poorHeader'
+import smartHeader from '../components/header/smartHeader'
 
 import slider from '../components/slider/slider'
 
@@ -50,8 +54,8 @@ export default {
         navCategories,
         menuList,
         shoppingCartButton,
-        poorHeader,
         slider,
+        smartHeader,
     },
     methods:{
         onScroll(){
@@ -111,11 +115,6 @@ box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
     }
     .header-container{
         height: 60px;
-    }
-    .main-page-header{
-        position:fixed;
-        width:94%;
-        z-index: 50;
     }
     .opening-block{
         width: 100%;

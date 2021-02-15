@@ -1,6 +1,11 @@
 <template>
     <div class="text-page">
-        <poorHeader/>
+        <smartHeader
+            :fixed="true"
+            :shadow="true"
+            :logo="true"
+            :phone="true"
+        />
         <div class="text-edge" v-for="item in getList" :key="item.id">
             <div v-if="item.name && item.name!='' && item.name!=null" class="text-name-container">
                 <h2 class="text-name">{{item.name}}</h2>
@@ -16,7 +21,7 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-import poorHeader from '../components/header/poorHeader'
+import smartHeader from '../components/header/smartHeader'
 
 export default {
     name:'textPage',
@@ -34,7 +39,7 @@ export default {
         this.pageName = this.$route.params.pageName
     },
     components:{
-        poorHeader,
+        smartHeader
     },
     computed:{
         ...mapState({
@@ -47,6 +52,7 @@ export default {
 </script>
 <style scoped>
     .text-page{
+        padding-top:60px;
         min-height: 100vh;
         color:white;
     }
