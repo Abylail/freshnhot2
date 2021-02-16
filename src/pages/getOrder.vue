@@ -25,7 +25,7 @@
                     <p class="input-block-title">1. Личные данные</p>
                 </div>
                 <div class="input-block-input-container">
-                    <input type="text" class="input-block-input" placeholder="имя"/>
+                    <input type="text" class="input-block-input" placeholder="имя" v-model="name"/>
                 </div>
                 <div class="input-block-input-container">
                     <input type="tel" data-present="phone" class="input-block-input" placeholder="+7(___)___-__-__" @input="setMobile" v-model="mobile"/>
@@ -51,7 +51,7 @@
                 <div class="input-block-input-container">
                     <!-- Доставка -->
                     <div class="input-block-input-container" v-bind:class="{'display-none':deliveryType!='Доставка'}">
-                        <input type="text" class="input-block-input" placeholder="Адрес"/>
+                        <input type="text" class="input-block-input" placeholder="Адрес" v-model="address"/>
                     </div>
                     <div class="input-block-input-text" v-bind:class="{'display-none':deliveryType!='Самовывоз'}">
                         <p>Самовывоз по адресу:<br>Абылай красавчинская 777</p>
@@ -79,7 +79,7 @@
                 <div class="input-block-input-container">
                     <!-- Доставка -->
                     <div class="input-block-input-container" v-bind:class="{'display-none':paytype!='Cash'}">
-                        <input type="text" class="input-block-input" placeholder="Сдача с ..."/>
+                        <input type="text" class="input-block-input" placeholder="Сдача с ..." v-model="cashText"/>
                     </div>
                     <div class="input-block-input-container">
                         <textarea type="text" class="input-block-input comment" placeholder="Комментарий"/>
@@ -87,7 +87,7 @@
                 </div>
             </div>
         </div>
-        <div class="error-message" v-bind="{'display-none':errorMessage == ''}"><p>{{errorMessage}}</p></div>
+        <div v-bind:class="{'display-none':errorMessage == '','error-message' : errorMessage != ''}"><p>{{errorMessage}}</p></div>
         <div class="price-container">
             <p>К оплате:</p>
             <p class="price-container-price">{{priceWithDelivery()}}</p>
@@ -109,19 +109,43 @@ export default {
     name:'getOrder',
     data(){
         return{
+            name:"",
             mobile:"",
             deliveryType:'Доставка',
+            address:"",
             paytype:"Kaspi",
+            cashText:"",
             errorMessage:"",
             showLoader:false,
         }
     },
     methods:{
         validation(){
-            
+            this.errorMessage = ""
+            setTimeout(()=>{
+            if(this.name.length<2){
+                this.errorMessage = "Имя не может быть короче 2-х символов"
+                return false
+            }
+            if(this.mobile.length<16){
+                this.errorMessage = "Введите полный сотовый номер"
+                return false
+            }
+            if(this.deliveryType == "Доставка" && this.address.length<5){
+                this.errorMessage = "Введите корректый адресс"
+                return false
+            }
+            if(this.paytype=="Cash" && this.cashText.length<3){
+                this.errorMessage = "Введите сумму для сдачи"
+                return false
+            }
+            return true
+            },100)
         },
         createOrder(){
-
+            if(this.validation()){
+                // this.showLoader = true
+            }
         },
         setMobile(){
             let len = this.mobile.length
@@ -415,8 +439,49 @@ export default {
 
         margin-bottom:15px;
         font-size:22px;
+
+        animation-name: bounce;
+        animation-duration: .5s;
+        animation-delay: 0.25s;
     }
     .error-message p{
         color:red;
+        text-align: center;
     }
+
+
+    @keyframes bounce {
+  0% {
+    transform: translateX(0px);
+    timing-function: ease-in;
+  }
+  27% {
+    transform: translateX(25px);
+    timing-function: ease-out;
+  }
+  40% {
+    transform: translateX(-25px);
+    timing-function: ease-in;
+  }
+  60% {
+    transform: translateX(10px);
+    timing-function: ease-out;
+  }
+  72% {
+    transform: translateX(-10px);
+    timing-function: ease-in;
+  }
+  91% {
+    transform: translateX(3px);
+    timing-function: ease-out;
+  }
+  96% {
+    transform: translateX(-3px);
+    timing-function: ease-in;
+  }
+  100% {
+    transform: translateX(0px);
+    timing-function: ease-in;
+  }
+}
 </style>
