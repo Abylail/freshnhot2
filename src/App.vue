@@ -44,4 +44,9 @@ export default {
   html{
     scroll-behavior: smooth;
   }
+  @media (min-width:500px){
+    #app{
+      background-color: white;
+    }
+  }
 </style>

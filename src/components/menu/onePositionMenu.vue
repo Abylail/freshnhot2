@@ -109,7 +109,7 @@ export default {
   transform: rotate(-45deg);
 }
     .edge{
-        height: 400px;
+        height: 300px;
         width:23%;
 
         /* margin-left:auto; */
@@ -127,10 +127,7 @@ export default {
 
         background-color: rgb(231, 231, 231);
 
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        flex-direction: column;
+        
 
         -webkit-box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.5);
             -moz-box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.5);
@@ -143,10 +140,16 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+        height: 40%;
+        width: 100%;
+    }
+    .image-container{
+        height: 100%;
+        width: 100%;
     }
     .image{
-        height: 200px;
-        width: 200px;
+        height: 100%;
+        width: 100%;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: 50% 50%;
@@ -160,6 +163,7 @@ export default {
         align-items: center;
 
         width:100%;
+        height: 60%;
     }
     .text-container{
         height: 90%;
@@ -304,7 +308,7 @@ export default {
             width:48%;
         }
     }
-    @media (max-width:600px){
+    @media (max-width:500px){
         .edge{
             height: 140px;
             width: 98%;

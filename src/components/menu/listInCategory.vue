@@ -71,8 +71,8 @@ export default {
         margin-bottom: 10px;
     }
     .name{
-        padding-left:1%;
-        padding-right:1%;
+        padding-left:3%;
+        padding-right:3%;
         color:white;
         font-size:34px;
     }
@@ -98,6 +98,7 @@ export default {
     }
     .sub-category-edge{
         height:100%;
+        cursor: pointer;
 
         margin-left:5px;
         margin-right:5px;
@@ -134,10 +135,19 @@ export default {
         -moz-box-shadow: 0px 12px 12px -3px rgba(0, 0, 0, 0.6);
         box-shadow: 0px 12px 12px -3px rgba(0, 0, 0, 0.6);
     }
-    @media (max-width: 500px){
+    @media (min-width: 500px){
         .name{
-            padding-left: 3%;
-            padding-right: 3%;
+            color:black;
+        }
+        .sub-category-edge{
+            background-color: black;
+            color:white;
+            opacity: .3;
+        }
+        .choosen{
+            background-color: black;
+            color:white;
+            opacity:1;
         }
     }
 </style>

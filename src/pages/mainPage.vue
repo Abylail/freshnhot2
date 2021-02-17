@@ -94,7 +94,6 @@ export default {
     .slider-container{
         grid-area: slider;
         height: 100%;
-        background-color: blanchedalmond;
         width:100vw;
     }
     .main-text-container{
@@ -146,8 +145,8 @@ box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
         margin-left:auto;
         margin-right: auto;
 
-        padding-left:15px;
-        padding-right:15px;
+        padding-left:3px;
+        padding-right:3px;
 
         max-width: 1500px;
     }
@@ -158,10 +157,24 @@ box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
         grid-auto-rows: 1fr 250px;
         min-height: 450px;
     }
-    @media (max-width: 500px){
-        .list-container{
-            padding-left:3px;
-            padding-right:3px;
+    @media (min-width: 500px){
+        .main-text-container{
+            display: none;
+        }
+        .opening-block-promo-container-main{
+            display: flex;
+        }
+        .slider-container{
+            height: 80%;
+            max-width: 1000px;
+            padding:30px;
+            margin-left:auto;
+            margin-right:auto;
+            width:calc(100vw - 60px);
+            padding-top:110px;
+        }
+        .opening-block-promo-container{
+            background-color: #2C2C2C;
         }
     }
 </style>

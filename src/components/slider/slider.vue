@@ -29,7 +29,7 @@ export default {
             itemsToShow: 1,
             centerMode: true,
             autoPlay:true,
-            playSpeed:10000,
+            playSpeed:5000,
             wheelControl: false,
           }
       }
@@ -45,5 +45,13 @@ export default {
         border:none;
 
         overflow-y:hidden;
+    }
+    @media (min-width:500px){
+        .hooper{
+            overflow: hidden;
+            -webkit-box-shadow: 0px 5px 14px 8px rgba(0,0,0,0.9);
+            -moz-box-shadow: 0px 5px 14px 8px rgba(0,0,0,0.9);
+            box-shadow: 0px 5px 30px 20px rgba(0,0,0,0.6)
+        }
     }
 </style>

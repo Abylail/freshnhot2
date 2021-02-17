@@ -67,7 +67,7 @@
                     <div class="input-radio-container">
                         <!-- <input type="radio" value='Kaspi' v-model="paytype"/>
                         <span>Каспи перевод</span> -->
-                        <button class="choose-button" v-on:click="()=>{paytype='Kaspi'}" v-bind:class="{'choose-button-active':paytype=='Kaspi'}">Каспи перевод</button>
+                        <button class="choose-button" v-on:click="()=>{paytype='Kaspi'}" v-bind:class="{'choose-button-active':paytype=='Kaspi'}">Оплата картой</button>
 
                     </div>
                     <div class="input-radio-container">
@@ -140,11 +140,12 @@ export default {
                 return false
             }
             return true
-            },100)
+            },50)
         },
         createOrder(){
             if(this.validation()){
-                // this.showLoader = true
+                console.log()
+                this.showLoader = true
             }
         },
         setMobile(){
@@ -428,7 +429,7 @@ export default {
     }
 
     ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-        color: white;
+        color: rgba(255, 255, 255, .4);
         opacity: 1; /* Firefox */
     }
         
@@ -442,7 +443,7 @@ export default {
 
         animation-name: bounce;
         animation-duration: .5s;
-        animation-delay: 0.25s;
+        animation-delay: 0.05s;
     }
     .error-message p{
         color:red;
