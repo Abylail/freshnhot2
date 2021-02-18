@@ -1,12 +1,12 @@
 <template>
-    <div class="edge">
-        <div class="edge-container">
-            <div class="image-block">
+    <div :class="{'edge':!fixedSize,'edge-fixed':fixedSize}">
+        <div :class="{'edge-container':!fixedSize,'edge-container-fixed':fixedSize}">
+            <div :class="{'image-block':!fixedSize,'image-block-fixed':fixedSize}">
                 <div class="image-container">
                     <div class="image" v-bind:style="{'background-image':'url('+imgSrc+')'}"></div>
                 </div>
             </div>
-            <div class="text-block">
+            <div :class="{'text-block':!fixedSize,'text-block-fixed':fixedSize}">
                 <div class="text-container">
                     <div class="name-container">
                         <h3 class="item-name">{{item.name}}</h3>
@@ -78,7 +78,8 @@ export default {
     },
     props:[
         'item',
-        'isShoppingCart'
+        'isShoppingCart',
+        'fixedSize'
     ],
     computed:{
         ...mapGetters({
@@ -296,14 +297,46 @@ export default {
         font-weight: 500;
         
     }
+    .edge-fixed{
+        height: 140px;
+        width: 70%;
+        padding-top:20px;
+    }
+    .edge-container-fixed{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+            
+        height: 100%;
+        border-radius: 7px;
+        overflow: hidden;
 
+        background-color: white;
 
-    @media (max-width:1100px){
+        
+
+        -webkit-box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.5);
+            box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.5);
+    }
+    .image-block-fixed{
+            width:70%;
+            height: 100%;
+        }
+    .counter{
+        font-family: 'Montserrat', sans-serif;
+    }
+    .text-block-fixed{
+        width:90%;
+        padding-left:5px;
+    }
+
+    @media (max-width:900px){
         .edge{
             width:31%;
         }
     }
-    @media (max-width:900px) {
+    @media (max-width:700px) {
         .edge{
             width:48%;
         }
@@ -312,6 +345,13 @@ export default {
         .edge{
             height: 140px;
             width: 98%;
+            padding:2%;
+            padding-left: 3%;
+            padding-right:3%;
+        }
+        .edge-fixed{
+            height: 140px;
+            width:98%;
             padding:2%;
             padding-left: 3%;
             padding-right:3%;
@@ -346,13 +386,14 @@ export default {
         }
         h3.item-name{
             grid-area: name;
-            font-size:20px;
+            font-size:16px;
+            color:black;
         }
         p.description{
             font-size: 12px;
         }
         p.price{
-            font-size: 20px;
+            font-size: 18px;
         }
         .text-block{
             width: 60%;
@@ -382,8 +423,11 @@ export default {
             color:rgb(0, 0, 0);
         }
         .button{
-            height: 23px;
-            width: 23px;
+            height: 20px;
+            width: 20px;
+        }
+        .counter{
+            color:black;
         }
     }
 </style>

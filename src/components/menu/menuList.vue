@@ -25,8 +25,20 @@ export default {
 </script>
 <style>
     .list-container-menu{
-        max-width: 1500px;
+        max-width: 1000px;
         margin-left:auto;
         margin-right: auto;
+        min-width:320px;
+    }
+    @media(max-width:1000px){
+        .list-container-menu{
+            padding-left:30px;
+            padding-right:30px;
+        }
+    }
+    @media (max-width:500px){
+        .list-container-menu{
+            padding:0;
+        }
     }
 </style>

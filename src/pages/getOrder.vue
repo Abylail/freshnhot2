@@ -1,5 +1,5 @@
 <template>
-    <div class="order-page">
+    <div class="order-page" v-on:keyup.enter="createOrder">
         <loader v-if="showLoader" text="Отправляем ваш заказ"/>
         <div class="header-container">
             <smartHeader 
@@ -120,33 +120,28 @@ export default {
         }
     },
     methods:{
-        validation(){
+        createOrder(){
             this.errorMessage = ""
             setTimeout(()=>{
             if(this.name.length<2){
                 this.errorMessage = "Имя не может быть короче 2-х символов"
-                return false
             }
-            if(this.mobile.length<16){
+            else if(this.mobile.length<16){
                 this.errorMessage = "Введите полный сотовый номер"
-                return false
             }
-            if(this.deliveryType == "Доставка" && this.address.length<5){
-                this.errorMessage = "Введите корректый адресс"
-                return false
+            else if(this.deliveryType == "Доставка" && this.address.length<5){
+                this.errorMessage = "Введите корректый адрес"
             }
-            if(this.paytype=="Cash" && this.cashText.length<3){
+            else if(this.paytype=="Cash" && this.cashText.length<3){
                 this.errorMessage = "Введите сумму для сдачи"
-                return false
             }
-            return true
-            },50)
-        },
-        createOrder(){
-            if(this.validation()){
+
+            else if(this.errorMessage == ""){
                 console.log()
                 this.showLoader = true
             }
+
+            },2)
         },
         setMobile(){
             let len = this.mobile.length
@@ -209,6 +204,9 @@ export default {
 <style scoped>
     .order-page{
         padding-top:60px;
+        max-width: 600px;
+        margin-right:auto;
+        margin-left:auto;
     }
     .header-conrainer{
         height: 80px;
@@ -277,8 +275,9 @@ export default {
     }
     .input-radio-container{
         display: inline-block;
-        width:45%;
-        margin-right:5%;
+        width:47.5%;
+        margin-right:1%;
+        margin-left:1%;
         font-size: 22px;
 
 
@@ -404,7 +403,7 @@ export default {
 
   .arrow::before {
     right: -3px;
-    bottom: -2.5px;
+    bottom: -2px;
     transform: rotate(-45deg);
   }
 
@@ -483,6 +482,45 @@ export default {
   100% {
     transform: translateX(0px);
     timing-function: ease-in;
+  }
+}
+@media(min-width:500px){
+    .navigation-link{
+        color:black;
+    }
+    .red-text{
+        color:red;
+    }
+    .arrow {
+  background: black;
+  height: 2px;
+  width: 25px;
+
+  position: relative;
+  cursor: pointer;
+
+  margin-left:10px;
+  margin-right:10px;
+}
+
+  .arrow::before,
+  .arrow::after {
+    content: "";
+    background: black;
+    position: absolute;
+    height: 3px;
+    width: 8px;
+  }
+  .name-container{
+      color:black;
+  }
+  .choose-button-active{
+        background-color: #ff0000d9;
+        color:white;
+  }
+  .price-container{
+      color:black;
+      padding-right:25px;
   }
 }
 </style>

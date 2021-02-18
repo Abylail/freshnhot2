@@ -26,7 +26,7 @@ export default {
         margin:0;
         font-family: 'Open Sans', sans-serif;
     }
-    a{
+    a,button{
       cursor:pointer;
     }
   body{

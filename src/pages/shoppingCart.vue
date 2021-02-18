@@ -36,6 +36,7 @@
                 v-for="item in getAll"
                 :key="item.id"
                 v-bind:item="item" :isShoppingCart="true"
+                :fixedSize="true"
             />
         </div>
         <div v-if="getAmount>0" class="price-block">
@@ -122,6 +123,9 @@ export default {
 <style scoped>
 .big-conatiner{
     min-height: 80vh;
+    max-width: 1300px;
+    margin-left:auto;
+    margin-right:auto;
 }
 .free-delivery{
     font-family: 'Monstrat',sans-serif;
@@ -335,7 +339,7 @@ export default {
 
   .arrow::before {
     right: -3px;
-    bottom: -2.5px;
+    bottom: -3px;
     transform: rotate(-45deg);
   }
 
@@ -343,5 +347,40 @@ export default {
     right: -3px;
     top: -2.5px;
     transform: rotate(45deg);
+  }
+  @media (min-width:500px){
+      .shopping-cart-conatiner{
+          color:black;
+      }
+      .navigation-link{
+        color:black;
+      }
+      .red-text{
+        color:red;
+    }
+    .arrow {
+        background: black;
+    }
+    .arrow::before,
+  .arrow::after {
+    background: black;
+  }
+  .info-container{
+    color:black;
+  }
+  .list-container{
+      padding-left:30px;
+      padding-right:30px;
+  }
+  }
+  @media(min-width:1000px){
+      .big-conatiner{
+          display: flex;
+          flex-direction: row;
+          margin-bottom:100px;
+      }
+      .info-container{
+        margin-top:155px;    
+      }
   }
 </style>

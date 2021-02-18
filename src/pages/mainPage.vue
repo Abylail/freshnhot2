@@ -121,7 +121,6 @@ box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
     .opening-block-promo-container{
         margin-left:auto;
         margin-right: auto;
-        max-width: 1500px;
         
     }
     .categories{
