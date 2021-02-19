@@ -38,6 +38,7 @@ import shoppingCartButton from '../components/menu/shoppingCartButton'
 import smartHeader from '../components/header/smartHeader'
 
 import slider from '../components/slider/slider'
+import { mapActions } from 'vuex';
 
 export default {
     name:'mainPage',
@@ -72,6 +73,12 @@ export default {
                 }
             }
         },
+        ...mapActions({
+            getList:"listOfItems/getList",
+        })
+    },
+    mounted(){
+        this.getList()
     },
     created(){
         // this.onScroll() 

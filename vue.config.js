@@ -6,5 +6,8 @@ module.exports = {
               args[0].title = "Frechnhot";
               return args;
           })
-  }
+  },
+  devServer: {
+    proxy: 'https://api.freshnhot.kz/'
+}
 }

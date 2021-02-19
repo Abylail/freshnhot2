@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import { getList } from '@/api/products'
+
 Vue.use(Vuex)
 
 
@@ -136,11 +138,17 @@ const getters = {
 }
 
 const actions = {
-
+    async getList(){
+        let { data } = await getList()
+        console.log(data)
+        // commit("setList",data)
+    }
 }
 
 const mutations = {
-
+    setList(state,list){
+        state.list = list
+    }
 }
 
 export default {
