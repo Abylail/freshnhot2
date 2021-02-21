@@ -171,7 +171,7 @@ export default {
         width: 90%;
     }
     h3.item-name{
-        font-size: 24px;
+        font-size: 20px;
         font-family:'Montserrat', sans-serif;
         font-weight: 600;
 

@@ -140,13 +140,16 @@ const getters = {
 const actions = {
     async getList(){
         let { data } = await getList()
-        console.log(data)
-        // commit("setList",data)
+        if(data.success){
+            console.log(data.data);
+            // commit("setList",data.data)
+        }
     }
 }
 
 const mutations = {
     setList(state,list){
+        console.log(list);
         state.list = list
     }
 }
