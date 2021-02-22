@@ -259,13 +259,13 @@ export default {
 
   
         background:
-            linear-gradient(rgb(160, 105, 4),rgb(160, 105, 4)),
-            linear-gradient(rgb(160, 105, 4),rgb(160, 105, 4));
+            linear-gradient(red,red),
+            linear-gradient(red,red);
         background-position:center;
         background-size: 70% 3px,3px 70%; /*thickness = 2px, length = 50% (25px)*/
         background-repeat:no-repeat;
 
-        border:2px solid rgb(160, 105, 4);
+        border:2px solid red;
     }
     .remove{
         margin-right: 8px;
@@ -292,21 +292,22 @@ export default {
     }
     p.price{
         font-size:26px;
-        color:rgb(160, 105, 4);
+        color: #ff0000;
         font-family: 'Montserrat', sans-serif;
         font-weight: 500;
         
     }
     .edge-fixed{
         height: 140px;
-        width: 70%;
+        width: 90%;
         padding-top:20px;
+
     }
     .edge-container-fixed{
         display: flex;
         flex-direction: row;
         align-items: center;
-            
+        max-width: 400px;
         height: 100%;
         border-radius: 7px;
         overflow: hidden;
@@ -328,7 +329,7 @@ export default {
     }
     .text-block-fixed{
         width:90%;
-        padding-left:5px;
+        height: 100%;
     }
 
     @media (max-width:900px){
@@ -386,7 +387,7 @@ export default {
         }
         h3.item-name{
             grid-area: name;
-            font-size:16px;
+            font-size:18px;
             color:black;
         }
         p.description{
@@ -398,15 +399,15 @@ export default {
         .text-block{
             width: 60%;
             height: 100%;
-            padding-left:10px;
+            padding:6px;
         }
         .text-container{
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-
-            height: 90%;
-            width: 100%;
+            height: 100%;
+            width: 94%;
+            padding-left:3%;
             padding-right:3%;
         }
         .price-add-container{
@@ -423,8 +424,8 @@ export default {
             color:rgb(0, 0, 0);
         }
         .button{
-            height: 20px;
-            width: 20px;
+            height: 23px;
+            width: 23px;
         }
         .counter{
             color:black;
