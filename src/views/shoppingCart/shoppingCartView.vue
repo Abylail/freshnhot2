@@ -80,11 +80,11 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 
-import smartHeader from '../components/header/smartHeader'
-import onePositionMenu from '../components/menu/onePositionMenu'
+import smartHeader from '@/components/header/smartHeader'
+import onePositionMenu from '@/components/menu/onePositionMenu'
 
 export default {
-    name:'shoppingCart',
+    name:'shoppingCartView',
     components:{
         onePositionMenu,
         smartHeader

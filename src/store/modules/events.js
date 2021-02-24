@@ -8,7 +8,14 @@ const state = () =>({
         {
             id:0,
             name:"События",
-            description:"Мы открылись все дела"
+            description:"Мы открылись все дела",
+            imgSrc: null
+        },
+        {
+            id:1,
+            name: null,
+            description:"Новый абзац",
+            imgSrc: null
         }
     ]
 })

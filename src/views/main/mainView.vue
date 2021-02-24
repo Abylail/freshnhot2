@@ -32,16 +32,16 @@
     </div>
 </template>
 <script> 
-import navCategories from '../components/navigation/navCategoriesComponent/navCategories';
-import menuList from '../components/menu/menuList'
-import shoppingCartButton from '../components/menu/shoppingCartButton'
-import smartHeader from '../components/header/smartHeader'
+import navCategories from '@/components/navigation/navCategoriesComponent/navCategories';
+import menuList from '@/components/menu/menuList'
+import shoppingCartButton from './components/shoppingCartButton'
+import smartHeader from '@/components/header/smartHeader'
 
-import slider from '../components/slider/slider'
+import slider from './components/slider'
 import { mapActions } from 'vuex';
 
 export default {
-    name:'mainPage',
+    name:'mainView',
     data(){
         return {
             openingBlockHeightConst:100,
@@ -107,17 +107,17 @@ export default {
         grid-area: text-block;
         height: 220px;
         margin-top:15px;
-        background: url('../assets/logo.svg') center center;
+        /* background: url('@/assets/icons/logo.svg') center center; */
         background-size:contain;
-        -webkit-background-size:contain;
+        -webkit-background-size:contain; 
         background-repeat: no-repeat;
         opacity:.2;
     }
     .nav-categories-container{
-transition: .3s ease;
-
+        transition: .3s ease;
+        opacity: 1;
         -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0); 
-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
+        box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
     }
     .header-container{
         height: 60px;
@@ -135,7 +135,7 @@ box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
         background-color: #2C2C2C;
         position:static;
         z-index:51;
-        opacity: .98;
+        opacity: 1;
     }
     .fixed-categories{
         z-index: 51;
@@ -143,7 +143,7 @@ box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
         top:60px;
         width:100%;
         background-color: #2C2C2C;
-
+        opacity: .98;
         -webkit-box-shadow: 0px 11px 11px -3px rgba(0,0,0,0.9); 
         box-shadow: 0px 11px 11px -3px rgba(0,0,0,0.9);
     }

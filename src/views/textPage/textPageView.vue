@@ -21,10 +21,10 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-import smartHeader from '../components/header/smartHeader'
+import smartHeader from '@/components/header/smartHeader'
 
 export default {
-    name:'textPage',
+    name:'textPageView',
     data(){
         return{
             pageName:''

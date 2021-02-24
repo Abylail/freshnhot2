@@ -211,16 +211,6 @@ export default {
         /* justify-content: center; */
         align-items: center;
     }
-    p.extra-description-amount{
-        /* border-radius: 5px;
-        border:1.5px solid red;
-        color:red; */
-
-        
-        
-        /* padding-left:4px;
-        padding-right:4px; */
-    }
     p.weightCaloriesDevider{
         margin-left:2px;
         margin-right:2px;
@@ -299,7 +289,7 @@ export default {
     }
     .edge-fixed{
         height: 140px;
-        width: 70%;
+        /* width: 80%; */
         padding-top:20px;
     }
     .edge-container-fixed{

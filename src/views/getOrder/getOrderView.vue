@@ -102,11 +102,11 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
-import smartHeader from '../components/header/smartHeader'
-import loader from '../components/loader/loader'
+import smartHeader from '@/components/header/smartHeader'
+import loader from '@/components/loader/loader'
 
 export default {
-    name:'getOrder',
+    name:'getOrderView',
     data(){
         return{
             name:"",

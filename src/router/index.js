@@ -2,12 +2,12 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 //import pages
-import mainPage from '../pages/mainPage'
-import shoppingCart from '../pages/shoppingCart'
-import getOrder from '../pages/getOrder'
-import adminLogin from '../pages/adminLogin'
-import adminPanel from '../pages/adminPanel'
-import textPage from '../pages/textPage'
+import mainView from '@/views/main/mainView'
+import shoppingCartView from '@/views/shoppingCart/shoppingCartView'
+import getOrderView from '@/views/getOrder/getOrderView'
+import adminLoginView from '@/views/adminLogin/adminLoginView'
+import adminPanelView from '@/views/adminPanel/adminPanelView'
+import textPageView from '@/views/textPage/textPageView'
 
 //import little
 import store from '../store/index'
@@ -24,34 +24,34 @@ const router = new VueRouter({
     mode:'history',
     routes:[
         {
-            name:'mainPage',
+            name:'mainView',
             path:'/',
-            component:mainPage,
+            component:mainView,
         },
         {
             name:'shoppingCart',
             path:'/korzina',
-            component:shoppingCart,
+            component:shoppingCartView,
         },
         {
             name:'getOrder',
             path:'/order',
-            component:getOrder
+            component:getOrderView
         },
         {
             name:'adminLogin',
             path:'/login',
-            component:adminLogin,
+            component:adminLoginView,
         },
         {
             name:'textPage',
             path:'/text/:pageName',
-            component:textPage,
+            component:textPageView,
         },
         {
             name:'adminPanel',
             path:'/admin-panel',
-            component:adminPanel,
+            component:adminPanelView,
             children:[
                 {
                     name:'adminMenu',

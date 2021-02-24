@@ -15,9 +15,9 @@
 </template>
 <script>
 import { mapActions } from 'vuex'
-import router from '../router/index'
+import router from '@/router/index'
 export default {
-    name:'adminLogin',
+    name:'adminLoginView',
     data(){
         return{
             login:'',

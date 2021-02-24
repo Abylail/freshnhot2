@@ -14,7 +14,7 @@
     </hooper>
 </template>
 <script>
-import {Hooper,Slide, Navigation as HooperNavigation} from 'hooper'
+import {Hooper,Slide, Navigation as HooperNavigation} from 'hooper';
 import 'hooper/dist/hooper.css';
 export default {
     name:'slider',

@@ -47,7 +47,7 @@
 </template>
 <script>
 export default {
-    name:'adminPanel',
+    name:'adminPanelView',
     data(){
         return{
             showNavigator:false,
