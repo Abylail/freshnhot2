@@ -29,10 +29,8 @@
             <div class="edit-row-name"><p>Фото</p></div>
             <div class="edit-row-input">Фото</div>
             <div class="upload-image-container">
-                <form enctype="multipart/form-data" conte>
                 <input type="file" accept="image/*" @change="imageSelected"/>
-                </form>
-                </div>
+            </div>
             <button @click="uploadButtonClick" >Загрузить</button>
         </div>
         <div class="edit-row">

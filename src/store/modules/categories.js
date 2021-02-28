@@ -1,6 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import { getList, addCategory } from '@/api/category'
+import { addSubcategory, deleteSubcategory } from "@/api/subcategory";
+import uploadImage from '@/api/upload_photo'
+import userStorage from "@/api/localstorage";
+
 Vue.use(Vuex)
 
 
@@ -132,20 +137,68 @@ const getters = {
 }
 
 const actions = {
+    async getList({commit}){
+      let { data } = await getList();
+      commit("setList", data);
+    },
+    async createSubcategory({ commit }, subcategory) {
+        let { data } = await addSubcategory(subcategory, userStorage.get.token());
+        console.log("created", data);
+        commit("addSubcategory", data.data);
+    },
+    async createCategory({commit}, object) {
+        let { data } = await uploadImage(object.photo, userStorage.get.token());
+        let { category} = await addCategory({
+            name: object.name,
+            img_src: data.data
+        }, userStorage.get.token());
+
+        commit("setCategory", {...category.data});
+    },
     async setActiveCategory({commit},category){
         commit('setActiveCategory',category)
     },
     async clearActiveCategory({commit}){
         commit('clearActiveCategory')
+    },
+    async deleteSubcategoryAction({ commit }, [category_id, sub_id]) {
+        await deleteSubcategory(sub_id, userStorage.get.token());
+        commit("deleteSubcategory", [category_id, sub_id]);
     }
 }
 
 const mutations = {
+    deleteSubcategory(state, [category_id, sub_id]) {
+        let list = [...state.list];
+        let categoryIndex = list.findIndex(x => x.id === category_id);
+        if (categoryIndex > -1) {
+            let subcatIndex = list[categoryIndex].subs.findIndex(s => s.id === sub_id);
+            if(subcatIndex > -1) {
+                list[categoryIndex].subs.splice(subcatIndex, 1);
+                state.list = list;
+            }
+        }
+    },
+    addSubcategory(state, subcategory){
+        console.log("subcategory", subcategory)
+        let list = [...state.list];
+        let cat = list.find(cat => cat.id+"" === subcategory.category_id)
+        cat.subs.push(subcategory);
+        state.list = list;
+    },
     clearActiveCategory(state){
         state.activeCategory = ''
     },
     setActiveCategory(state,category){
         state.activeCategory = category
+    },
+    setList(state, list) {
+        state.list = list.data;
+    },
+    setCategory(state, category) {
+        let arr = [...state.list];
+        arr.push(category);
+        state.list = arr;
     }
 }
 

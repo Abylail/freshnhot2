@@ -35,8 +35,8 @@ const actions = {
         }
     },
     async logout({commit}){
-        await logout(userStorage.get.token());
-        userStorage.setToken(null);
+        logout(userStorage.get.token());
+        userStorage.delete.token();
         commit("setLoginned", false);
     }
 }

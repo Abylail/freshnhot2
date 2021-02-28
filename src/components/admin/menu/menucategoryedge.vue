@@ -2,12 +2,19 @@
     <div class="category-edge">
         <div class="category-name-container">
             <p>{{category.name}}</p>
+            <img class="category-image" :src="`https://api.freshnhot.kz${category.img_src}`"/>
         </div>
         <div class="subcategories-container">
             <p>Подкатегории</p>
             <div class="subcategories-container-values">
-                <p v-for="subcat in category.subCategories" :key="subcat.name"><span class="subcat-name">{{subcat.name}}</span>: значение- <span class="subcat-value">{{subcat.value}}</span> </p>
-                <router-link to="" class="subcat-edit-link">Редактировать</router-link>
+                <p v-for="(subcat, index) in category.subs" :key="index">
+                  <span class="subcat-name">{{subcat.name}}</span>
+                  <button class="subcat-delete" @click="deleteSubcategoryHandle(subcat.id)">Удалить</button>
+                </p>
+                <div class="create-subcategory">
+                  <input type="text" v-model="newSubcategory"/>
+                  <button @click="createSubcategoryHandle">Создать</button>
+                </div>
             </div>
         </div>
         <div class="items-list-container">
@@ -22,24 +29,68 @@
 <script>
 import itemEdge from './menuadminedge'
 
-import { mapGetters } from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 export default {
     name:'categoryEdge',
     props:['category'],
+    data(){
+      return {
+        newSubcategory:'',
+      }
+    },
     components:{
         itemEdge
     },
+    methods:{
+      deleteSubcategoryHandle(subcat_id){
+        this.deleteSubcategoryAction([this.category.id, subcat_id]);
+      },
+      createSubcategoryHandle() {
+        if(this.newSubcategory !== '') {
+          this.createSubcategory({
+            name:this.newSubcategory,
+            category_id: this.category.id
+          });
+          this.newSubcategory = '';
+        }
+      },
+      ...mapActions({
+        createSubcategory:"categories/createSubcategory",
+        deleteSubcategoryAction: "categories/deleteSubcategoryAction",
+        getList: "listOfItems/getList"
+      })
+    },
+    mounted(){
+      this.getList();
+    },
     computed:{
         ...mapGetters({
-            list:"listOfItems/getByCategory",
+            list:"listOfItems/getByCategory"
         })
     }
 }
 </script>
 <style scoped>
+.subcat-delete{
+  margin-left: 10px;
+  margin-bottom: 10px;
+  background-color: red;
+  color: white;
+  border:none;
+  border-radius: 5px;
+  padding:5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+.category-image{
+  display: inline;
+  max-height: 50px;
+}
 .category-name-container{
     margin-top:25px;
     margin-bottom:15px;
+    display: flex;
+    flex-direction: row;
 }
 .category-name-container p{
     font-size: 24px;

@@ -84,17 +84,18 @@ const router = new VueRouter({
 
 router.beforeEach((to,from,next)=>{
     window.scrollTo(0, 0);
-    if(to.name == 'getOrder' && store.getters["shoppingCart/getAmount"]<=0){
+    if(to.name === 'getOrder' && store.getters["shoppingCart/getAmount"]<=0){
         next('/korzina')
         return
     }
-    else if(to.name == 'adminPanel' || to.name == 'adminMenu' || to.name == 'adminTextpages' || to.name == 'editMenu'){
+    else if(to.name === 'adminPanel' || to.name === 'adminMenu' || to.name === 'adminTextpages' || to.name === 'editMenu'){
+        // eslint-disable-next-line no-constant-condition
         if(userStorage.get.token() == null){
             next('/login')
             return
         }
     }
-    else if(to.name == 'adminLogin' && userStorage.get.token() != null){
+    else if(to.name === 'adminLogin' && userStorage.get.token() != null){
         next('/admin-panel')
         return
     }

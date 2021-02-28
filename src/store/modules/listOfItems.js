@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import { getList, synchronization, uploadImage } from '@/api/products'
-import userStorage from "@/api/localstorage"
+import userStorage from "@/api/localstorage";
 
 Vue.use(Vuex)
 
@@ -110,6 +110,9 @@ const state = () => ({
 })
 
 const getters = {
+    getCategoryList: state => {
+      return state.categoryList;
+    },
     getList:state=>{
         return state.list
     },
@@ -130,6 +133,13 @@ const getters = {
         }
         return state.list.filter(item=>item.category==categoryName)
     },
+    getByCategory2:(state)=>(category_id,subCategory)=>{
+        console.log("getByCategory2",state.list[0])
+        if(subCategory && subCategory!=""){
+            return state.list.filter(item=>item.category==category_id && item.subCategories.includes(subCategory))
+        }
+        return state.list.filter(item=>item.category==category_id)
+    },
     searchByName:(state,itemName)=>{
         return state.list.filter(item=>item.name==itemName)
     },
@@ -139,22 +149,25 @@ const getters = {
 }
 
 const actions = {
-    async getList(){
+    async getList({ commit }){
+        console.log("getting prosucts")
         let { data } = await getList()
         if(data.success){
-            console.log(data.data);
-            // commit("setList",data.data)
+            commit("setList",data.data)
         }
     },
-    async synchronization(){
+    // async getListHard({commit}) {
+    //     let { data } = await getList()
+    // },
+    // eslint-disable-next-line no-unused-vars
+    async synchronization({commit}){
         await synchronization(userStorage.get.token());
         /* syncData is undefinded */
-        let { data } = await getList();
-        console.log("data store ",data.data);
+       getList();
     },
-    async uploadImage(object) {
-        console.log("new store image s", object);
-        await uploadImage(object.object, userStorage.get.token());
+    // eslint-disable-next-line no-unused-vars
+    async uploadImage({commit}, object) {
+        await uploadImage(object.file, userStorage.get.token());
     }
 }
 

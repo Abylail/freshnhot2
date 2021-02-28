@@ -10,6 +10,18 @@
                 </div>
                 <input type="checkbox" v-model="stockBoolean" v-on:change="setStock" class="check-item"/>
             </div>
+            <div class="category-container row">
+              <div class="item-minicontainer">
+                <p class="static-text">Категория</p>
+                <select v-model="category_id">
+                  <option
+                    v-for="category in categoryList"
+                    :key="category.id"
+                    :value="category.id"
+                  >{{category.name}}</option>
+                </select>
+              </div>
+            </div>
             <div class="description-container row">
                 <div class="item-minicontainer">
                     <p class="static-text">Описание</p>
@@ -68,7 +80,8 @@ export default {
     props:['item'],
     computed:{
         ...mapGetters({
-            stock:"itemsStock/getStockById"
+            stock:"itemsStock/getStockById",
+            categoryList: "categories/getList"
         })
     },
     methods:{
@@ -86,7 +99,8 @@ export default {
         return{
             stockBoolean:false,
             imgSrc:'https://www.askc.us/wp-content/uploads/2017/04/default-image-720x530.jpg',
-            editUrl:""
+            editUrl:"",
+            category_id:null,
         }
     },
     mounted(){

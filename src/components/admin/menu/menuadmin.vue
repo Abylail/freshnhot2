@@ -1,15 +1,25 @@
 <template>
     <div class="main-menu-admin">
-        <button class="sync" @click="syncHandle">Синхронизировать</button>
+        <button class="sync" @click="syncHandle">Синхронизировать c фронтпад</button>
         <div class="list-container">
             <categoryEdge
             v-for="category in categories"
             :key="category.id"
             v-bind:category="category"
             />
-        </div>
-        <div class="save-button-container">
-            <button>Сохранить</button>
+          <div class="item-list-no-category">
+            <menuadminedge
+              v-for="item in getByCategory(null)"
+              :key="item.id"
+              :item="item"
+            />
+          </div>
+          <div class="create-category">
+            <p>Создать категорию</p>
+            <input v-model="newCategoryName" placeholder="Имя категории"/>
+            <input type="file" accept="image/*" @change="selectNewImageCategory"/>
+            <button @click="createCategory">Создать</button>
+          </div>
         </div>
     </div>
 </template>
@@ -17,30 +27,105 @@
 import { mapActions, mapGetters } from 'vuex'
 
 import categoryEdge from './menucategoryedge'
+import menuadminedge from "@/components/admin/menu/menuadminedge";
 
 export default {
     name:'menuadmin',
-    components:{categoryEdge},
-    computed:{
+    components:{categoryEdge, menuadminedge},
+    data(){
+      return {
+        newCategoryName:'',
+        categoryImage:'',
+        categories:[]
+      }
+    },
+    async mounted() {
+      await this.getList();
+      this.categories = this.categoriesList;
+    },
+  watch: {
+    getByCategory: function (val) {
+      this.categories = val;
+    }
+  },
+  computed:{
         ...mapGetters({
-            categories:'categories/getList'
+            categoriesList:'categories/getList',
+            getByCategory:"listOfItems/getByCategory2"
         })
     },
     methods: {
+      selectNewImageCategory(event){
+        this.categoryImage = event.target.files[0];
+      },
         ...mapActions({
-            synchronization: "listOfItems/synchronization"
+            getList: "categories/getList",
+            synchronization: "listOfItems/synchronization",
+            serverCreateCategory: "categories/createCategory"
         }),
         syncHandle() {
             this.synchronization();
+        },
+        createCategory() {
+        if(this.categoryImage !== '' && this.newCategoryName !== '') {
+          this.serverCreateCategory({
+            'name': this.newCategoryName,
+            'photo': this.categoryImage
+          });
+          this.categoryImage = '';
+          this.newCategoryName = '';
+        }
         }
     }
 }
 </script>
 <style scoped>
+.item-list-no-category{
+  display: flex;
+  flex-wrap: wrap;
+}
+  .create-category{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    padding:20px;
+
+    border-radius: 5px;
+  }
+  .create-category input{
+    margin-bottom:20px;
+    width: 100%;
+    height: 25px;
+    font-size: 16px;
+  }
+  .create-category p{
+    width: 100%;
+    margin-bottom:20px;
+    font-size: 20px;
+  }
+  .create-category button{
+    font-size: 20px;
+    background-color: red;
+    color:white;
+    padding:14px;
+    padding-top:7px;
+    padding-bottom: 7px;
+    border-radius: 5px;
+    border: none;
+  }
+
     .sync{
-        padding-top:20px;
+        margin: 10px;
         background-color: red;
         color: white;
+        padding:15px;
+        border:none;
+        border-radius: 5px;
+        font-size: 20px;
     }
     .save-button-container{
         margin-top:30px;
