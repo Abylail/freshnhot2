@@ -36,7 +36,8 @@ export default {
         }
     },
     mounted(){
-        this.pageName = this.$route.params.pageName
+        this.pageName = this.$route.params.pageName;
+        console.log("store", this.getList)
     },
     components:{
         smartHeader

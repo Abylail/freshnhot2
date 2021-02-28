@@ -18,8 +18,8 @@ const state = () =>({
 })
 
 const getters = {
-    getList:state=>{
-        return state.list
+    getList:state => {
+        return state.list;
     },
 }
 

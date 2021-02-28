@@ -1,5 +1,6 @@
 <template>
     <div class="main-menu-admin">
+        <button class="sync" @click="syncHandle">Синхронизировать</button>
         <div class="list-container">
             <categoryEdge
             v-for="category in categories"
@@ -13,7 +14,7 @@
     </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 import categoryEdge from './menucategoryedge'
 
@@ -25,9 +26,22 @@ export default {
             categories:'categories/getList'
         })
     },
+    methods: {
+        ...mapActions({
+            synchronization: "listOfItems/synchronization"
+        }),
+        syncHandle() {
+            this.synchronization();
+        }
+    }
 }
 </script>
 <style scoped>
+    .sync{
+        padding-top:20px;
+        background-color: red;
+        color: white;
+    }
     .save-button-container{
         margin-top:30px;
         display:flex;

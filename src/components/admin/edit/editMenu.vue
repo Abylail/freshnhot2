@@ -28,7 +28,11 @@
         <div class="edit-row">
             <div class="edit-row-name"><p>Фото</p></div>
             <div class="edit-row-input">Фото</div>
-            <div class="upload-image-container"><input type="file" @change="imageSelected"/></div>
+            <div class="upload-image-container">
+                <form enctype="multipart/form-data" conte>
+                <input type="file" accept="image/*" @change="imageSelected"/>
+                </form>
+                </div>
             <button @click="uploadButtonClick" >Загрузить</button>
         </div>
         <div class="edit-row">
@@ -41,7 +45,7 @@
     </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
     name:'editMenu',
@@ -52,19 +56,24 @@ export default {
         }
     },
     methods:{
+        ...mapActions({
+            uploadImage: "listOfItems/uploadImage"
+        }),
         checkButtonClick(){
             console.log(this.item);
         },
         imageSelected(event){
-            console.log(event.target.files);
-            this.selectedImage = event.target.files[0]
+            this.selectedImage = event.target.files[0];
+            console.log(this.selectedImage);
         },
         uploadButtonClick(){
-            if(this.selectedImage==null){
+            if(this.selectedImage == null){
                 return
             }
             //code
-            console.log(this.selectedImage)
+            console.log("handle event",this.selectedImage);
+            // this.$store.dispatch('listOfItems/uploadImage',[this.selectedImage]);
+            this.uploadImage({"file": this.selectedImage});
 
         },
         piecesAmountInput(){

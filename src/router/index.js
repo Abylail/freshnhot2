@@ -18,6 +18,8 @@ import textpageadmin from '../components/admin/textpages/textpageadmin'
 import editMenu from '../components/admin/edit/editMenu'
 import loader from '../components/loader/loader'
 
+import userStorage from '@/api/localstorage'
+
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -81,18 +83,18 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to,from,next)=>{
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
     if(to.name == 'getOrder' && store.getters["shoppingCart/getAmount"]<=0){
         next('/korzina')
         return
     }
     else if(to.name == 'adminPanel' || to.name == 'adminMenu' || to.name == 'adminTextpages' || to.name == 'editMenu'){
-        if(!store.getters["loginAdmin/getLoginned"]){
+        if(userStorage.get.token() == null){
             next('/login')
             return
         }
     }
-    else if(to.name == 'adminLogin' && store.getters["loginAdmin/getLoginned"]){
+    else if(to.name == 'adminLogin' && userStorage.get.token() != null){
         next('/admin-panel')
         return
     }

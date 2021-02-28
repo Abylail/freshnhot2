@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import { getList } from '@/api/products'
+import { getList, synchronization, uploadImage } from '@/api/products'
+import userStorage from "@/api/localstorage"
 
 Vue.use(Vuex)
 
@@ -144,6 +145,16 @@ const actions = {
             console.log(data.data);
             // commit("setList",data.data)
         }
+    },
+    async synchronization(){
+        await synchronization(userStorage.get.token());
+        /* syncData is undefinded */
+        let { data } = await getList();
+        console.log("data store ",data.data);
+    },
+    async uploadImage(object) {
+        console.log("new store image s", object);
+        await uploadImage(object.object, userStorage.get.token());
     }
 }
 

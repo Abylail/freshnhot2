@@ -14,7 +14,7 @@
 </div>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import router from '@/router/index'
 export default {
     name:'adminLoginView',
@@ -25,21 +25,22 @@ export default {
         }
     },
     methods:{
-        loginButtonClick(){
-            if(this.login=="abylai" && this.password=="tigr"){
-                this.tryLogin([this.login,this.password])
+        async loginButtonClick(){
+            console.log("login button")
+            await this.tryLogin([this.login,this.password]);
+            if(this.getLoginned){
+                router.push("/admin-panel")
             }
-            else{
-                this.login=""
-                this.password=""
-            }
-            router.push("/admin-panel")
-
         },
         ...mapActions({
             tryLogin:"loginAdmin/tryLogin"
         })
     },
+    computed: {
+        ...mapGetters({
+            getLoginned: "loginAdmin/getLoginned"
+        })
+    }
 }
 </script>
 <style scoped>
@@ -59,7 +60,7 @@ input{
     width: 100%;
     height: 28px;
     border-radius: 4px;
-    border:none;
+    border:2px solid black;
     font-size: 22px;
 }
 .login{
