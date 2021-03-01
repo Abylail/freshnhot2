@@ -3,11 +3,24 @@
         <div class="edit-row"><router-link to="/admin-panel"> <div class="go-back"><span class="arrow-left"></span><p>Назад</p></div></router-link></div>
         <div class="edit-row">
             <div class="edit-row-name"><p>Имя</p></div>
-            <div class="edit-row-input"><input class="edit-input" type="text" v-model="item.name"/></div>
+            <div class="edit-row-input"><p>{{item.name}}</p></div>
+            <p class="help-text">Изменения в Frontpad</p>
         </div>
         <div class="edit-row">
             <div class="edit-row-name"><p>Описание</p></div>
             <div class="edit-row-input"><textarea class="edit-input edit-input-description" type="text" v-model="item.description"/></div>
+        </div>
+        <div class="edit-row">
+            <div class="edit-row-name"><p>Категория</p></div>
+            <div class="edit-row-input">
+                <select v-model="item.category_id">
+                  <option
+                    v-for="category in categoryList"
+                    :key="category.id"
+                    :value="category.id"
+                  >{{category.name}}</option>
+                </select>
+            </div>
         </div>
         <div class="edit-row">
             <div class="edit-row-name"><p>Штук</p></div>
@@ -23,19 +36,15 @@
         </div>
         <div class="edit-row">
             <div class="edit-row-name"><p>Цена</p></div>
-            <div class="edit-row-input"><input type="tel" class="edit-input" v-model="item.price" v-on:input="priceInput"/></div>
+            <div class="edit-row-input"><p>{{item.price}}</p></div>
+            <p class="help-text">Изменения в Frontpad</p>
         </div>
         <div class="edit-row">
             <div class="edit-row-name"><p>Фото</p></div>
-            <div class="edit-row-input">Фото</div>
             <div class="upload-image-container">
                 <input type="file" accept="image/*" @change="imageSelected"/>
             </div>
             <button @click="uploadButtonClick" >Загрузить</button>
-        </div>
-        <div class="edit-row">
-            <div class="edit-row-name"><p>Категори name</p></div>
-            <div class="edit-row-input"><p>{{getCategoryById(item.categoryId).name}}</p></div>
         </div>
 
 
@@ -98,20 +107,27 @@ export default {
     },
     created(){
         // сonnect local state with store
-        // this.item = this.getById(this.$route.params.itemId)
+        this.item = this.getById(this.$route.params.itemId);
+        console.log("mounted", this.item);
 
         // copy object in local
-        this.item = {...this.getById(this.$route.params.itemId)}
+        // this.item = {...this.getById(this.$route.params.itemId)}
     },
     computed:{
         ...mapGetters({
             getById:"listOfItems/getById",
-            getCategoryById:"categories/getById"
+            getCategoryById:"categories/getById",
+            categoryList: "categories/getList"
         }),
     }
 }
 </script>
 <style scoped>
+.help-text {
+    color:gray;
+    font-style: italic;
+    padding-bottom: 10px;
+}
 .edit-page{
     padding-left:10px;
     padding-right:10px;

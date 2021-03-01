@@ -7,18 +7,19 @@
             :key="category.id"
             v-bind:category="category"
             />
+          <div class="create-category">
+            <p>Создать категорию</p>
+            <input v-model="newCategoryName" placeholder="Имя категории"/>
+            <input type="file" accept="image/*" @change="selectNewImageCategory"/>
+            <button @click="createCategory">Создать</button>
+          </div>
+          <div class="devider-title" v-if="getByCategory(null).length > 0"><p>Без категории</p></div>
           <div class="item-list-no-category">
             <menuadminedge
               v-for="item in getByCategory(null)"
               :key="item.id"
               :item="item"
             />
-          </div>
-          <div class="create-category">
-            <p>Создать категорию</p>
-            <input v-model="newCategoryName" placeholder="Имя категории"/>
-            <input type="file" accept="image/*" @change="selectNewImageCategory"/>
-            <button @click="createCategory">Создать</button>
           </div>
         </div>
     </div>
@@ -80,6 +81,10 @@ export default {
 }
 </script>
 <style scoped>
+.devider-title{
+  padding-left: 20px;
+  font-size: 24px;
+}
 .item-list-no-category{
   display: flex;
   flex-wrap: wrap;

@@ -133,6 +133,7 @@ const getters = {
     getActiveCategory:state=>{
         return state.activeCategory
     },
+    getCategoryName: state => id => state.list.find(cat => cat.id+"" === id+""),
     getById:state=>id=>state.list.find(cat=>cat.id == id),
 }
 

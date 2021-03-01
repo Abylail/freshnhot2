@@ -113,7 +113,7 @@ const getters = {
     getCategoryList: state => {
       return state.categoryList;
     },
-    getList:state=>{
+    getList:(state) => {
         return state.list
     },
     getById:state=>(itemId)=>{

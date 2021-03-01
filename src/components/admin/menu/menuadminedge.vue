@@ -8,18 +8,14 @@
                         {{item.name}}
                     </p>
                 </div>
-                <input type="checkbox" v-model="stockBoolean" v-on:change="setStock" class="check-item"/>
+                <input type="checkbox" v-model="stockBoolean" class="check-item"/>
             </div>
             <div class="category-container row">
               <div class="item-minicontainer">
                 <p class="static-text">Категория</p>
-                <select v-model="category_id">
-                  <option
-                    v-for="category in categoryList"
-                    :key="category.id"
-                    :value="category.id"
-                  >{{category.name}}</option>
-                </select>
+                    <p class="dinamic-text">
+                        {{getCategoryName(item.category_id)}}
+                    </p>
               </div>
             </div>
             <div class="description-container row">
@@ -81,7 +77,8 @@ export default {
     computed:{
         ...mapGetters({
             stock:"itemsStock/getStockById",
-            categoryList: "categories/getList"
+            categoryList: "categories/getList",
+            getCategoryName: "categories/getCategoryName"
         })
     },
     methods:{
