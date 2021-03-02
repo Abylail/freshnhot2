@@ -7,14 +7,23 @@ const getList = () => {
 };
 
 const addCategory = (category, token) => {
-    return api.post(url+'new', category,{
+    return api.post(url+'new', category, {
         'headers': {
-            'Authorization':`Bearer ${token}`
+            'Authorization':`Bearer ${token}`,
         }
     });
 }
 
+const deleteCategory = (category_id, token) => {
+  return api.delete(url+category_id+'/delete',{
+      'headers': {
+          'Authorization':`Bearer ${token}`,
+      }
+  })
+};
+
 export {
     getList,
-    addCategory
+    addCategory,
+    deleteCategory
 }

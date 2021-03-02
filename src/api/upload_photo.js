@@ -2,12 +2,10 @@ import api from './api'
 
 const image_url = 'api/upload_image';
 
-const uploadImage = async (file, token) => {
-    console.log("event-", file, "token-", token);
+const uploadImage = (file, token) => {
     let fd = new FormData();
 
     fd.append('image', file);
-    console.log("fd ",fd);
 
     return api.post(image_url, fd, {
         'headers': {

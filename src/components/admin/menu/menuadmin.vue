@@ -3,9 +3,9 @@
         <button class="sync" @click="syncHandle">Синхронизировать c фронтпад</button>
         <div class="list-container">
             <categoryEdge
-            v-for="category in categories"
+            v-for="category in categoriesList"
             :key="category.id"
-            v-bind:category="category"
+            :category="category"
             />
           <div class="create-category">
             <p>Создать категорию</p>
@@ -13,14 +13,15 @@
             <input type="file" accept="image/*" @change="selectNewImageCategory"/>
             <button @click="createCategory">Создать</button>
           </div>
-          <div class="devider-title" v-if="getByCategory(null).length > 0"><p>Без категории</p></div>
+          <div class="devider-title" v-if="emptyCategory.length > 0"><p>Без категории</p></div>
           <div class="item-list-no-category">
             <menuadminedge
-              v-for="item in getByCategory(null)"
+              v-for="item in emptyCategory"
               :key="item.id"
               :item="item"
             />
           </div>
+          <button class="save" @click="saveStock">Сохранить</button>
         </div>
     </div>
 </template>
@@ -32,35 +33,42 @@ import menuadminedge from "@/components/admin/menu/menuadminedge";
 
 export default {
     name:'menuadmin',
-    components:{categoryEdge, menuadminedge},
+    components:{categoryEdge,menuadminedge},
     data(){
       return {
+        categoriesList: [],
         newCategoryName:'',
-        categoryImage:'',
-        categories:[]
+        categoryImage:''
       }
     },
     async mounted() {
-      await this.getList();
-      this.categories = this.categoriesList;
+      await this.getItems();
+      await this.getCategories();
+      this.categoriesList = this.categoriesGet;
     },
   watch: {
-    getByCategory: function (val) {
-      this.categories = val;
+    categoriesGet: function (val) {
+      console.log("watch", val);
+      this.categoriesList = val;
     }
   },
   computed:{
         ...mapGetters({
-            categoriesList:'categories/getList',
-            getByCategory:"listOfItems/getByCategory2"
+            categoriesGet:'categories/getList',
+            emptyCategory:"listOfItems/getEmtyCategoryItems",
+
         })
     },
     methods: {
+      saveStock() {
+
+      },
       selectNewImageCategory(event){
         this.categoryImage = event.target.files[0];
       },
         ...mapActions({
-            getList: "categories/getList",
+            getCategories: "categories/getList",
+            getItems: "listOfItems/getList",
             synchronization: "listOfItems/synchronization",
             serverCreateCategory: "categories/createCategory"
         }),

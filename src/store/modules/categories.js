@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import { getList, addCategory } from '@/api/category'
+import { getList, addCategory, deleteCategory } from '@/api/category'
 import { addSubcategory, deleteSubcategory } from "@/api/subcategory";
 import uploadImage from '@/api/upload_photo'
 import userStorage from "@/api/localstorage";
@@ -10,116 +10,7 @@ Vue.use(Vuex)
 
 
 const state = () => ({
-    list:[
-        {
-            id:0,
-            name:"Пицца",
-            imgSrc:"",
-            subCategories:[
-                {
-                    id:0,
-                    name:"Все",
-                    value:""
-                },
-                {
-                    id:1,
-                    name:"50см",
-                    value:"50см"
-                },
-                {
-                    id:2,
-                    name:"30см",
-                    value:"30см"
-                },
-                {
-                    id:3,
-                    name:"20см",
-                    value:"20см"
-                },
-            ],
-        },
-        {
-            id:1,
-            name:"Суши",
-            imgSrc:"",
-            subCategories:[
-                {
-                    id:0,
-                    name:"Все",
-                    value:""
-                },
-                {
-                    id:1,
-                    name:"50см",
-                    value:"50см"
-                },
-                {
-                    id:2,
-                    name:"30см",
-                    value:"30см"
-                },
-                {
-                    id:3,
-                    name:"20см",
-                    value:"20см"
-                },
-            ],
-        },
-        {
-            id:2,
-            name:"Напитки",
-            imgSrc:"",
-            subCategories:[
-                {
-                    id:0,
-                    name:"Все",
-                    value:""
-                },
-                {
-                    id:1,
-                    name:"50см",
-                    value:"50см"
-                },
-                {
-                    id:2,
-                    name:"30см",
-                    value:"30см"
-                },
-                {
-                    id:3,
-                    name:"20см",
-                    value:"20см"
-                },
-            ],
-        },
-        {
-            id:3,
-            name:"Сеты",
-            imgSrc:"https://media.flaticon.com/dist/min/img/logo/flaticon_negative.svg",
-            subCategories:[
-                {
-                    id:0,
-                    name:"Все",
-                    value:""
-                },
-                {
-                    id:1,
-                    name:"Сеты алики",
-                    value:"Сеты алики"
-                },
-                {
-                    id:2,
-                    name:"Сеты Абылая",
-                    value:"Сеты Абылая"
-                },
-                {
-                    id:3,
-                    name:"Сеты Рустама",
-                    value:"Сеты Рустама"
-                },
-            ],
-        }
-    ],
+    list:[],
     activeCategory:'',
 })
 
@@ -132,6 +23,9 @@ const getters = {
     },
     getActiveCategory:state=>{
         return state.activeCategory
+    },
+    getSubsById: (state) => id => {
+      return state.list.find(cat => cat.id == id).subs;
     },
     getCategoryName: state => id => state.list.find(cat => cat.id+"" === id+""),
     getById:state=>id=>state.list.find(cat=>cat.id == id),
@@ -147,14 +41,20 @@ const actions = {
         console.log("created", data);
         commit("addSubcategory", data.data);
     },
+    async deleteCategory({commit}, category_id) {
+        console.log(category_id)
+      await deleteCategory(category_id, userStorage.get.token());
+      commit("deleteCategory", category_id);
+    },
     async createCategory({commit}, object) {
         let { data } = await uploadImage(object.photo, userStorage.get.token());
-        let { category} = await addCategory({
+        let { data:category }   = await addCategory({
             name: object.name,
             img_src: data.data
         }, userStorage.get.token());
 
-        commit("setCategory", {...category.data});
+        commit("setCategory", category.data);
+
     },
     async setActiveCategory({commit},category){
         commit('setActiveCategory',category)
@@ -169,6 +69,14 @@ const actions = {
 }
 
 const mutations = {
+    deleteCategory(state, category_id) {
+        let list = [...state.list];
+        let index = list.findIndex(x => x.id === category_id);
+        if (index > -1) {
+            list.splice(index, 1);
+        }
+        state.list = list;
+    },
     deleteSubcategory(state, [category_id, sub_id]) {
         let list = [...state.list];
         let categoryIndex = list.findIndex(x => x.id === category_id);
@@ -181,10 +89,10 @@ const mutations = {
         }
     },
     addSubcategory(state, subcategory){
-        console.log("subcategory", subcategory)
         let list = [...state.list];
         let cat = list.find(cat => cat.id+"" === subcategory.category_id)
-        cat.subs.push(subcategory);
+        cat.subs = [subcategory];
+        console.log("add sub", cat)
         state.list = list;
     },
     clearActiveCategory(state){
@@ -197,9 +105,9 @@ const mutations = {
         state.list = list.data;
     },
     setCategory(state, category) {
-        let arr = [...state.list];
-        arr.push(category);
-        state.list = arr;
+        console.log('commit')
+        console.log(category)
+        state.list.push(category);
     }
 }
 

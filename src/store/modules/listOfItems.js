@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import { getList, synchronization, uploadImage } from '@/api/products'
+import { getList, synchronization, updateProduct } from '@/api/products'
+import upload_photo from "@/api/upload_photo";
 import userStorage from "@/api/localstorage";
 
 Vue.use(Vuex)
@@ -140,6 +141,9 @@ const getters = {
         }
         return state.list.filter(item=>item.category==category_id)
     },
+    getEmtyCategoryItems:state => {
+        return state.list.filter(item=>item.category === null);
+    },
     searchByName:(state,itemName)=>{
         return state.list.filter(item=>item.name==itemName)
     },
@@ -156,6 +160,10 @@ const actions = {
             commit("setList",data.data)
         }
     },
+    async updateProduct({ commit }, obj) {
+        let { data } = updateProduct(obj, userStorage.get.token());
+        commit("updateProduct",data);
+    },
     // async getListHard({commit}) {
     //     let { data } = await getList()
     // },
@@ -167,13 +175,20 @@ const actions = {
     },
     // eslint-disable-next-line no-unused-vars
     async uploadImage({commit}, object) {
-        await uploadImage(object.file, userStorage.get.token());
+        await upload_photo(object.file, userStorage.get.token());
     }
 }
 
 const mutations = {
+    updateProduct(state, product){
+        let list = [...state.list];
+        let index = list.findIndex(x => x.id === product.id);
+        if(index > -1) {
+            list[index] = {...product};
+            state.list = list;
+        }
+    },
     setList(state,list){
-        console.log(list);
         state.list = list
     }
 }

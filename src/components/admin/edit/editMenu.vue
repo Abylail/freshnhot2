@@ -22,6 +22,18 @@
                 </select>
             </div>
         </div>
+      <div class="edit-row" v-if="item.category_id && item.category_id !== null">
+        <div class="edit-row-name"><p>Подкатегория</p></div>
+        <div class="edit-row-input">
+          <select v-model="item.sub_category_id">
+            <option
+                v-for="category in getSubsById(item.category_id)"
+                :key="category.id"
+                :value="category.id"
+            >{{category.name}}</option>
+          </select>
+        </div>
+      </div>
         <div class="edit-row">
             <div class="edit-row-name"><p>Штук</p></div>
             <div class="edit-row-input"><input class="edit-input" type="tel" v-model="item.piecesAmount"  v-on:input="piecesAmountInput"/></div>
@@ -40,15 +52,16 @@
             <p class="help-text">Изменения в Frontpad</p>
         </div>
         <div class="edit-row">
-            <div class="edit-row-name"><p>Фото</p></div>
-            <div class="upload-image-container">
-                <input type="file" accept="image/*" @change="imageSelected"/>
-            </div>
-            <button @click="uploadButtonClick" >Загрузить</button>
+          <p class="error">{{errorMessage}}</p>
+          <button class="save" @click="save">Сохранить</button>
         </div>
-
-
-        <button v-on:click="checkButtonClick">check</button>
+        <div class="edit-row">
+          <div class="edit-row-name"><p>Фото</p></div>
+          <div class="upload-image-container">
+            <input type="file" accept="image/*" @change="imageSelected"/>
+          </div>
+          <button @click="uploadButtonClick" >Загрузить</button>
+      </div>
     </div>
 </template>
 <script>
@@ -60,14 +73,21 @@ export default {
         return{
             item:{},
             selectedImage:null,
+            errorMessage:"",
         }
     },
     methods:{
         ...mapActions({
-            uploadImage: "listOfItems/uploadImage"
+          uploadImage: "listOfItems/uploadImage",
+          updateProduct: "listOfItems/updateProduct",
         }),
-        checkButtonClick(){
-            console.log(this.item);
+        save() {
+          this.errorMessage = "";
+          if(this.item.sub_category_id && this.item.category_id) {
+            this.updateProduct(this.item);
+          } else {
+            this.errorMessage = "Введите категорию и подкатегорию";
+          }
         },
         imageSelected(event){
             this.selectedImage = event.target.files[0];
@@ -108,7 +128,6 @@ export default {
     created(){
         // сonnect local state with store
         this.item = this.getById(this.$route.params.itemId);
-        console.log("mounted", this.item);
 
         // copy object in local
         // this.item = {...this.getById(this.$route.params.itemId)}
@@ -117,12 +136,28 @@ export default {
         ...mapGetters({
             getById:"listOfItems/getById",
             getCategoryById:"categories/getById",
-            categoryList: "categories/getList"
+            categoryList: "categories/getList",
+            getSubsById: "categories/getSubsById"
         }),
     }
 }
 </script>
 <style scoped>
+.error{
+  color: red;
+}
+button.save{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: red;
+  font-size: 20px;
+  color:white;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
 .help-text {
     color:gray;
     font-style: italic;

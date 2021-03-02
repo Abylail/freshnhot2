@@ -8,7 +8,7 @@
                         {{item.name}}
                     </p>
                 </div>
-                <input type="checkbox" v-model="stockBoolean" class="check-item"/>
+                <input type="checkbox" v-model="item.in_stock" class="check-item"/>
             </div>
             <div class="category-container row">
               <div class="item-minicontainer">
@@ -82,9 +82,6 @@ export default {
         })
     },
     methods:{
-        setStock(){
-            this.setItem([this.item.id,this.stockBoolean])
-        },
         ...mapActions({
             setItem:"itemsStock/setItem",
         }),

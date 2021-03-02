@@ -3,6 +3,7 @@
         <div class="category-name-container">
             <p>{{category.name}}</p>
             <img class="category-image" :src="`https://api.freshnhot.kz${category.img_src}`"/>
+            <button class="delete" @click="deleteCategoryHandle">Удалить</button>
         </div>
         <div class="subcategories-container">
             <p>Подкатегории</p>
@@ -19,9 +20,9 @@
         </div>
         <div class="items-list-container">
             <itemEdge
-                v-for="item in list(category.name)"
+                v-for="item in category.products"
                 :key="item.id"
-                v-bind:item="item"
+                :item="item"
             />
         </div>
     </div>
@@ -38,11 +39,19 @@ export default {
         newSubcategory:'',
       }
     },
+  watch:{
+    category:function (val) {
+      console.log("watch in edge", val)
+    }
+  },
     components:{
         itemEdge
     },
     methods:{
-      deleteSubcategoryHandle(subcat_id){
+      deleteCategoryHandle(){
+        this.deleteCategory(this.category.id);
+      },
+      deleteSubcategory(subcat_id){
         this.deleteSubcategoryAction([this.category.id, subcat_id]);
       },
       createSubcategoryHandle() {
@@ -57,11 +66,8 @@ export default {
       ...mapActions({
         createSubcategory:"categories/createSubcategory",
         deleteSubcategoryAction: "categories/deleteSubcategoryAction",
-        getList: "listOfItems/getList"
+        deleteCategory: "categories/deleteCategory"
       })
-    },
-    mounted(){
-      this.getList();
     },
     computed:{
         ...mapGetters({
@@ -71,6 +77,20 @@ export default {
 }
 </script>
 <style scoped>
+button.delete{
+  background-color: red;
+  padding: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  max-height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+}
 .subcat-delete{
   margin-left: 10px;
   margin-bottom: 10px;
@@ -91,6 +111,7 @@ export default {
     margin-bottom:15px;
     display: flex;
     flex-direction: row;
+  align-items: center;
 }
 .category-name-container p{
     font-size: 24px;
