@@ -1,4 +1,5 @@
 import api from './api'
+import userStorage from './localstorage';
 
 const product_url = 'api/products/';
 
@@ -14,6 +15,15 @@ const updateProduct = (product, token) => {
   });
 };
 
+const updateStock = (list) => {
+    console.log("stock api",list);
+    return api.post(product_url+'update_stock',list,{
+        'headers': {
+            'Authorization':`Bearer ${userStorage.get.token()}`,
+        }
+    })
+};
+
 const synchronization = (token) => {
     return api.post(product_url + 'sync',{},{
         'headers': {
@@ -24,5 +34,6 @@ const synchronization = (token) => {
 export { 
     getList,
     synchronization,
-    updateProduct
+    updateProduct,
+    updateStock
 }

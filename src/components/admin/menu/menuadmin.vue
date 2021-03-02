@@ -27,6 +27,7 @@
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import { updateStock } from "@/api/products";
 
 import categoryEdge from './menucategoryedge'
 import menuadminedge from "@/components/admin/menu/menuadminedge";
@@ -45,6 +46,7 @@ export default {
       await this.getItems();
       await this.getCategories();
       this.categoriesList = this.categoriesGet;
+      console.log("empty",this.emptyCategory);
     },
   watch: {
     categoriesGet: function (val) {
@@ -56,12 +58,13 @@ export default {
         ...mapGetters({
             categoriesGet:'categories/getList',
             emptyCategory:"listOfItems/getEmtyCategoryItems",
-
+            productList: "listOfItems/getList"
         })
     },
     methods: {
       saveStock() {
-
+        console.log("save stock",this.productList);
+        updateStock(this.productList);
       },
       selectNewImageCategory(event){
         this.categoryImage = event.target.files[0];
@@ -89,6 +92,16 @@ export default {
 }
 </script>
 <style scoped>
+button.save{
+  font-size: 20px;
+  background-color: red;
+  color: white;
+  padding: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 5px;
+  border:none;
+}
 .devider-title{
   padding-left: 20px;
   font-size: 24px;

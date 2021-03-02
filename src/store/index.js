@@ -12,6 +12,7 @@ import events from './modules/events'
 import delivery from './modules/delivery'
 import contacts from './modules/contacts'
 import about from './modules/about'
+import slider from './modules/slider'
 
 
 Vue.use(Vuex)
@@ -39,7 +40,8 @@ const store = new Vuex.Store({
         events,
         delivery,
         contacts,
-        about
+        about,
+        slider
     }
 })
 

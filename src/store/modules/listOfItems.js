@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import { getList, synchronization, updateProduct } from '@/api/products'
+import { getList, synchronization, updateProduct, updateStock } from '@/api/products'
 import upload_photo from "@/api/upload_photo";
 import userStorage from "@/api/localstorage";
 
@@ -9,104 +9,7 @@ Vue.use(Vuex)
 
 
 const state = () => ({
-    list:[
-        {
-            "id":0,
-           "name":"Пицца королева",
-           "imgSrc":"https://sushitime.kz/templates/Default/images/ff7b5b9b9414f25456473abb0df0de93429bc24f.jpg",
-           "description":"небольшой комок, специально приготовленного риса, сформированный руками, на который положен небольшой кусочек рыбы.",
-           "price":1200,
-           "category":"Пицца",
-           "categoryId":0,
-           "subCategories":[
-               "40см"
-           ],
-        },
-        {
-            "id":1,
-            "name":"Мега Пицца",
-            "imgSrc":"",
-            "description":"небольшой комок, специально приготовленного риса, сформированный руками, на который положен небольшой кусочек рыбы.",
-            "weight":130,
-            "price":1200,
-            "category":"Пицца",
-            "categoryId":0,
-            "subCategories":["40см"],
-        },
-        {
-            "id":2,
-            "name":"Мега Пицца2",
-            "imgSrc":"https://sushitime.kz/templates/Default/images/ff7b5b9b9414f25456473abb0df0de93429bc24f.jpg",
-            "description":"небольшой комок, специально приготовленного риса, сформированный руками, на который положен небольшой кусочек рыбы.",
-            "calories":260,
-            "weight":130,
-            "price":1200,
-            "category":"Пицца",
-            "categoryId":0,
-            "subCategories":["30см"],
-        },
-        {
-            "id":3,
-            "name":"Мега Пицца3",
-            "imgSrc":"https://sushitime.kz/templates/Default/images/ff7b5b9b9414f25456473abb0df0de93429bc24f.jpg",
-            "description":"небольшой комок, специально приготовленного риса, сформированный руками, на который положен небольшой кусочек рыбы.",
-            "calories":260,
-            "weight":130,
-            "price":1200,
-            "category":"Пицца",
-            "categoryId":0,
-            "subCategories":["20см"],
-        },
-        {
-            "id":4,
-           "name":"Суши супер",
-           "imgSrc":"https://www.sushitime.kz/templates/Default/images/6834325db5b8130e08a119d65b004c77a3cdad4b.jpg",
-           "description":"небольшой комок, специально приготовленного риса, сформированный руками",
-           "piecesAmount":10,
-           "calories":260,
-           "weight":130,
-           "price":1200,
-           "category":"Суши",
-           "categoryId":1,
-           "subCategories":[],
-        },
-        {
-            "id":5,
-           "name":"Суши супер2",
-           "imgSrc":"https://www.sushitime.kz/templates/Default/images/6834325db5b8130e08a119d65b004c77a3cdad4b.jpg",
-           "description":"небольшой комок, специально приготовленного риса, сформированный руками",
-           "piecesAmount":8,
-           "calories":260,
-           "weight":130,
-           "price":1200,
-           "category":"Суши",
-           "categoryId":1,
-           "subCategories":[],
-        },
-        {
-            "id":6,
-           "name":"Суши супер3",
-           "imgSrc":"https://www.sushitime.kz/templates/Default/images/6834325db5b8130e08a119d65b004c77a3cdad4b.jpg",
-           "description":"небольшой комок, специально приготовленного риса, сформированный руками",
-           "piecesAmount":10,
-           "calories":260,
-           "weight":130,
-           "price":1200,
-           "category":"Суши",
-           "categoryId":1,
-           "subCategories":[],
-        },
-        {
-            "id":7,
-           "name":"Кола",
-           "imgSrc":"https://sushitime.kz/templates/Default/images/ff7b5b9b9414f25456473abb0df0de93429bc24f.jpg",
-           "piecesAmount":1,
-           "price":1200,
-           "category":"Напитки",
-           "categoryId":2,
-           "subCategories":[],
-        }
-     ],
+    list:[],
      freeDeliveryMinimumPrice:3500,
 })
 
@@ -142,7 +45,7 @@ const getters = {
         return state.list.filter(item=>item.category==category_id)
     },
     getEmtyCategoryItems:state => {
-        return state.list.filter(item=>item.category === null);
+        return state.list.filter(item=>item.category_id === null);
     },
     searchByName:(state,itemName)=>{
         return state.list.filter(item=>item.name==itemName)
@@ -153,6 +56,11 @@ const getters = {
 }
 
 const actions = {
+    async updateStock({ commit },obj) {
+        console.log("store stick",obj.list);
+        await updateStock({"list":obj.list}, userStorage.get.token());
+        commit("");
+    },
     async getList({ commit }){
         console.log("getting prosucts")
         let { data } = await getList()
@@ -161,7 +69,7 @@ const actions = {
         }
     },
     async updateProduct({ commit }, obj) {
-        let { data } = updateProduct(obj, userStorage.get.token());
+        let { data } = await updateProduct(obj, userStorage.get.token());
         commit("updateProduct",data);
     },
     // async getListHard({commit}) {

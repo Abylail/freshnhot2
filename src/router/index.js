@@ -17,6 +17,7 @@ import menuadmin from '../components/admin/menu/menuadmin'
 import textpageadmin from '../components/admin/textpages/textpageadmin'
 import editMenu from '../components/admin/edit/editMenu'
 import loader from '../components/loader/loader'
+import sliderEditView from '../views/adminPanel/views/sliderEditView'
 
 import userStorage from '@/api/localstorage'
 
@@ -69,6 +70,11 @@ const router = new VueRouter({
                     name:'editMenu',
                     path:'editmenu/:itemId',
                     component:editMenu,
+                },
+                {
+                    name:'sliderEdit',
+                    path: 'sliderEdit',
+                    component: sliderEditView
                 }
                 
             ]

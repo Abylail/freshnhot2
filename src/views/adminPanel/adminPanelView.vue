@@ -3,6 +3,7 @@
         <header class="admin-panel-header">
             <a class="open-navigation-button" v-on:click="toggleNavigator">Навигатор</a>
             <button class="logout" @click="logoutHandle" >Выйти</button>
+            <button @click="checkButton">Check</button>
         </header>
         <div v-bind:class="{'navigator':true,'showNavigator':showNavigator}" v-on:click="hideNavigatorMethod">
             <router-link to="/admin-panel" class="navigator-link">
@@ -40,6 +41,11 @@
                     <p class="navigator-link">События</p>
                 </div>
             </router-link>
+            <router-link to="/admin-panel/sliderEdit" class="navigator-link">
+                <div class="navigator-link">
+                    <p class="navigator-link">Слайдер</p>
+                </div>
+            </router-link>
         </div>
         <div class="main">
             <router-view :key="$route.fullPath" />
@@ -47,7 +53,7 @@
     </div>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
     name:'adminPanelView',
     data(){
@@ -56,6 +62,9 @@ export default {
         }
     },
     methods:{
+        checkButton() {
+            console.log(this.items);
+        },
         async logoutHandle() {
             await this.logout();
             this.$router.push("/login");
@@ -81,6 +90,11 @@ export default {
             logout: "loginAdmin/logout"
         })
     },
+    computed:{
+        ...mapGetters({
+            items:"listOfItems/getList"
+        })
+    }
 
 }
 </script>
