@@ -14,7 +14,7 @@
               <div class="item-minicontainer">
                 <p class="static-text">Категория</p>
                     <p class="dinamic-text">
-                        {{getCategoryName(item.category_id)}}
+                        {{getCategoryName(item.category_id)?getCategoryName(item.category_id).name:''}}
                     </p>
               </div>
             </div>
@@ -30,7 +30,7 @@
                 <div class="item-minicontainer">
                     <p class="static-text">Штук</p>
                     <p class="dinamic-text">
-                        {{item.piecesAmount}}
+                        {{item.amount}}
                     </p>
                 </div>
                 <div class="item-minicontainer">
@@ -48,7 +48,7 @@
                 <div class="item-minicontainer">
                     <p class="static-text">Цена</p>
                     <p class="dinamic-text">
-                        {{item.calories}}
+                        {{item.price}}
                     </p>
                 </div>
             </div>
@@ -99,11 +99,11 @@ export default {
     },
     mounted(){
         this.stockBoolean = this.stock(this.item.id)
-        if(this.item.imgSrc && this.item.imgSrc!=""){
-            this.imgSrc = this.item.imgSrc
+        if(this.item.img_src && this.item.img_src !== null){
+            this.imgSrc = 'https://api.freshnhot.kz'+this.item.img_src;
         }
 
-        this.editUrl = "/admin-panel/editmenu/"+this.item.id
+        this.editUrl = "/admin-panel/editmenu/"+this.item.id;
     },
     
 }

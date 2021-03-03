@@ -36,41 +36,42 @@
       </div>
         <div class="edit-row">
             <div class="edit-row-name"><p>Штук</p></div>
-            <div class="edit-row-input"><input class="edit-input" type="tel" v-model="item.piecesAmount"  v-on:input="piecesAmountInput"/></div>
+            <div class="edit-row-input"><input class="edit-input" type="tel" v-model="item.amount"/></div>
         </div>
         <div class="edit-row">
             <div class="edit-row-name"><p>Калорий</p></div>
-            <div class="edit-row-input"><input class="edit-input" type="tel" v-model="item.calories"  v-on:input="caloriesInput"/></div>
+            <div class="edit-row-input"><input class="edit-input" type="tel" v-model="item.calories"/></div>
         </div>
         <div class="edit-row">
             <div class="edit-row-name"><p>Грамм</p></div>
-            <div class="edit-row-input"><input type="tel" class="edit-input" v-model="item.weight" v-on:input="weightInput"/></div>
+            <div class="edit-row-input"><input type="tel" class="edit-input" v-model="item.weight"/></div>
         </div>
         <div class="edit-row">
             <div class="edit-row-name"><p>Цена</p></div>
             <div class="edit-row-input"><p>{{item.price}}</p></div>
             <p class="help-text">Изменения в Frontpad</p>
         </div>
+      <div class="edit-row">
+        <div class="edit-row-name"><p>Фото</p></div>
+        <img :src="item.img_src">
+        <div class="upload-image-container">
+          <input type="file" accept="image/*" @change="imageSelected"/>
+        </div>
+      </div>
         <div class="edit-row">
           <p class="error">{{errorMessage}}</p>
           <button class="save" @click="save">Сохранить</button>
         </div>
-        <div class="edit-row">
-          <div class="edit-row-name"><p>Фото</p></div>
-          <div class="upload-image-container">
-            <input type="file" accept="image/*" @change="imageSelected"/>
-          </div>
-          <button @click="uploadButtonClick" >Загрузить</button>
-      </div>
     </div>
 </template>
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex';
+import uploadImage from "@/api/upload_photo";
 
 export default {
     name:'editMenu',
-    data(){
-        return{
+    data() {
+        return {
             item:{},
             selectedImage:null,
             errorMessage:"",
@@ -81,9 +82,14 @@ export default {
           uploadImage: "listOfItems/uploadImage",
           updateProduct: "listOfItems/updateProduct",
         }),
-        save() {
+        async save() {
           this.errorMessage = "";
           if(this.item.sub_category_id && this.item.category_id) {
+            if(this.selectedImage !== null) {
+              let img_src = "";
+              await uploadImage(this.selectedImage).then(({data}) => img_src = data.data);
+              this.item.img_src = img_src;
+            }
             this.updateProduct(this.item);
           } else {
             this.errorMessage = "Введите категорию и подкатегорию";
@@ -92,16 +98,6 @@ export default {
         imageSelected(event){
             this.selectedImage = event.target.files[0];
             console.log(this.selectedImage);
-        },
-        uploadButtonClick(){
-            if(this.selectedImage == null){
-                return
-            }
-            //code
-            console.log("handle event",this.selectedImage);
-            // this.$store.dispatch('listOfItems/uploadImage',[this.selectedImage]);
-            this.uploadImage({"file": this.selectedImage});
-
         },
         piecesAmountInput(){
             if(!Number(this.item.piecesAmount) || this.item.piecesAmount>101){
@@ -171,6 +167,9 @@ button.save{
 }
 .edit-row{
     max-width:1000px;
+}
+.edit-row img{
+  height: 200px;
 }
 .edit-row-name{
     font-size: 20px;
