@@ -1,6 +1,6 @@
 <template>
     <div class="list-container-menu">
-        <listInCategory 
+        <listInCategory
             v-for="category in categories"
             :key="category.id"
             v-bind:category="category"

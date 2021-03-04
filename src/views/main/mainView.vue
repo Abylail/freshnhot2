@@ -33,9 +33,9 @@
 </template>
 <script> 
 import navCategories from '@/components/navigation/navCategoriesComponent/navCategories';
-import menuList from '@/components/menu/menuList'
-import shoppingCartButton from './components/shoppingCartButton'
-import smartHeader from '@/components/header/smartHeader'
+import menuList from '@/views/main/components/menuList';
+import shoppingCartButton from './components/shoppingCartButton';
+import smartHeader from '@/components/header/smartHeader';
 
 import slider from './components/slider'
 import { mapActions } from 'vuex';
@@ -75,10 +75,12 @@ export default {
         },
         ...mapActions({
             getList:"listOfItems/getList",
+            getCategories: "categories/getList"
         })
     },
     mounted(){
         this.getList()
+        this.getCategories()
     },
     created(){
         // this.onScroll() 

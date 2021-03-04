@@ -4,12 +4,13 @@
             <div class="category-name-conatiner">
                 <h2 class="name">{{category.name}}</h2>
             </div>
-            <ul v-if="category.subCategories && category.subCategories.length>0" class="subcategory-container">
-                <li class="sub-category-edge-container" v-for="subcat in category.subCategories" :key="subcat.value">
+            <ul v-if="category.subs && category.subs.length>0" class="subcategory-container">
+                <li class="sub-category-edge-container" v-for="subcat in category.subs" :key="subcat.id">
                     <button 
-                    v-bind:value="subcat.value" 
+                    :value="subcat.id"
                     v-on:click="subCategoryButtonClick"
-                    :class="[{'choosen': subcat.value === subCategory}, 'sub-category-edge']"
+                    class="sub-category-edge"
+                    :class="[{ choosen: subcat.id === sub_id}, 'sub-category-edge']"
                     >
                     {{subcat.name}}
                     </button>
@@ -18,7 +19,7 @@
         </div>
         <div class="menu-list">
             <onePositionMenu
-                v-for="item in list(category.name,subCategory)"
+                v-for="item in category.products"
                 :key="item.id"
                 v-bind:item="item"
             />
@@ -27,14 +28,14 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
-import onePositionMenu from './onePositionMenu'
+import onePositionMenu from '../../../components/menu/onePositionMenu'
 
 export default {
     name:'listInCategory',
     data(){
         return{
             elementId:"",
-            subCategory:"",
+            sub_id:"",
         }
     },
     props:['category'],
@@ -46,7 +47,8 @@ export default {
     },
     methods:{
         subCategoryButtonClick(event){
-            this.subCategory = event.target.value
+            this.sub_id = event.target.value
+          console.log(this.sub_id)
         },
     },
     computed:{
