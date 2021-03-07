@@ -63,6 +63,7 @@ const actions = {
         commit('clearActiveCategory')
     },
     async deleteSubcategoryAction({ commit }, [category_id, sub_id]) {
+        console.log("delete id's",category_id, sub_id);
         await deleteSubcategory(sub_id, userStorage.get.token());
         commit("deleteSubcategory", [category_id, sub_id]);
     }
@@ -90,10 +91,11 @@ const mutations = {
     },
     addSubcategory(state, subcategory){
         let list = [...state.list];
-        let cat = list.find(cat => cat.id+"" === subcategory.category_id)
-        cat.subs = [subcategory];
-        console.log("add sub", cat)
+        let category = list.find(cat => cat.id+"" === subcategory.category_id)
+        category.subs.push(subcategory);
+        console.log("add sub", category)
         state.list = list;
+        console.log("state list",state.list);
     },
     clearActiveCategory(state){
         state.activeCategory = ''

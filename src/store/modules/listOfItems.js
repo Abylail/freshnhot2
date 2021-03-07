@@ -79,7 +79,8 @@ const actions = {
     async synchronization({commit}){
         await synchronization(userStorage.get.token());
         /* syncData is undefinded */
-       getList();
+        let { data } = await getList();
+        commit("setList", data.data);
     },
     // eslint-disable-next-line no-unused-vars
     async uploadImage({commit}, object) {

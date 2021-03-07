@@ -7,9 +7,9 @@ import userStorage from '../../api/localstorage'
 Vue.use(Vuex)
 
 const state = () => ({
-    list:userStorage.get.list(),
-    amount:userStorage.get.amount(),
-    price:userStorage.get.price(),
+    list:userStorage.get.list()||[],
+    amount:userStorage.get.amount()||0,
+    price:userStorage.get.price()||0,
 })
 
 const getters = {
@@ -57,18 +57,17 @@ const mutations = {
         userStorage.setLocalStorage(state.list,state.amount,state.price)
     },
     addItem(state,itemObject){
-        let obj = state.list.find(item=>item.id===itemObject.id)
-        console.log(state.list);
+        let obj = state.list.find(item=>item.id===itemObject.id);
         if(obj){
-            obj.amount = obj.amount + 1
-            state.price = state.price + obj.price
+            obj.amount = obj.amount + 1;
+            state.price = Number.parseInt(state.price) + Number.parseInt(obj.price);
         }
         else{
             state.list.push({
                 ...itemObject,
                 'amount':1,
             })
-            state.price = state.price + itemObject.price
+            state.price = Number.parseInt(itemObject.price);
         }
         state.amount = state.amount + 1
 

@@ -2,7 +2,7 @@
     <a class="root" v-on:click="itemClick">
         <!-- <router-link class="image-container" to="/korzina" >GO</router-link> -->
         <div class="image-container">
-            <img :src="category.imgSrc"/>
+            <img :src="category.img_src"/>
             <!-- <img src="@/assets/icons/sushi.svg"/>     -->
         </div>
         <p class="itemName">{{category.name}}</p>

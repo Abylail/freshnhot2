@@ -10,7 +10,7 @@
             <div class="subcategories-container-values">
                 <p v-for="(subcat, index) in category.subs" :key="index">
                   <span class="subcat-name">{{subcat.name}}</span>
-                  <button class="subcat-delete" @click="deleteSubcategoryHandle(subcat.id)">Удалить</button>
+                  <button class="subcat-delete" @click="deleteSubcategory(subcat.id)">Удалить</button>
                 </p>
                 <div class="create-subcategory">
                   <input type="text" v-model="newSubcategory"/>
@@ -39,11 +39,6 @@ export default {
         newSubcategory:'',
       }
     },
-  watch:{
-    category:function (val) {
-      console.log("watch in edge", val)
-    }
-  },
     components:{
         itemEdge
     },

@@ -75,8 +75,9 @@ export default {
             synchronization: "listOfItems/synchronization",
             serverCreateCategory: "categories/createCategory"
         }),
-        syncHandle() {
-            this.synchronization();
+        async syncHandle() {
+            await this.synchronization();
+            this.getCategories();
         },
         createCategory() {
         if(this.categoryImage !== '' && this.newCategoryName !== '') {

@@ -11,6 +11,7 @@
     </div>
 </template>
 <script>
+import { mapActions } from 'vuex';
 export default {
     name: "sliderEditView",
     data() {
@@ -28,7 +29,13 @@ export default {
             ],
         }
     },
+    mounted() {
+        this.getSlides();
+    },
   methods:{
+      ...mapActions({
+          getSlides: "slider/getList"
+      }),
     imageSelected(event) {
       this.image = event.target.files[0];
       console.log(this.image);
