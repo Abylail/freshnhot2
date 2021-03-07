@@ -1,44 +1,56 @@
 <template>
     <div>
-        <div class="row" v-for="slide in row" :key="slide.id">
+        <div class="row" v-for="slide in rows" :key="slide.id">
             <img :src="`https://api.freshnhot.kz${slide.img_src}`">
-            <button class="delete">Удалить слайд</button>
+            <button class="delete" @click="deleteImageHandle(slide)">Удалить слайд</button>
         </div>
         <div class="row add">
           <input type="file" accept="image/*" @change="imageSelected"/>
-          <button>Добавить</button>
+          <button @click="addSlideHandle">Добавить</button>
         </div>
     </div>
 </template>
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 export default {
     name: "sliderEditView",
     data() {
         return {
           image:null,
-            row:[
-              {
-                id:0,
-                img_src:""
-              },
-              {
-                id:1,
-                img_src:""
-              },
-            ],
+            rows:[],
         }
     },
-    mounted() {
-        this.getSlides();
+    async mounted() {
+        await this.getSlides();
     },
-  methods:{
+    watch:{
+        slides: function(val) {
+            this.rows = val;
+        }
+    },
+    computed:{
+        ...mapGetters({
+            slides: "slider/getList"
+        })
+    },
+    methods:{
+        deleteImageHandle(slideForm) {
+            this.deleteSlide(slideForm);
+        },
       ...mapActions({
-          getSlides: "slider/getList"
+          getSlides: "slider/getList",
+          addSlide: "slider/addSlide",
+          deleteSlide: "slider/deleteSlide"
       }),
     imageSelected(event) {
       this.image = event.target.files[0];
       console.log(this.image);
+    },
+    async addSlideHandle() {
+        if(this.image && this.image !== null){
+            await this.addSlide(this.image);
+            this.image = null;
+        }
     }
   }
 }

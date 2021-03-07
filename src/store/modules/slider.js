@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-// import upload_photo from "@/api/upload_photo";
+import { uploadImage, deleteImage } from "@/api/images";
 import { getSlides } from '@/api/slider';
+import { addSlide } from '../../api/slider';
 
 
 Vue.use(Vuex);
@@ -19,8 +20,19 @@ const getters = {
 const actions = {
     async getList({ commit }) {
         let { data } = await getSlides();
-        console.log(data);
         commit("setList", data.data);
+    },
+    async addSlide({ commit }, image) {
+        let { data:img_src } = await uploadImage(image);
+        let { data:slide } = await addSlide(img_src.data);
+        commit("addSlide", slide.data);
+    },
+    deleteSlide({ commit }, slideForm) {
+        deleteImage(slideForm.img_src).then(({result}) => {
+            if(result) {
+                commit("removeSlide", slideForm.id);
+            }
+        })
     }
 };
 
@@ -28,6 +40,15 @@ const mutations = {
     setList(state, list) {
         state.list = list;
     },
+    addSlide(state, slide) {
+        state.list.push(slide);
+    },
+    removeSlide(state, id) {
+        let list = [...state.list];
+        let index = list.findIndex(slide => slide.id === id);
+        list.splice(index, 1);
+        state.list = list;
+    }
 };
 
 export default {
