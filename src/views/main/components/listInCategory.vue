@@ -5,10 +5,13 @@
                 <h2 class="name">{{category.name}}</h2>
             </div>
             <ul v-if="category.subs && category.subs.length>0" class="subcategory-container">
+                <li class="sub-category-edge-container">
+                    <button class="sub-category-edge" :class="{choosen: !sub_id}" @click="sub_id = null">Все</button>
+                </li>
                 <li class="sub-category-edge-container" v-for="subcat in category.subs" :key="subcat.id">
                     <button 
                     :value="subcat.id"
-                    v-on:click="subCategoryButtonClick"
+                    @click="sub_id = subcat.id"
                     class="sub-category-edge"
                     :class="[{ choosen: subcat.id === sub_id}, 'sub-category-edge']"
                     >
@@ -19,7 +22,7 @@
         </div>
         <div class="menu-list">
             <onePositionMenu
-                v-for="item in category.products"
+                v-for="item in products"
                 :key="item.id"
                 v-bind:item="item"
             />
@@ -35,21 +38,27 @@ export default {
     data(){
         return{
             elementId:"",
-            sub_id:"",
+            sub_id: null,
+            products: []
         }
     },
     props:['category'],
+    watch:{
+        sub_id: function (val) {
+            if(val === null) {
+                this.products = this.category.products;
+            }
+            else {
+                this.products = this.category.products.filter(product => product.sub_category_id === val);
+            }
+        }
+    },
     mounted(){
-        this.elementId = "categoryid-"+this.category.id
+        this.elementId = "categoryid-"+this.category.id;
+        this.products = this.category.products;
     },
     components:{
         onePositionMenu,
-    },
-    methods:{
-        subCategoryButtonClick(event){
-            this.sub_id = event.target.value
-          console.log(this.sub_id)
-        },
     },
     computed:{
         ...mapGetters({

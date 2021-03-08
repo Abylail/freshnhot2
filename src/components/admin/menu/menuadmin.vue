@@ -21,7 +21,9 @@
               :item="item"
             />
           </div>
-          <button class="save" @click="saveStock">Сохранить</button>
+          <div class="save-button-container">
+            <button class="save" @click="saveStock">Сохранить</button>
+          </div>
         </div>
     </div>
 </template>
@@ -50,7 +52,6 @@ export default {
     },
   watch: {
     categoriesGet: function (val) {
-      console.log("watch", val);
       this.categoriesList = val;
     }
   },
@@ -63,7 +64,6 @@ export default {
     },
     methods: {
       saveStock() {
-        console.log("save stock",this.productList);
         updateStock(this.productList);
       },
       selectNewImageCategory(event){
@@ -93,15 +93,19 @@ export default {
 }
 </script>
 <style scoped>
+.save-button-container {
+  text-align: center;
+}
 button.save{
   font-size: 20px;
   background-color: red;
   color: white;
   padding: 10px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
   border-radius: 5px;
   border:none;
+  margin-bottom: 20px;
 }
 .devider-title{
   padding-left: 20px;
@@ -117,6 +121,7 @@ button.save{
     flex-direction: column;
     background-color: white;
     max-width: 300px;
+    margin: 20px;
     margin-left: auto;
     margin-right: auto;
     padding:20px;

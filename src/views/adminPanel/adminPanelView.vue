@@ -1,9 +1,9 @@
 <template>
     <div>
         <header class="admin-panel-header">
-            <a class="open-navigation-button" v-on:click="toggleNavigator">Навигатор</a>
-            <button class="logout" @click="logoutHandle" >Выйти</button>
-            <button @click="checkButton">Check</button>
+            <span class="header-item"><a class="open-navigation-button" v-on:click="toggleNavigator">Навигатор</a></span>
+            
+            <span class="header-item"><button class="logout" @click="logoutHandle" >Выйти</button></span>
         </header>
         <div v-bind:class="{'navigator':true,'showNavigator':showNavigator}" v-on:click="hideNavigatorMethod">
             <router-link to="/admin-panel" class="navigator-link">
@@ -62,9 +62,6 @@ export default {
         }
     },
     methods:{
-        checkButton() {
-            console.log(this.items);
-        },
         async logoutHandle() {
             await this.logout();
             this.$router.push("/login");
@@ -99,6 +96,10 @@ export default {
 }
 </script>
 <style scoped>
+.header-item {
+    margin-left: 10px;
+    margin-right: 10px;
+}
 .logout {
     background-color: red;
     color: white;
@@ -107,14 +108,13 @@ export default {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     z-index: 11;
     position:fixed;
     width: 100%;
     height: 60px;
     background-color:#94b0c9;
     color:white;
-    padding-left: 10px;
-    padding-right: 10px;
 }
 .navigator{
     top:60px;

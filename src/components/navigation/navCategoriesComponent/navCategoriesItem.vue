@@ -1,8 +1,8 @@
 <template>
     <a class="root" v-on:click="itemClick">
         <!-- <router-link class="image-container" to="/korzina" >GO</router-link> -->
-        <div class="image-container">
-            <img :src="category.img_src"/>
+        <div class="image-container" :style="`background-image: url(${img_src})`">
+            <!-- <img :src="category.img_src"/> -->
             <!-- <img src="@/assets/icons/sushi.svg"/>     -->
         </div>
         <p class="itemName">{{category.name}}</p>
@@ -11,6 +11,15 @@
 <script>
 export default {
     name:'navCategoriesItem',
+    data() {
+        return {
+            img_src: null
+        }
+    },
+    mounted() {
+        console.log(this.category.img_src);
+        this.img_src = 'https://api.freshnhot.kz'+this.category.img_src;
+    },
     props:['category'],
     methods:{
         async itemClick(){
@@ -43,12 +52,11 @@ export default {
     .image-container{
         height:45px;
         width:45px;
-
+        background-size: contain;
         margin-left:auto;
         margin-right:auto;
     }
     .image-container img{
         height: 100%;
-
     }
 </style>

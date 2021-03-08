@@ -55,7 +55,7 @@ const getters = {
     },
     getList:(state)=>{
         return state.list
-    }
+    },
 }
 
 const actions = {

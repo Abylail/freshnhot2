@@ -38,11 +38,10 @@ const getters = {
         return state.list.filter(item=>item.category==categoryName)
     },
     getByCategory2:(state)=>(category_id,subCategory)=>{
-        console.log("getByCategory2",state.list[0])
         if(subCategory && subCategory!=""){
-            return state.list.filter(item=>item.category==category_id && item.subCategories.includes(subCategory))
+            return state.list.filter(item=>item.category === category_id && item.subCategories.includes(subCategory))
         }
-        return state.list.filter(item=>item.category==category_id)
+        return state.list.filter(item=>item.category_id === category_id);
     },
     getEmtyCategoryItems:state => {
         return state.list.filter(item=>item.category_id === null);

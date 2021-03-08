@@ -65,6 +65,7 @@ export default {
     }
     .row img{
       height: 200px;
+      max-width: 100%;
     }
     button.delete{
       font-size: 15px;
@@ -80,6 +81,7 @@ export default {
     div.add {
       background-color: white;
       margin:20px;
+      margin-bottom: 0;
       border-radius: 5px;
       padding: 10px;
     }

@@ -16,7 +16,6 @@ const updateProduct = (product, token) => {
 };
 
 const updateStock = (list) => {
-    console.log("stock api",list);
     return api.post(product_url+'update_stock',list,{
         'headers': {
             'Authorization':`Bearer ${userStorage.get.token()}`,

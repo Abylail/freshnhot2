@@ -14,7 +14,7 @@
               <div class="item-minicontainer">
                 <p class="static-text">Категория</p>
                     <p class="dinamic-text">
-                        {{getCategoryName(item.category_id)?getCategoryName(item.category_id).name:''}}
+                        {{categoryName}}
                     </p>
               </div>
             </div>
@@ -59,34 +59,28 @@
                 </div>
             </div>
             <div class="subcategories-container">
-                <p class="static-text">Подкатегории</p>
-                    <p v-for="subcategory in item.subCategories" :key="subcategory" class="dinamic-text">
-                    {{subcategory}}
-                    </p>
+                <p class="static-text">Подкатегория</p>
+                    <p>{{this.subcategoryName}}</p>
             </div>
             <button class="edit-button" v-on:click="editButtonClick">Редактировать</button>
         </div>
     </div>
 </template>
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 import router from '../../../router'
 export default {
     name:'itemEdge',
-    props:['item'],
+    props:['item', 'category'],
     computed:{
         ...mapGetters({
-            stock:"itemsStock/getStockById",
             categoryList: "categories/getList",
             getCategoryName: "categories/getCategoryName"
         })
     },
     methods:{
-        ...mapActions({
-            setItem:"itemsStock/setItem",
-        }),
         editButtonClick(){
-            router.push(this.editUrl)
+            router.push(this.editUrl);
         }
     },
     data(){
@@ -95,15 +89,21 @@ export default {
             imgSrc:'https://www.askc.us/wp-content/uploads/2017/04/default-image-720x530.jpg',
             editUrl:"",
             category_id:null,
+            categoryName: "",
+            subcategoryName: ""
         }
     },
     mounted(){
-        this.stockBoolean = this.stock(this.item.id)
         if(this.item.img_src && this.item.img_src !== null){
             this.imgSrc = 'https://api.freshnhot.kz'+this.item.img_src;
         }
 
         this.editUrl = "/admin-panel/editmenu/"+this.item.id;
+        if (this.category) {
+            this.categoryName = this.category.name;
+            console.log("find",this.category.subs, this.item.sub_category_id, this.category.subs.find(sub => sub.id === this.item.sub_category_id));
+            this.subcategoryName = this.category.subs.find(sub => sub.id === this.item.sub_category_id).name;
+        }
     },
     
 }

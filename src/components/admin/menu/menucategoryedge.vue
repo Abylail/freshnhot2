@@ -20,9 +20,10 @@
         </div>
         <div class="items-list-container">
             <itemEdge
-                v-for="item in category.products"
+                v-for="item in categoryList"
                 :key="item.id"
                 :item="item"
+                :category="category"
             />
         </div>
     </div>
@@ -30,13 +31,23 @@
 <script>
 import itemEdge from './menuadminedge'
 
-import {mapActions, mapGetters} from 'vuex'
+import {mapActions, mapGetters} from 'vuex';
 export default {
     name:'categoryEdge',
     props:['category'],
     data(){
       return {
         newSubcategory:'',
+        categoryList: []
+      }
+    },
+    mounted() {
+      this.categoryList = this.listByCategory(this.category.id);
+      console.log("cagegories",this.categoryList);
+    },
+    watch: {
+      productsAll: function() {
+        this.categoryList = this.listByCategory(this.category.id);
       }
     },
     components:{
@@ -66,7 +77,8 @@ export default {
     },
     computed:{
         ...mapGetters({
-            list:"listOfItems/getByCategory"
+            listByCategory:"listOfItems/getByCategory2",
+            productsAll: "listOfItems/getList"
         })
     }
 }
