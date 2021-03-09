@@ -87,7 +87,7 @@
                 </div>
             </div>
         </div>
-        <div v-bind:class="{'display-none':errorMessage == '','error-message' : errorMessage != ''}"><p>{{errorMessage}}</p></div>
+        <div class="error-container"><p v-bind:class="{'display-none':errorMessage == '','error-message' : errorMessage != ''}">{{errorMessage}}</p></div>
         <div class="price-container">
             <p>К оплате:</p>
             <p class="price-container-price">{{priceWithDelivery()}}</p>
@@ -141,7 +141,7 @@ export default {
                 this.showLoader = true
             }
 
-            },2)
+            },5)
         },
         setMobile(){
             let len = this.mobile.length
@@ -432,20 +432,21 @@ export default {
         opacity: 1; /* Firefox */
     }
         
-
+    .error-container {
+      height: 22px;
+      padding-bottom: 5px;
+    }
     .error-message{
         padding-left:3%;
         padding-right:3%;
 
         margin-bottom:15px;
-        font-size:22px;
+        font-size:16px;
 
         animation-name: bounce;
-        animation-duration: .5s;
+        animation-duration: .3s;
         animation-delay: 0.05s;
-    }
-    .error-message p{
-        color:red;
+        color: red;
         text-align: center;
     }
 

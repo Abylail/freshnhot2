@@ -60,15 +60,14 @@ const mutations = {
         let obj = state.list.find(item=>item.id===itemObject.id);
         if(obj){
             obj.amount = obj.amount + 1;
-            state.price = Number.parseInt(state.price) + Number.parseInt(obj.price);
         }
         else{
             state.list.push({
                 ...itemObject,
                 'amount':1,
             })
-            state.price = Number.parseInt(itemObject.price);
         }
+        state.price += Number.parseInt(itemObject.price);
         state.amount = state.amount + 1
 
         //ADD TO LOCALSTORAGE
@@ -76,11 +75,9 @@ const mutations = {
         
     },
     removeItem(state,id){
-        let obj = state.list.find(item=>item.id===id)
-        console.log(obj);
+        let obj = state.list.find(item=>item.id===id);
         if(obj && obj.amount>0){
-            
-            if(obj.amount==1){
+            if(obj.amount === 1){
                 let index = state.list.findIndex(itemId=>itemId.id == id)
                 state.list.splice(index,1)
             }

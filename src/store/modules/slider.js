@@ -28,8 +28,8 @@ const actions = {
         commit("addSlide", slide.data);
     },
     deleteSlide({ commit }, slideForm) {
-        deleteImage(slideForm.img_src).then(({result}) => {
-            if(result) {
+        deleteImage(slideForm.img_src).then(({data}) => {
+            if(data.success) {
                 commit("removeSlide", slideForm.id);
             }
         })

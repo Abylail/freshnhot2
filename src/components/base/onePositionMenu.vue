@@ -10,7 +10,7 @@
                 <div class="text-container">
                     <div class="name-container">
                         <h3 class="item-name">{{item.name}}</h3>
-                        <div v-if="isShoppingCart" v-on:click="removeAllItemInShopiingCart" class="remove-button"></div>
+<!--                        <div v-if="isShoppingCart" v-on:click="removeAllItemInShopiingCart" class="remove-button"></div>-->
                     </div>
                     <div class="description-container">
                         <p class="description">{{item.description}}</p>
@@ -317,8 +317,12 @@ export default {
         font-family: 'Montserrat', sans-serif;
     }
     .text-block-fixed{
-        width:90%;
-        padding-left:5px;
+      width:90%;
+      height: 100%;
+      padding-left:5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     @media (max-width:900px){

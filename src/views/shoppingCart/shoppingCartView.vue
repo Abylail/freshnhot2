@@ -49,7 +49,13 @@
                 <p v-bind:class="{'free-delivery':getAllprice>getFreeDeliveryMinimumPrice}">{{deliveryPriceText()}}</p>
             </div>
             <div class="text-price-block">
-                <p>Цена доставки может измениться в зависимости от адреса доставки</p>
+                <p>Промокод</p>
+                <div class="promo-block">
+                  <input type="text"/>
+                </div>
+            </div>
+            <div class="text-price-block">
+              <p>Цена доставки может измениться в зависимости от адреса доставки</p>
             </div>
             <div class="final-price">
                 <p>Итого: </p>
@@ -81,7 +87,7 @@
 import { mapActions, mapGetters } from 'vuex'
 
 import smartHeader from '@/components/header/smartHeader'
-import onePositionMenu from '@/components/menu/onePositionMenu'
+import onePositionMenu from '@/components/base/onePositionMenu'
 
 export default {
     name:'shoppingCartView',
@@ -121,6 +127,19 @@ export default {
 }
 </script>
 <style scoped>
+.promo-block {
+  margin-top:10px;
+  display: block;
+}
+.promo-block input{
+  width: 98%;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  padding: 0;
+  font-size: 22px;
+  padding-left: 2%;
+}
 .big-conatiner{
     min-height: 80vh;
     max-width: 1000px;
@@ -217,11 +236,11 @@ export default {
 .text-price-block{
     margin-top:20px;
     margin-bottom:20px;
-    padding-right:30%;
 }
 .text-price-block p{
     font-size:14px;
     color:gray;
+    padding-right:30%;
 }
 
 .order-button-container{
@@ -382,5 +401,8 @@ export default {
       .info-container{
         margin-top:155px;    
       }
+    .promo-block input {
+      border: 1px solid black;
+    }
   }
 </style>

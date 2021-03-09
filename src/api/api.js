@@ -16,6 +16,7 @@ const api = axios => {
         get: (url, params) => {
             return axios.get(url, { params });
         },
+        getSmart: (url, params, headers) => axios.get(url,{ headers: headers, params: params}),
         post: (url, body, config) => axios.post(url, body, config),
         put: (url, body, config) => axios.put(url, body, config),
         delete: (url, config) => axios.delete(url, config)

@@ -18,6 +18,7 @@ import textpageadmin from '../components/admin/textpages/textpageadmin'
 import editMenu from '../components/admin/edit/editMenu'
 import loader from '../components/loader/loader'
 import sliderEditView from '../views/adminPanel/views/sliderEditView'
+import promoEditView from "@/views/adminPanel/views/promoEditView";
 
 import userStorage from '@/api/localstorage'
 
@@ -75,6 +76,11 @@ const router = new VueRouter({
                     name:'sliderEdit',
                     path: 'sliderEdit',
                     component: sliderEditView
+                },
+                {
+                    name: 'promoEdit',
+                    path: 'promoEdit',
+                    component: promoEditView
                 }
                 
             ]

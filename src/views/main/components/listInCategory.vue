@@ -31,7 +31,7 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
-import onePositionMenu from '../../../components/menu/onePositionMenu'
+import onePositionMenu from '../../../components/base/onePositionMenu'
 
 export default {
     name:'listInCategory',
@@ -142,9 +142,9 @@ export default {
         background-color: white;
         color:black;
 
-        -webkit-box-shadow: 0px 12px 12px -3px rgba(0, 0, 0, 0.6);
-        -moz-box-shadow: 0px 12px 12px -3px rgba(0, 0, 0, 0.6);
-        box-shadow: 0px 12px 12px -3px rgba(0, 0, 0, 0.6);
+        -webkit-box-shadow: 0px 10px 12px -3px rgba(0, 0, 0, 0.6);
+        -moz-box-shadow: 0px 10px 12px -3px rgba(0, 0, 0, 0.6);
+        box-shadow: 0px 10px 12px -3px rgba(0, 0, 0, 0.6);
     }
     @media (min-width: 500px){
         .name{

@@ -46,6 +46,11 @@
                     <p class="navigator-link">Слайдер</p>
                 </div>
             </router-link>
+          <router-link to="/admin-panel/promoEdit" class="navigator-link">
+            <div class="navigator-link">
+              <p class="navigator-link">Промокоды</p>
+            </div>
+          </router-link>
         </div>
         <div class="main">
             <router-view :key="$route.fullPath" />
