@@ -1,5 +1,5 @@
 <template>
-    <div :class="{'edge':!fixedSize,'edge-fixed':fixedSize}">
+    <!-- <div :class="{'edge':!fixedSize,'edge-fixed':fixedSize}">
         <div :class="{'edge-container':!fixedSize,'edge-container-fixed':fixedSize}">
             <div :class="{'image-block':!fixedSize,'image-block-fixed':fixedSize}">
                 <div class="image-container">
@@ -10,7 +10,6 @@
                 <div class="text-container">
                     <div class="name-container">
                         <h3 class="item-name">{{item.name}}</h3>
-<!--                        <div v-if="isShoppingCart" v-on:click="removeAllItemInShopiingCart" class="remove-button"></div>-->
                     </div>
                     <div class="description-container">
                         <p class="description">{{item.description}}</p>
@@ -44,6 +43,30 @@
             </div>
         </div>
         
+    </div> -->
+    <div class="one-position">
+        <div class="position-container">
+            <div class="image" :style="`background-image:url(${imgSrc})`"></div>
+            <div class="info">
+                <div class="info-header"><h2>{{item.name}}</h2></div>
+                <div class="info-main">
+                    <div><p class="description">{{item.description}}</p></div>
+                    <div class="extra-description">
+                        <p class="extra-description" v-if="item.calories">{{item.calories}} ккал</p>
+                        <p class="extra-description" v-if="item.calories && item.weight"> | </p>
+                        <p class="extra-description" v-if="item.weight">{{item.weight}} грамм</p>
+                        </div>
+                </div>
+                <div class="info-footer">
+                    <p class="price">{{item.price}} тг</p>
+                    <div class="add-drop">
+                        <a class="drop">-</a>
+                        <p></p>
+                        <a class="add">+</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -72,11 +95,12 @@ export default {
         })
     },
     mounted(){
-        if(this.item.imgSrc && this.item.imgSrc!=""){
-            this.imgSrc = this.item.imgSrc
+        if(this.item.img_src && this.item.img_src!=""){
+            this.imgSrc = 'https://api.freshnhot.kz'+this.item.img_src;
+            console.log(this.imgSrc);
         }
     },
-    props:[
+    props: [
         'item',
         'isShoppingCart',
         'fixedSize'
@@ -89,339 +113,105 @@ export default {
 }
 </script>
 <style scoped> 
-
-    .remove-button{
-        grid-area: remove-button;
-        height: 100%;
+    .one-position {
+        min-height: 160px;
         width: 100%;
+        padding: 10px;
     }
-    .remove-button:before, .remove-button:after {
-  position: relative;
-  left: 15px;
-  content: ' ';
-  height: 16px;
-  width: 2px;
-  background-color: rgb(180, 179, 179);
-}
-.remove-button:before {
-  transform: rotate(45deg);
-}
-.remove-button:after {
-  transform: rotate(-45deg);
-}
-    .edge{
-        height: 300px;
-        width:23%;
-
-        /* margin-left:auto; */
-        /* margin-right:auto; */
-
-        
-        padding:1%;
-        color:black;
-
-    }
-    .edge-container{
-        height: 100%;
-        border-radius: 7px;
-        overflow: hidden;
-
-        background-color: rgb(231, 231, 231);
-
-        
-
-        -webkit-box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.5);
-            -moz-box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.5);
-            box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.5);
-    }
-    .description-container{
-        min-height: 50px;
-    }
-    .image-block{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 40%;
-        width: 100%;
-    }
-    .image-container{
-        height: 100%;
-        width: 100%;
-    }
-    .image{
-        height: 100%;
-        width: 100%;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: 50% 50%;
-
-        margin:auto;
-    }
-
-    .text-block{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        width:100%;
-        height: 60%;
-    }
-    .text-container{
-        height: 90%;
-        width: 90%;
-    }
-    h3.item-name{
-        font-size: 20px;
-        font-family:'Montserrat', sans-serif;
-        font-weight: 600;
-
-        display: -webkit-box;
-        overflow: hidden;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-    }
-    p.description{
-        font-size: 10px;
-        padding-left:2px;
-
-        display: -webkit-box;
-        overflow: hidden;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-
-        color:gray;
-    }
-    .extra-description-container{
-        height: 30px;
-        display: flex;
-        flex-direction: row;
-    }
-    .extra-description-container-half{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-
-        margin-right: 5px;
-    }
-    div.extra-description-amount{
-        height: 28px;
-        width: auto;
-
-        display: flex;
-        /* justify-content: center; */
-        align-items: center;
-    }
-    p.weightCaloriesDevider{
-        margin-left:2px;
-        margin-right:2px;
-    }
-
-    .price-add-container{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .shopping-cart{
-        /* display: inline-block; */
-
-        display: flex;
-        flex-direction: row-reverse;
-        align-items: center;
-    }
-    .button{
-        height: 30px;
-        width: 30px;
-
-        border-radius: 40px;
-
-        display:flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .add{
-        /* margin-right: 5px; */
-        margin-left: 8px;
-
-        display:inline-block;
-        width:30px;
-        height:30px;
-
-  
-        background:
-            linear-gradient(rgb(160, 105, 4),rgb(160, 105, 4)),
-            linear-gradient(rgb(160, 105, 4),rgb(160, 105, 4));
-        background-position:center;
-        background-size: 70% 3px,3px 70%; /*thickness = 2px, length = 50% (25px)*/
-        background-repeat:no-repeat;
-
-        border:2px solid rgb(160, 105, 4);
-    }
-    .remove{
-        margin-right: 8px;
-        margin-left: 8px;
-
-        display:inline-block;
-        width:30px;
-        height:30px;
-  
-        background:
-            linear-gradient(#000000,#000000);
-        background-position:center;
-        background-size: 70% 3px,3px 70%; /*thickness = 2px, length = 50% (25px)*/
-        background-repeat:no-repeat;
-
-        opacity: .6;
-    }
-    .counter{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        font-size:22px;
-    }
-    p.price{
-        font-size:26px;
-        color:rgb(160, 105, 4);
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 500;
-        
-    }
-    .edge-fixed{
-        height: 140px;
-        /* width: 80%; */
-        padding-top:20px;
-    }
-    .edge-container-fixed{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-            
-        height: 100%;
-        border-radius: 7px;
-        overflow: hidden;
-
+    .position-container {
         background-color: white;
-
-        
-
-        -webkit-box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.5);
-            -moz-box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.5);
-            box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.5);
+        height: 100%;
+        border-radius: 5px;
+        display: grid;
+        grid-template-columns:160px 1fr;
+        grid-template-areas: "image info";
+        -webkit-box-shadow: 0px 4px 21px 5px rgba(0,0,0,0.7); 
+        box-shadow: 0px 4px 21px 5px rgba(0,0,0,0.7);
     }
-    .image-block-fixed{
-            width:70%;
-            height: 100%;
-        }
-    .counter{
-        font-family: 'Montserrat', sans-serif;
+    div.image {
+        grid-area: image;
+        background-size: cover;
+        background-position: 50% 50%;
+        background-color: black;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
     }
-    .text-block-fixed{
-      width:90%;
-      height: 100%;
-      padding-left:5px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    div.info {
+        grid-area: info;
+        display: grid;
+        grid-template-rows: 35px 1fr 35px;
+        grid-template-areas: "header" "main" "footer";
+        padding-left: 5px;
+    }
+    div.info-header {
+        grid: header;
+        display: flex;
+        align-items: center;
+    }
+    div.info-header h2 {
+        font-size: 18px;
+    }
+    div.info-main {
+        grid-area: main;
+        padding-top: 5px;
+        padding-right: 5px;
+    }
+    .description {
+        font-size: 14px;
+    }
+    div.extra-description{
+        margin-top: 5px;
+        display: flex;
+        flex-direction: row;
+    }
+    p.extra-description {
+        font-size: 14px;
+        color: gray;
+        display: inline-block;
     }
 
-    @media (max-width:900px){
-        .edge{
-            width:31%;
-        }
+
+    div.info-footer {
+        grid-area: footer;
+        display: flex;
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
     }
-    @media (max-width:700px) {
-        .edge{
-            width:48%;
-        }
+    p.price {
+        font-size: 18px;
     }
-    @media (max-width:500px){
-        .edge{
-            height: 140px;
-            width: 98%;
-            padding:2%;
-            padding-left: 3%;
-            padding-right:3%;
-        }
-        .edge-fixed{
-            height: 140px;
-            width:98%;
-            padding:2%;
-            padding-left: 3%;
-            padding-right:3%;
-        }
-        .edge-container{
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            
-            background-color: white;
-            color:black;
-        }
-        .image{
-            height: 100%;
-            width: 100%;
+    div.add-drop {
+        display: flex;
+        flex-direction: row;
+    }
+    a.add {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    a.drop {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
 
-        }
-        .image-block{
-            width: 40%;
-            height: 100%;
 
+    @media (min-width: 500px) {
+        .one-position {
+            height: 300px;
+            width: 200px;
         }
-        .image-container{
-            height: 100%;
-            width: 100%;
+        .position-container {
+            grid-template-columns: none;
+            grid-template-rows: 150px 1fr;
+            grid-template-areas: "image" "info";
         }
-        div.name-container{
-            margin-bottom:5px;
-            display: grid;
-            grid-template-areas: "name remove-button";
-            grid-template-columns:1fr 20px;
-        }
-        h3.item-name{
-            grid-area: name;
-            font-size:16px;
-            color:black;
-        }
-        p.description{
-            font-size: 12px;
-        }
-        p.price{
-            font-size: 18px;
-        }
-        .text-block{
-            width: 60%;
-            height: 100%;
-            padding-left:10px;
-        }
-        .text-container{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-
-            height: 90%;
-            width: 100%;
-            padding-right:3%;
-        }
-        .price-add-container{
-            height: 30px;
-        }
-        .extra-description-amount{
-            font-size: 13px;
-        }
-        .extra-description-container{
-            height: 15px;
-        }
-        .weight,.weightCaloriesDevider,.calories{
-            font-size: 13px;
-            color:rgb(0, 0, 0);
-        }
-        .button{
-            height: 20px;
-            width: 20px;
-        }
-        .counter{
-            color:black;
+        .image {
+            border-bottom-left-radius: 0px !important;
+            border-top-right-radius: 5px;
         }
     }
 </style>
