@@ -17,7 +17,12 @@ const addPromo = promoForm => {
     })
 };
 
+const deletePromo = id => {
+    return api.delete(url+'delete/'+id, {});
+};
+
 export {
     getList,
-    addPromo
+    addPromo,
+    deletePromo
 }
