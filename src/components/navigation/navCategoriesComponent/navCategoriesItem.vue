@@ -24,7 +24,7 @@ export default {
     methods:{
         async itemClick(){
             let elemTop = document.getElementById("categoryid-"+this.category.id).offsetTop
-            window.scrollTo(0,elemTop-160)
+            window.scrollTo({top:elemTop-160, behavior: "smooth"})
         },
     }
 }

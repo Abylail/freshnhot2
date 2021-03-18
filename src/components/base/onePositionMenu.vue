@@ -44,8 +44,8 @@
         </div>
         
     </div> -->
-    <div class="one-position">
-        <div class="position-container">
+    <div class="one-position" v-bind:class="{'one-position-fixed':fixed}">
+        <div class="position-container" v-bind:class="{'position-container-fixed':fixed}">
             <div class="image" :style="`background-image:url(${imgSrc})`"></div>
             <div class="info">
                 <div class="info-header"><h2>{{item.name}}</h2></div>
@@ -60,9 +60,9 @@
                 <div class="info-footer">
                     <p class="price">{{item.price}} тг</p>
                     <div class="add-drop">
-                        <a class="drop">-</a>
-                        <p></p>
-                        <a class="add">+</a>
+                        <a class="drop" @click="removeItemInShopiingCart"><img src="@/assets/icons/minus.svg" /></a>
+                        <p>{{getItemAmount(item.id)}}</p>
+                        <a class="add" @click="addItemInShoppingCart">+</a>
                     </div>
                 </div>
             </div>
@@ -83,7 +83,7 @@ export default {
             this.addItem(this.item)
         },
         removeItemInShopiingCart(){
-            this.removeItem(this.item.id)
+            this.getItemAmount(this.item.id) > 0 && this.removeItem(this.item.id)
         },
         removeAllItemInShopiingCart(){
             this.removeAllItem(this.item.id)
@@ -99,11 +99,12 @@ export default {
             this.imgSrc = 'https://api.freshnhot.kz'+this.item.img_src;
             console.log(this.imgSrc);
         }
+        console.log("fixed-", this.fixed?"true":"false");
     },
     props: [
         'item',
         'isShoppingCart',
-        'fixedSize'
+        'fixed'
     ],
     computed:{
         ...mapGetters({
@@ -113,10 +114,16 @@ export default {
 }
 </script>
 <style scoped> 
+    .one-position-fixed {
+        height: auto !important;
+        min-height: 160px !important;
+        width: 100% !important;
+    }
     .one-position {
         min-height: 160px;
         width: 100%;
         padding: 10px;
+        color: black;
     }
     .position-container {
         background-color: white;
@@ -127,6 +134,11 @@ export default {
         grid-template-areas: "image info";
         -webkit-box-shadow: 0px 4px 21px 5px rgba(0,0,0,0.7); 
         box-shadow: 0px 4px 21px 5px rgba(0,0,0,0.7);
+    }
+    .position-container-fixed {
+        grid-template-columns:160px 1fr !important;
+        grid-template-areas: "image info" !important;
+        grid-template-rows: none !important;
     }
     div.image {
         grid-area: image;
@@ -185,16 +197,32 @@ export default {
     div.add-drop {
         display: flex;
         flex-direction: row;
+        height: 100%;
+        padding-right: 5px;
+    }
+    .add-drop p {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+    }
+    .add-drop a{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        width: 20px;
+        cursor: pointer;
     }
     a.add {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        margin-left: 5px;
     }
     a.drop {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        margin-right: 5px;
+    }
+    a.drop img {
+        height: 50%;
     }
     
 

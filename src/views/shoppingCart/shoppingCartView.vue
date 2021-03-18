@@ -36,7 +36,7 @@
                 v-for="item in getAll"
                 :key="item.id"
                 v-bind:item="item" :isShoppingCart="true"
-                :fixedSize="true"
+                :fixed="true"
             />
         </div>
         <div v-if="getAmount>0" class="price-block">

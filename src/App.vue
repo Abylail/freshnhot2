@@ -41,9 +41,6 @@ export default {
     margin-left:auto;
     margin-right:auto;
   }
-  html {
-    scroll-behavior: smooth !important;
-  }
   @media (min-width:500px){
     #app{
       background-color: white;

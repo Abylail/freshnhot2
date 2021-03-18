@@ -12,9 +12,6 @@
                 <div class="slider-container">
                     <slider/>
                 </div>
-                <div class="main-text-container">
-
-                </div>
             </div>
         </div>
 
@@ -105,16 +102,6 @@ export default {
         height: 100%;
         width:100vw;
     }
-    .main-text-container{
-        grid-area: text-block;
-        height: 220px;
-        margin-top:15px;
-        /* background: url('@/assets/icons/logo.svg') center center; */
-        background-size:contain;
-        -webkit-background-size:contain; 
-        background-repeat: no-repeat;
-        opacity:.2;
-    }
     .nav-categories-container{
         transition: .3s ease;
         opacity: 1;
@@ -160,15 +147,12 @@ export default {
     }
 
     .opening-block-promo-container-main{
-        display: grid;
-        grid-template-areas:"slider" "text-block";
-        grid-auto-rows: 1fr 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         min-height: 450px;
     }
     @media (min-width: 500px){
-        .main-text-container{
-            display: none;
-        }
         .opening-block-promo-container-main{
             display: flex;
         }
