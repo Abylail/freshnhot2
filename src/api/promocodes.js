@@ -18,7 +18,11 @@ const addPromo = promoForm => {
 };
 
 const deletePromo = id => {
-    return api.delete(url+'delete/'+id, {});
+    return api.delete(url+'delete/'+id, {
+        'headers': {
+            'Authorization':`Bearer ${userStorage.get.token()}`,
+        }
+    });
 };
 
 export {

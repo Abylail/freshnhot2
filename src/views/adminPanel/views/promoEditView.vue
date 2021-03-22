@@ -37,6 +37,7 @@ export default {
           this.errorMessage = "Не все поля введены";
           return;
         }
+        this.newPromo.value = parseInt(this.newPromo.value);
         let {data} = await addPromo(this.newPromo);
         if (data.success) {
           this.promocodes.push(data.data);

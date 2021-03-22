@@ -1,21 +1,15 @@
 <template>
     <hooper  :settings="hooperSettings" id="hooper">
-        <slide>
-                slide 1
+        <slide v-for="slide in slides" :key="slide.id" class="slide">
+            <img :src="`https://api.freshnhot.kz${slide.img_src}`">
         </slide>
-        <slide>
-                slide 2
-        </slide>
-        <slide>
-                slide 3
-        </slide>
-
         <hooper-navigation slot="hooper-addons"></hooper-navigation>
     </hooper>
 </template>
 <script>
 import {Hooper,Slide, Navigation as HooperNavigation} from 'hooper';
 import 'hooper/dist/hooper.css';
+import { mapActions, mapGetters } from 'vuex';
 export default {
     name:'slider',
     components: {
@@ -31,11 +25,24 @@ export default {
             autoPlay:true,
             playSpeed:5000,
             wheelControl: false,
-          }
+          },
+          isDataReady: false,
       }
   },
-  mounted(){
-      
+  methods:{
+      ...mapActions({
+        fechSlides: "slider/getList"
+      })
+  },
+  computed: {
+      ...mapGetters({
+          slides: "slider/getList"
+      })
+  },
+  async mounted(){
+      await this.fechSlides();
+      this.isDataReady = true;
+      console.log("slides", this.slides);
   }
 }
 </script>
@@ -46,8 +53,13 @@ export default {
 
         overflow-y:hidden;
     }
+    .slide img {
+        height: 100%;
+        width: 100%;
+        max-width: none;
+    }
     @media (min-width:500px){
-        .hooper{
+        .hooper {
             overflow: hidden;
             -webkit-box-shadow: 0px 5px 14px 8px rgba(0,0,0,0.9);
             -moz-box-shadow: 0px 5px 14px 8px rgba(0,0,0,0.9);
