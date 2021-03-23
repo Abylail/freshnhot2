@@ -1,49 +1,4 @@
 <template>
-    <!-- <div :class="{'edge':!fixedSize,'edge-fixed':fixedSize}">
-        <div :class="{'edge-container':!fixedSize,'edge-container-fixed':fixedSize}">
-            <div :class="{'image-block':!fixedSize,'image-block-fixed':fixedSize}">
-                <div class="image-container">
-                    <div class="image" v-bind:style="{'background-image':'url('+imgSrc+')'}"></div>
-                </div>
-            </div>
-            <div :class="{'text-block':!fixedSize,'text-block-fixed':fixedSize}">
-                <div class="text-container">
-                    <div class="name-container">
-                        <h3 class="item-name">{{item.name}}</h3>
-                    </div>
-                    <div class="description-container">
-                        <p class="description">{{item.description}}</p>
-                        <div class="extra-description-container">
-                            <div v-if="item.piecesAmount" class="extra-description-container-half">
-                                <div class="extra-description-amount">
-                                    <p class="extra-description-amount">
-                                        {{item.piecesAmount+" шт"}}
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="extra-description-container-half">
-                                <p v-if="item.weight && item.piecesAmount" class="weightCaloriesDevider"> | </p>
-                                <p v-if="item.weight" class="weight">{{item.weight+" гр"}}</p>
-                                <p v-if="item.weight && item.calories" class="weightCaloriesDevider"> | </p>
-                                <p v-if="item.calories" class="calories">{{item.calories+" калл"}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="price-add-container">
-                        <p v-if="item.price" class="price">{{item.price+" ₸"}}</p>
-                        <div class="shopping-cart">
-                            <a v-on:click="addItemInShoppingCart" class="add button"></a>
-                            <div v-if="getItemAmount(item.id)>0" class="counter">
-                                {{getItemAmount(item.id)}}
-                            </div>
-                            <a v-if="getItemAmount(item.id)>0" v-on:click="removeItemInShopiingCart" class="remove button"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-    </div> -->
     <div class="one-position" v-bind:class="{'one-position-fixed':fixed}">
         <div class="position-container" v-bind:class="{'position-container-fixed':fixed}">
             <div class="image" :style="`background-image:url(${imgSrc})`"></div>
@@ -151,7 +106,7 @@ export default {
     div.info {
         grid-area: info;
         display: grid;
-        grid-template-rows: 35px 1fr 35px;
+        grid-template-rows: 40px 1fr 35px;
         grid-template-areas: "header" "main" "footer";
         padding-left: 5px;
     }
@@ -169,7 +124,9 @@ export default {
         padding-right: 5px;
     }
     .description {
-        font-size: 14px;
+        font-size: 12px;
+        line-height: 1;
+        padding-top: 3px;
     }
     div.extra-description{
         margin-top: 5px;

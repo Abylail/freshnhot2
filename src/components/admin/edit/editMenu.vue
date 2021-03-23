@@ -36,15 +36,15 @@
       </div>
         <div class="edit-row">
             <div class="edit-row-name"><p>Штук</p></div>
-            <div class="edit-row-input"><input class="edit-input" type="tel" v-model="item.amount"/></div>
+            <div class="edit-row-input"><input class="edit-input" type="number" v-model="item.amount"/></div>
         </div>
         <div class="edit-row">
             <div class="edit-row-name"><p>Калорий</p></div>
-            <div class="edit-row-input"><input class="edit-input" type="tel" v-model="item.calories"/></div>
+            <div class="edit-row-input"><input class="edit-input" type="number" v-model="item.calories"/></div>
         </div>
         <div class="edit-row">
             <div class="edit-row-name"><p>Грамм</p></div>
-            <div class="edit-row-input"><input type="tel" class="edit-input" v-model="item.weight"/></div>
+            <div class="edit-row-input"><input type="number" class="edit-input" v-model="item.weight"/></div>
         </div>
         <div class="edit-row">
             <div class="edit-row-name"><p>Цена</p></div>
@@ -84,13 +84,15 @@ export default {
         }),
         async save() {
           this.errorMessage = "";
-          if(this.item.sub_category_id && this.item.category_id) {
+          if(this.item.category_id) {
+            // !this.item.sub_category_id && (this.item.sub_category_id = null);
             if(this.selectedImage !== null) {
               let img_src = "";
               await uploadImage(this.selectedImage).then(({data}) => img_src = data.data);
               this.item.img_src = img_src;
             }
-            this.updateProduct(this.item);
+            await this.updateProduct(this.item);
+            this.$router.push('/admin-panel');
           } else {
             this.errorMessage = "Введите категорию и подкатегорию";
           }
@@ -153,6 +155,9 @@ button.save{
   padding: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
+}
+button.save:active {
+  opacity: .7;
 }
 .help-text {
     color:gray;
