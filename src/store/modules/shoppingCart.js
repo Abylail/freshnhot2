@@ -15,10 +15,10 @@ const state = () => ({
 const getters = {
     getItemAmount:(state)=>(itemId)=>{
         let obj = state.list.find(item=>item.id===itemId);
-        if(obj){
+        if(obj) {
             return obj.amount
         }
-        else{
+        else {
             return 0
         }
     },

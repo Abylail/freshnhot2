@@ -3,14 +3,14 @@
         <div class="big-footer-top-container">
         <div class="links footer-block">
             <div class="name-container">
-                <p>О Freshnhot</p>
+                <p>Freshnhot</p>
             </div>
             <div class="links-container">
-                <router-link to="/text/about" class="link">О компании</router-link>
-                <router-link to="/text/delivery" class="link">Доставка</router-link>
-                <router-link to="/text/events" class="link">События</router-link>
-                <router-link to="/text/contacts" class="link">Контакты</router-link>
-                <router-link to="/text/sales" class="link">Акции</router-link>
+<!--                <router-link to="/text/about" class="link">О компании</router-link>-->
+<!--                <router-link to="/text/delivery" class="link">Доставка</router-link>-->
+<!--                <router-link to="/text/events" class="link">События</router-link>-->
+<!--                <router-link to="/text/contacts" class="link">Контакты</router-link>-->
+<!--                <router-link to="/text/sales" class="link">Акции</router-link>-->
             </div>
         </div>
         <div class="info footer-block">

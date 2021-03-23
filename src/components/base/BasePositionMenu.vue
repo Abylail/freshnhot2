@@ -72,7 +72,7 @@
 <script>
 import { mapActions, mapGetters} from 'vuex'
 export default {
-    name:'onePositionMenu',
+    name:'BasePositionMenu',
     data(){
         return {
             imgSrc:"https://www.askc.us/wp-content/uploads/2017/04/default-image-720x530.jpg",

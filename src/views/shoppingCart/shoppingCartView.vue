@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="list-container">
-            <onePositionMenu
+            <BasePositionMenu
                 v-for="item in getAll"
                 :key="item.id"
                 v-bind:item="item" :isShoppingCart="true"
@@ -87,12 +87,12 @@
 import { mapActions, mapGetters } from 'vuex'
 
 import smartHeader from '@/components/header/smartHeader'
-import onePositionMenu from '@/components/base/onePositionMenu'
+import BasePositionMenu from '@/components/base/BasePositionMenu'
 
 export default {
     name:'shoppingCartView',
     components:{
-        onePositionMenu,
+        BasePositionMenu,
         smartHeader
     },
     methods:{

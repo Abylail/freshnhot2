@@ -7,7 +7,8 @@
             <div class="login-text">Пароль</div>
             <input type="password" v-model="password" class="password"/>
             <div class="login-button-container">
-                <button v-on:click="loginButtonClick">Войти</button>
+                <button v-show="dataReady" v-on:click="loginButtonClick">Войти</button>
+                <BaseMiniLoader v-show="!dataReady"/>
             </div>
         </div>
     </div>
@@ -16,21 +17,30 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import router from '@/router/index'
+import BaseMiniLoader from "@/components/base/BaseMiniLoader";
 export default {
     name:'adminLoginView',
+    components:{
+      BaseMiniLoader,
+    },
     data(){
         return{
             login:'',
             password:'',
+            dataReady: true,
         }
     },
     methods:{
         async loginButtonClick(){
-            console.log("login button")
-            await this.tryLogin([this.login,this.password]);
-            if(this.getLoginned){
-                router.push("/admin-panel")
-            }
+          if (this.login === '' || this.password === '') {
+            return;
+          }
+          this.dataReady = false;
+          await this.tryLogin([this.login,this.password]);
+          this.dataReady = true;
+          if(this.getLoginned){
+              router.push("/admin-panel")
+          }
         },
         ...mapActions({
             tryLogin:"loginAdmin/tryLogin"

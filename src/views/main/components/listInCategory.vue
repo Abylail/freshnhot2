@@ -21,17 +21,18 @@
             </ul>
         </div>
         <div class="menu-list">
-            <onePositionMenu
+            <BasePositionMenu
                 v-for="item in products"
                 :key="item.id"
                 v-bind:item="item"
+                v-show="item.in_stock"
             />
         </div>
     </div>
 </template>
 <script>
 import { mapGetters } from 'vuex'
-import onePositionMenu from '../../../components/base/onePositionMenu'
+import BasePositionMenu from '../../../components/base/BasePositionMenu'
 
 export default {
     name:'listInCategory',
@@ -58,7 +59,7 @@ export default {
         this.products = this.category.products;
     },
     components:{
-        onePositionMenu,
+        BasePositionMenu,
     },
     computed:{
         ...mapGetters({

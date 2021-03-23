@@ -1,7 +1,8 @@
 <template>
     <hooper  :settings="hooperSettings" id="hooper">
         <slide v-for="slide in slides" :key="slide.id" class="slide">
-            <img :src="`https://api.freshnhot.kz${slide.img_src}`">
+<!--            <img :src="`https://api.freshnhot.kz${slide.img_src}`">-->
+          <div class="img" :style="{'background-image': `url(https://api.freshnhot.kz${slide.img_src})`}"></div>
         </slide>
         <hooper-navigation slot="hooper-addons"></hooper-navigation>
     </hooper>
@@ -31,7 +32,7 @@ export default {
   },
   methods:{
       ...mapActions({
-        fechSlides: "slider/getList"
+        fetchSlides: "slider/getList"
       })
   },
   computed: {
@@ -40,7 +41,7 @@ export default {
       })
   },
   async mounted(){
-      await this.fechSlides();
+      await this.fetchSlides();
       this.isDataReady = true;
       console.log("slides", this.slides);
   }
@@ -53,10 +54,12 @@ export default {
 
         overflow-y:hidden;
     }
-    .slide img {
+    .slide .img {
         height: 100%;
         width: 100%;
-        max-width: none;
+        background-size: cover;
+        background-repeat: no-repeat;
+      background-position: 50% 50%;
     }
     @media (min-width:500px){
         .hooper {
