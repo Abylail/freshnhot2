@@ -42,16 +42,17 @@
         <div v-if="getAmount>0" class="price-block">
             <div class="pruduct-price">
                 <p>К оплате:</p>
-                <p class="price-product-price">{{getAllprice+"тг"}}</p>
+                <p class="price-product-price">{{getPrice+"тг"}}</p>
             </div>
             <div class="delivery-price">
                 <p>Доставка:</p>
-                <p v-bind:class="{'free-delivery':getAllprice>getFreeDeliveryMinimumPrice}">{{deliveryPriceText()}}</p>
+                <p v-bind:class="{'free-delivery':getAllprice>getFreeDeliveryMinimumPrice}">{{deliveryPriceText}}</p>
             </div>
             <div class="text-price-block">
                 <p>Промокод</p>
                 <div class="promo-block">
-                  <input type="text"/>
+                  <input :class="{success: usingPromocode}" type="text" @input="inputPromode"/>
+                  <p v-show="usingPromocode">Промокод на {{promocodeValue}}%</p>
                 </div>
             </div>
             <div class="text-price-block">
@@ -59,7 +60,7 @@
             </div>
             <div class="final-price">
                 <p>Итого: </p>
-                <p>{{priceWithDelivery()}}</p>
+                <p>{{getAllprice}}</p>
             </div>
             <div class="text-price-block">
                 <p>Нажимая на кнопку оформить вы должны быть готовы к очень вкусной еде</p>
@@ -75,9 +76,7 @@
                 <p>Бесплатная доставка действует:</p>
             </div>
             <div class="main-text-block">
-                <p>- для заказов из меню Manga Sushi от 3500 тг.</p>
-                <p>- для заказов из меню Rocket Japan от 3500 тг.</p>
-                <p>- для сборных заказов из Manga Sushi/Rocket Japan и Manga Shop на условиях минимального заказа от Manga Sushi.</p>
+                <p>- при заказе на сумму от 3500тг в квадрате улиц (Альфараби, Саина, Гоголя, Достык)</p>
             </div>
         </div>
     </div>
@@ -91,19 +90,24 @@ import BasePositionMenu from '@/components/base/BasePositionMenu'
 
 export default {
     name:'shoppingCartView',
+    data() {
+        return {
+            promoTimer: null
+        };
+    },
     components:{
         BasePositionMenu,
         smartHeader
     },
     methods:{
+        inputPromode(event) {
+            clearTimeout(this.promoTimer);
+            this.promoTimer =  setTimeout(() => {
+                this.usePromocode(event.target.value);
+            }, 500);
+        },
         clearButtonClick(){
             this.clear()
-        },
-        deliveryPriceText(){
-            if(this.getAllprice>this.getFreeDeliveryMinimumPrice){
-                return "Бесплатно"
-            }
-            return "от 500₸"
         },
         priceWithDelivery(){
             if(this.getAllprice>this.getFreeDeliveryMinimumPrice){
@@ -113,14 +117,24 @@ export default {
         },
         ...mapActions({
             clear:"shoppingCart/clear",
+            usePromocode: "shoppingCart/usePromocode"
         }),
     },
     computed:{
+        deliveryPriceText(){
+            if(this.getPrice>this.getFreeDeliveryMinimumPrice){
+                return "Бесплатно"
+            }
+            return "от 500₸"
+        },
         ...mapGetters({
             getAll:"shoppingCart/getAll",
             getAmount:"shoppingCart/getAmount",
             getAllprice:"shoppingCart/getAllprice",
-            getFreeDeliveryMinimumPrice:"listOfItems/getFreeDeliveryMinimumPrice"
+            getPrice: "shoppingCart/getPrice",
+            getFreeDeliveryMinimumPrice:"listOfItems/getFreeDeliveryMinimumPrice",
+            usingPromocode: "shoppingCart/usePromocode",
+            promocodeValue: "shoppingCart/promocodeValue"
         })
     },
 
@@ -132,13 +146,16 @@ export default {
   display: block;
 }
 .promo-block input{
-  width: 98%;
+  width: 96%;
   height: 40px;
   border-radius: 5px;
-  border: none;
+  border: 5px solid transparent;
   padding: 0;
   font-size: 22px;
   padding-left: 2%;
+}
+.promo-block input.success{
+    border: 5px solid green;
 }
 .big-conatiner{
     min-height: 80vh;
@@ -367,6 +384,10 @@ export default {
     top: -2.5px;
     transform: rotate(45deg);
   }
+  .promo-block p {
+    color: green;
+    font-size: 18px;
+}
   @media (min-width:500px){
       .shopping-cart-conatiner{
           color:black;

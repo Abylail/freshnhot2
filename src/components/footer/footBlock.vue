@@ -19,7 +19,9 @@
             </div>
             <div class="info-rows-container">
                 <div class="info-row">
-                    <div class="info-row-logo"></div>
+                    <div class="info-row-logo">
+                        <img src="@/assets/icons/smartphones.png"/>
+                    </div>
                     <div class="info-row-text-block">
                         <div class="info-row-text-top">
                             <p>Номер доставки</p>
@@ -31,7 +33,9 @@
                 </div>
 
                 <div class="info-row">
-                    <div class="info-row-logo"></div>
+                    <div class="info-row-logo">
+                        <img src="@/assets/icons/clock.png"/>
+                    </div>
                     <div class="info-row-text-block">
                         <div class="info-row-text-top">
                             <p>Работаем ежедневно</p>
@@ -48,8 +52,9 @@
                 <p>Сдледите за нами</p>
             </div>
             <div class="socail-networks-buttons-container">
-                <div class="socail-networks-button"></div>
-                <div class="socail-networks-button"></div>
+                <a class="info-row-logo" href="https://instagram.com/freshnhot.kz?igshid=ojm1tl08rmys" target="_blank">
+                    <img src="@/assets/icons/instagram.png"/>
+                </a>
             </div>
         </div>
         </div>
@@ -105,8 +110,12 @@ footer{
     height:40px;
     width:40px;
 
-    background-color: black;
+    /* background-color: black; */
     margin-right:8px;
+}
+.info-row-logo img{
+    height: 100%;
+    width: 100%;
 }
 .info-row-text-block{
     display: flex;

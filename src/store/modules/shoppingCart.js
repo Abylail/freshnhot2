@@ -2,7 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 //import local storage
-import userStorage from '../../api/localstorage'
+import userStorage from '../../api/localstorage';
+import { getPromo } from "@/api/promocodes";
+import { createOrder } from "@/api/order";
 
 Vue.use(Vuex)
 
@@ -10,9 +12,14 @@ const state = () => ({
     list:userStorage.get.list()||[],
     amount:userStorage.get.amount()||0,
     price:userStorage.get.price()||0,
+    usePromocode: false,
+    sale: 0
 })
 
 const getters = {
+    getSale: state => {
+        return state.sale;
+    },
     getItemAmount:(state)=>(itemId)=>{
         let obj = state.list.find(item=>item.id===itemId);
         if(obj) {
@@ -25,15 +32,44 @@ const getters = {
     getAll:(state)=>{
         return state.list
     },
+    getPrice: state => {
+        return state.price;
+    },
     getAllprice:state=>{
-        return state.price
+        if(state.price<3500) return state.price * (0.01*(100-state.sale))+500;
+        return state.price * (0.01*(100-state.sale));
     },
     getAmount:state=>{
         return state.amount
+    },
+    usePromocode: state => {
+        return state.usePromocode
+    },
+    promocodeValue: state => {
+        return state.sale;
     }
 }
 
 const actions = {
+    async createOrder({commit, getters}, [name, street, phone, descr]) {
+        let order = {
+            street: null,
+            phone: null,
+            products:[],
+            counts:[],
+            sale: getters["getSale"],
+            descr: null
+        };
+        order.descr = `Имя: ${name}, коммент: ${descr}`;
+        order.street = street;
+        order.phone = phone;
+        getters["getAll"].forEach(product => {
+            order.products.push(product.vendor_code);
+            order.counts.push(product.amount);
+        });
+        await createOrder(order);
+        commit('clear');
+    },
     async clear({commit}){
         commit('clear')
     },
@@ -46,15 +82,26 @@ const actions = {
     async removeAllItem({commit},id){
         commit("removeAllItem",id)
     },
+    async usePromocode({commit}, promoName) {
+        commit("setPromocode", [false, 0]);
+        let {data} = await getPromo(promoName);
+        commit("setPromocode", [true, data.data.value]);
+    }
 }
 
 const mutations = {
+    setPromocode(state, [usePromocode, value]) {
+        state.usePromocode = usePromocode;
+        state.sale = value;
+    },
     clear(state){
-        state.list = []
-        state.amount = 0
-        state.price = 0
+        state.list = [];
+        state.amount = 0;
+        state.price = 0;
+        state.usePromocode = false;
+        state.sale = 0;
         
-        userStorage.setLocalStorage(state.list,state.amount,state.price)
+        userStorage.setLocalStorage([],0,0);
     },
     addItem(state,itemObject){
         let obj = state.list.find(item=>item.id===itemObject.id);

@@ -1,7 +1,7 @@
 <template>
     <router-link to="/korzina" v-bind:class="{'shopping-cart-button':true,'shopping-cart-button-out':!showShoppingCartButton}">
         <p class="amount-indicator text">
-            {{isEmty(getAllprice)}}
+            {{isEmty}}
         </p>
         <div class="image-cointainer">
             <img src="@/assets/icons/shopping-basket.svg"/>            
@@ -13,18 +13,16 @@ import { mapGetters } from 'vuex'
 export default {
     name:'shoppingCartButton',
     props:["showShoppingCartButton"],
-    methods:{
-        isEmty(num){
-            if(num===0){
+    computed:{
+        isEmty(){
+            if(this.getPrice === 0){
                 return "Пусто"
             }
-            return num + "тг"
-        }
-    },
-    computed:{
+            return this.getPrice + "тг"
+        },
         ...mapGetters({
-            getAllprice:"shoppingCart/getAllprice",
             getAmount:"shoppingCart/getAmount",
+            getPrice: "shoppingCart/getPrice"
         })
     }
 }

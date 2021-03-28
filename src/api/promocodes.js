@@ -3,6 +3,9 @@ import userStorage from "@/api/localstorage";
 
 const url = 'api/promocodes/';
 
+const getPromo = (name) => {
+    return api.get(url+name, {});
+}
 const getList = () => {
     return api.getSmart(url+'all', {}, {
         'Authorization':`Bearer ${userStorage.get.token()}`,
@@ -26,6 +29,7 @@ const deletePromo = id => {
 };
 
 export {
+    getPromo,
     getList,
     addPromo,
     deletePromo

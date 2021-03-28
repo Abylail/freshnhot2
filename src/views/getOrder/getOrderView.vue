@@ -82,7 +82,7 @@
                         <input type="text" class="input-block-input" placeholder="Сдача с ..." v-model="cashText"/>
                     </div>
                     <div class="input-block-input-container">
-                        <textarea type="text" class="input-block-input comment" placeholder="Комментарий"/>
+                        <textarea type="text" class="input-block-input comment" placeholder="Комментарий" v-model="comment" />
                     </div>
                 </div>
             </div>
@@ -90,18 +90,18 @@
         <div class="error-container"><p v-bind:class="{'display-none':errorMessage == '','error-message' : errorMessage != ''}">{{errorMessage}}</p></div>
         <div class="price-container">
             <p>К оплате:</p>
-            <p class="price-container-price">{{priceWithDelivery()}}</p>
+            <p class="price-container-price">{{getAllprice}}</p>
         </div>
         <div class="price-container-text">
             <p>Стоимость может измениться в зависимости от адреса доставки</p>
         </div>
         <div class="create-order-container">
-            <a class="create-order-button" v-on:click="createOrder">Сделать заказ</a>
+            <a class="create-order-button" @click="createOrder">Сделать заказ</a>
         </div>
     </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import smartHeader from '@/components/header/smartHeader'
 import loader from '@/components/loader/loader'
 
@@ -113,6 +113,7 @@ export default {
             mobile:"",
             deliveryType:'Доставка',
             address:"",
+            comment: "",
             paytype:"Kaspi",
             cashText:"",
             errorMessage:"",
@@ -120,6 +121,9 @@ export default {
         }
     },
     methods:{
+        ...mapActions({
+            createOrderStore: "shoppingCart/createOrder"
+        }),
         createOrder(){
             this.errorMessage = ""
             setTimeout(()=>{
@@ -136,9 +140,10 @@ export default {
                 this.errorMessage = "Введите сумму для сдачи"
             }
 
-            else if(this.errorMessage == ""){
-                console.log()
-                this.showLoader = true
+            else if(this.errorMessage == "") {
+                const phone = this.mobile.replaceAll("-", "").replaceAll("+","").replaceAll("(", "").replaceAll(")", "");
+                console.log("order 2");
+                this.createOrderStore([this.name, this.address, phone, this.comment]);
             }
 
             },5)
