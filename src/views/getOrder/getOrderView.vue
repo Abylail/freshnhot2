@@ -124,8 +124,8 @@ export default {
         ...mapActions({
             createOrderStore: "shoppingCart/createOrder"
         }),
-        createOrder(){
-            this.errorMessage = ""
+        async createOrder(){
+            this.errorMessage = "";
             setTimeout(()=>{
             if(this.name.length<2){
                 this.errorMessage = "Имя не может быть короче 2-х символов"
@@ -142,8 +142,11 @@ export default {
 
             else if(this.errorMessage == "") {
                 const phone = this.mobile.replaceAll("-", "").replaceAll("+","").replaceAll("(", "").replaceAll(")", "");
-                console.log("order 2");
                 this.createOrderStore([this.name, this.address, phone, this.comment]);
+                this.showLoader = true;
+                setTimeout(() => {
+                this.$router.push("/");
+                }, 3000);
             }
 
             },5)
