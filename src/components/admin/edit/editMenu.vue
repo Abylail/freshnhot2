@@ -99,7 +99,6 @@ export default {
         },
         imageSelected(event){
             this.selectedImage = event.target.files[0];
-            console.log(this.selectedImage);
         },
         piecesAmountInput(){
             if(!Number(this.item.piecesAmount) || this.item.piecesAmount>101){

@@ -52,9 +52,7 @@ export default {
     mounted(){
         if(this.item.img_src && this.item.img_src!=""){
             this.imgSrc = 'https://api.freshnhot.kz'+this.item.img_src;
-            console.log(this.imgSrc);
         }
-        console.log("fixed-", this.fixed?"true":"false");
     },
     props: [
         'item',

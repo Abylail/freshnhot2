@@ -16,9 +16,6 @@ export default {
     components:{
         navCategoriesItem,
     },
-    updated(){
-        console.log("render categoties");
-    },
     computed:{
         ...mapGetters({
             categories:"categories/getList"

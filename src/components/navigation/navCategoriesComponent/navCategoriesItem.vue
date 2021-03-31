@@ -17,7 +17,6 @@ export default {
         }
     },
     mounted() {
-        console.log(this.category.img_src);
         this.img_src = 'https://api.freshnhot.kz'+this.category.img_src;
     },
     props:['category'],

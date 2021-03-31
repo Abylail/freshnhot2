@@ -43,7 +43,6 @@ export default {
     },
     mounted() {
       this.categoryList = this.listByCategory(this.category.id);
-      console.log("cagegories",this.categoryList);
     },
     watch: {
       productsAll: function() {

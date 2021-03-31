@@ -25,9 +25,8 @@ export default {
         loader,
     },
     mounted(){
-        this.pageName = this.$route.params.linkname
-        this.storePath ='sales/getList'
-        console.log(this.storePath);
+        this.pageName = this.$route.params.linkname;
+        this.storePath ='sales/getList';
     },
     computed:{
         

@@ -82,10 +82,11 @@ const actions = {
     async removeAllItem({commit},id){
         commit("removeAllItem",id)
     },
-    async usePromocode({commit}, promoName) {
+    usePromocode({commit}, promoName) {
         commit("setPromocode", [false, 0]);
-        let {data} = await getPromo(promoName);
-        commit("setPromocode", [true, data.data.value]);
+        getPromo(promoName).then(({data}) => {
+            data.data && commit("setPromocode", [true, data.data.value]);
+        });
     }
 }
 

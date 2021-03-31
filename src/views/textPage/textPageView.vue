@@ -30,14 +30,8 @@ export default {
             pageName:''
         }
     },
-    methods:{
-        setListByParam(){
-            console.log(this.pageName);
-        }
-    },
     mounted(){
         this.pageName = this.$route.params.pageName;
-        console.log("store", this.getList)
     },
     components:{
         smartHeader

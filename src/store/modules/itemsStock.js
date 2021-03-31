@@ -50,7 +50,6 @@ const getters = {
         if(stockBoolean){
             return stockBoolean.value
         }
-        // console.log("undefinded id call in items Stock abylai -> 8(705)670-78-91");
         return false
     },
     getList:(state)=>{

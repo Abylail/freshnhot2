@@ -102,9 +102,11 @@ export default {
     methods:{
         inputPromode(event) {
             clearTimeout(this.promoTimer);
+            this.$store.commit("shoppingCart/setPromocode", [false, 0]);
+            if (event.target.value === "") return;
             this.promoTimer =  setTimeout(() => {
-                this.usePromocode(event.target.value);
-            }, 500);
+                this.usePromocode(event.target.value.toLowerCase());
+            }, 1000);
         },
         clearButtonClick(){
             this.clear()

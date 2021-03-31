@@ -47,7 +47,7 @@ export default {
     },
     async deleteHandle(id) {
       let { data } = await deletePromo(id)
-      if (data.result) {
+      if (data.data && data.success) {
         let list = [ ...this.promocodes ];
         let index = list.findIndex(promo => promo.id === id);
         if (index > -1) {

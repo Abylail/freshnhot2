@@ -44,7 +44,6 @@ export default {
       }),
     imageSelected(event) {
       this.image = event.target.files[0];
-      console.log(this.image);
     },
     async addSlideHandle() {
         if(this.image && this.image !== null){

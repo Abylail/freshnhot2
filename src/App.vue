@@ -26,6 +26,9 @@ export default {
         margin:0;
         font-family: 'Open Sans', sans-serif;
     }
+    *:focus {
+    outline: none;
+    }
     a,button{
       cursor:pointer;
     }

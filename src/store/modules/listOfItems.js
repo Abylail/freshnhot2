@@ -21,9 +21,7 @@ const getters = {
         return state.list
     },
     getById:state=>(itemId)=>{
-        console.log("store id -",itemId);
         let item = state.list.find(i=>i.id==itemId)
-        console.log(itemId,item.name);
         if(item){
             return item;
         }
@@ -56,12 +54,10 @@ const getters = {
 
 const actions = {
     async updateStock({ commit },obj) {
-        console.log("store stick",obj.list);
         await updateStock({"list":obj.list}, userStorage.get.token());
         commit("");
     },
     async getList({ commit }){
-        console.log("getting prosucts")
         let { data } = await getList()
         if(data.success){
             commit("setList",data.data)

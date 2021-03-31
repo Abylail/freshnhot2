@@ -48,7 +48,6 @@ export default {
       await this.getItems();
       await this.getCategories();
       this.categoriesList = this.categoriesGet;
-      console.log("empty",this.emptyCategory);
     },
   watch: {
     categoriesGet: function (val) {

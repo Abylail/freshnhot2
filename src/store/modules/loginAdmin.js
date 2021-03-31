@@ -23,7 +23,6 @@ const getters = {
 const actions = {   
     async tryLogin({commit},[username,password]){
         let { data } = await login(username, password);
-        console.log("store login ",data)
         if( data.token ){
             commit('setLoginned', true);
             commit('setError', null);

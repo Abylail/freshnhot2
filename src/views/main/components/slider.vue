@@ -43,7 +43,6 @@ export default {
   async mounted(){
       await this.fetchSlides();
       this.isDataReady = true;
-      console.log("slides", this.slides);
   }
 }
 </script>

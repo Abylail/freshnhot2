@@ -86,10 +86,7 @@ export default {
     },
     destroyed(){
         window.removeEventListener('scroll',this.onScroll)
-    },
-    updated(){
-        console.log("render mainpage");
-    },
+    }
     
 }
 </script>

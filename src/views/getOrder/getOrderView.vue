@@ -170,7 +170,6 @@ export default {
 
 
             if(lastChar == "-" || lastChar == ")"){
-                console.log(lastChar);
                 this.mobile = this.mobile.slice(0,len-1)
                 return
             }

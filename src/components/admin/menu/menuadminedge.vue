@@ -58,7 +58,7 @@
                     <div class="image" v-bind:style="{'background-image':'url('+imgSrc+')'}"></div>
                 </div>
             </div>
-            <div class="subcategories-container">
+            <div class="subcategories-container" v-if="subcategoryName">
                 <p class="static-text">Подкатегория</p>
                     <p>{{this.subcategoryName}}</p>
             </div>
@@ -99,9 +99,7 @@ export default {
         }
 
         this.editUrl = "/admin-panel/editmenu/"+this.item.id;
-        if (this.category) {
-            this.categoryName = this.category.name;
-            console.log("find",this.category.subs, this.item.sub_category_id, this.category.subs.find(sub => sub.id === this.item.sub_category_id));
+        if (this.category.subs && this.category.subs.length > 0 && this.item.sub_category_id) {
             this.subcategoryName = this.category.subs.find(sub => sub.id === this.item.sub_category_id).name;
         }
     },
