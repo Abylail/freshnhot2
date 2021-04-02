@@ -1,5 +1,6 @@
 <template>
     <div class="opening-block">
+      <loader v-if="!dataReady" text="Прикольный текст"/>
         <div class="opening-block-promo-container" v-bind:style="{height:openingBlockHeightConst+'px'}">
             <div class="header-container">
                 <smartHeader
@@ -33,6 +34,7 @@ import navCategories from '@/components/navigation/navCategoriesComponent/navCat
 import menuList from '@/views/main/components/menuList';
 import shoppingCartButton from './components/shoppingCartButton';
 import smartHeader from '@/components/header/smartHeader';
+import loader from "@/components/loader/loader";
 
 import slider from './components/slider'
 import { mapActions } from 'vuex';
@@ -46,6 +48,7 @@ export default {
             showFixedHeader:false,
             headerHeight:80,
             showShoppingCartButton:false,
+            dataReady: false,
         }
     },
     components:{
@@ -54,6 +57,7 @@ export default {
         shoppingCartButton,
         slider,
         smartHeader,
+      loader
     },
     methods:{
         onScroll(){
@@ -75,9 +79,10 @@ export default {
             getCategories: "categories/getList"
         })
     },
-    mounted(){
-        this.getList()
-        this.getCategories()
+    async mounted(){
+        this.getList();
+        await this.getCategories();
+        this.dataReady = true;
     },
     created(){
         // this.onScroll() 

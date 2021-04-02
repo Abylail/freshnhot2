@@ -51,7 +51,7 @@ const getters = {
 }
 
 const actions = {
-    async createOrder({commit, getters}, [name, street, phone, descr]) {
+    async createOrder({commit, getters}, [name, street, phone, descr, deliveryType]) {
         let order = {
             street: null,
             phone: null,
@@ -60,7 +60,7 @@ const actions = {
             sale: getters["getSale"],
             descr: null
         };
-        order.descr = `Имя: ${name}, коммент: ${descr}`;
+        order.descr = `(Заказ с сайта) Имя: ${name}, коммент: ${descr}, адресс: ${street}, тип доставки: ${deliveryType}`;
         order.street = street;
         order.phone = phone;
         getters["getAll"].forEach(product => {

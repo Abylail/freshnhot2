@@ -142,7 +142,7 @@ export default {
 
             else if(this.errorMessage == "") {
                 const phone = this.mobile.replaceAll("-", "").replaceAll("+","").replaceAll("(", "").replaceAll(")", "");
-                this.createOrderStore([this.name, this.address, phone, this.comment]);
+                this.createOrderStore([this.name, this.address, phone, this.comment, this.deliveryType]);
                 this.showLoader = true;
                 setTimeout(() => {
                 this.$router.push("/");

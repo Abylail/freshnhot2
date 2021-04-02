@@ -42,15 +42,15 @@ export default {
     .root{
         margin-top: 6px;
         display: inline-block;
-        margin-left:30px;
-        margin-right:30px;
+        margin-left:20px;
+        margin-right: 20px;
         color:white;
         cursor: pointer;
         text-align: center;
     }
     .image-container{
-        height:45px;
-        width:45px;
+        height:40px;
+        width:40px;
         background-size: contain;
         margin-left:auto;
         margin-right:auto;

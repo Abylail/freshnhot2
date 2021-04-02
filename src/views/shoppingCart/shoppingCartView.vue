@@ -53,6 +53,7 @@
                 <div class="promo-block">
                   <input :class="{success: usingPromocode}" type="text" @input="inputPromode"/>
                   <p v-show="usingPromocode">Промокод на {{promocodeValue}}%</p>
+                  <BaseMiniLoader v-show="!promoDataReady"/>
                 </div>
             </div>
             <div class="text-price-block">
@@ -87,25 +88,31 @@ import { mapActions, mapGetters } from 'vuex'
 
 import smartHeader from '@/components/header/smartHeader'
 import BasePositionMenu from '@/components/base/BasePositionMenu'
+import BaseMiniLoader from "@/components/base/BaseLoader";
 
 export default {
     name:'shoppingCartView',
     data() {
         return {
-            promoTimer: null
+          promoTimer: null,
+          promoDataReady: true
         };
     },
     components:{
+      BaseMiniLoader,
         BasePositionMenu,
         smartHeader
     },
     methods:{
         inputPromode(event) {
             clearTimeout(this.promoTimer);
+            this.promoDataReady = false;
             this.$store.commit("shoppingCart/setPromocode", [false, 0]);
-            if (event.target.value === "") return;
-            this.promoTimer =  setTimeout(() => {
-                this.usePromocode(event.target.value.toLowerCase());
+            this.promoTimer =  setTimeout(async () => {
+                if (event.target.value !== "") {
+                  await this.usePromocode(event.target.value.toLowerCase());
+                }
+                this.promoDataReady = true;
             }, 1000);
         },
         clearButtonClick(){

@@ -112,11 +112,13 @@ export default {
         grid: header;
         display: flex;
         align-items: center;
+      padding-right: 5px;
     }
     div.info-header h2 {
         font-size: 18px;
-    }
-    div.info-main {
+        line-height: 1;
+      }
+      div.info-main {
         grid-area: main;
         padding-top: 5px;
         padding-right: 5px;
@@ -171,10 +173,13 @@ export default {
         cursor: pointer;
     }
     a.add {
-        margin-left: 5px;
+      margin-left: 8px;
+      font-size: 52px;
+      padding-bottom: 3px;
+      padding-right: 2px;
     }
     a.drop {
-        margin-right: 5px;
+        margin-right: 8px;
     }
     a.drop img {
         height: 50%;

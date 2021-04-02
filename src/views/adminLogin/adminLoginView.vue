@@ -17,7 +17,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import router from '@/router/index'
-import BaseMiniLoader from "@/components/base/BaseMiniLoader";
+import BaseMiniLoader from "@/components/base/BaseLoader";
 export default {
     name:'adminLoginView',
     components:{

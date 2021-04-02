@@ -4,7 +4,13 @@
 
 <script>
 export default {
-  name: "BaseMiniLoader"
+  name: "BaseMiniLoader",
+  props: {
+    size: {
+      type: String,
+      default:() => "medium"
+    }
+  }
 }
 </script>
 
@@ -15,6 +21,7 @@ export default {
   height: 20px;
   width: 20px;
   border-radius: 50%;
+  margin-top: 5px;
   margin-right: auto;
   margin-left: auto;
   animation: load2 1s linear infinite;
