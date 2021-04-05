@@ -7,9 +7,9 @@
             </router-link>
         </div>
         <div class="right side">
-            <a v-if="phone" class="phone-container" href="tel:+77056707891">
+            <a v-if="phone" class="phone-container" href="tel:+77780100690">
                 <div class="phone-button"><img src="https://img.icons8.com/ios-filled/100/ffffff/phone.png"/></div>
-                <p class="phone-number">8 (777) 777 77 77</p>
+                <p class="phone-number">8 (778) 010 06 90</p>
             </a>
         </div>
         

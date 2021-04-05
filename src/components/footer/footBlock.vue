@@ -27,7 +27,7 @@
                             <p>Номер доставки</p>
                         </div>
                         <div class="info-row-text-bottom">
-                            <p>+7(777)777 77 77</p>
+                            <p>8 (778) 010 06 90</p>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                             <p>Работаем ежедневно</p>
                         </div>
                         <div class="info-row-text-bottom">
-                            <p>с 10:00 до 22:00</p>
+                            <p>с 10:00 до 21:45</p>
                         </div>
                     </div>
                 </div>
