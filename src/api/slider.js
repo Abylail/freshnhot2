@@ -8,7 +8,6 @@ const getSlides = () => {
 };
 
 const addSlide = (img_src) => {
-    console.log("fetch",img_src);
     return api.post(`${slider_url}/new`, {img_src : img_src}, {
         'headers': {
             'Authorization':`Bearer ${userStorage.get.token()}`,

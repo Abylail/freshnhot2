@@ -3,7 +3,6 @@ import api from './api'
 const url = 'api/'
 
 const login = (username, password) => {
-    console.log(username, password);
     return api.post(url+'login', {
         "username": username,
         "password": password
