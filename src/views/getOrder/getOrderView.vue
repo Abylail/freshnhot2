@@ -54,7 +54,7 @@
                         <input type="text" class="input-block-input" placeholder="Адрес" v-model="address"/>
                     </div>
                     <div class="input-block-input-text" v-bind:class="{'display-none':deliveryType!='Самовывоз'}">
-                        <p>Самовывоз по адресу:<br>Абылай красавчинская 777</p>
+                        <p>Самовывоз по адресу:<br>Ауэзова, 145в</p>
                     </div>
                 </div>
             </div>
