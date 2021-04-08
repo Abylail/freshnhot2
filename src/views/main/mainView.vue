@@ -1,6 +1,6 @@
 <template>
     <div class="opening-block">
-      <loader v-if="!dataReady" text="Осторожно, здесь самые вкусные роллы!"/>
+      <loader v-if="!dataReady" text="Вкус на максимум!"/>
         <div class="opening-block-promo-container" v-bind:style="{height:openingBlockHeightConst+'px'}">
             <div class="header-container">
                 <smartHeader

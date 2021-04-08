@@ -54,13 +54,13 @@ export default {
     display: flex;
     flex-direction: column;
 
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 .loader-logo-container img{
     height: 150px;
 }
 .loader-logo-container p{
-    font-size: 26px;
+    font-size: 20px;
     text-align: center;
 }
 .props-error-text{
@@ -68,8 +68,8 @@ export default {
   font-size:16px;
 }
 .props-text{
+  margin-top: 10px;
   color:white;
-  font-size:16px;
 }
 
 span.loader {
