@@ -5,6 +5,12 @@ import App from './App.vue'
 import store from './store/index'
 import router from './router/index'
 
+//plugins
+import VueLazyload from 'vue-lazyload';
+Vue.use(VueLazyload, {
+  lazyComponent: true
+});
+
 Vue.config.productionTip = false
 
 new Vue({

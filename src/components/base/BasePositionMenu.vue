@@ -1,7 +1,9 @@
 <template>
     <div class="one-position" v-bind:class="{'one-position-fixed':fixed}">
         <div class="position-container" v-bind:class="{'position-container-fixed':fixed}">
-            <div class="image" :style="`background-image:url(${imgSrc})`"></div>
+<!--            <div class="image" :style="`background-image:url(${imgSrc})`"></div>-->
+<!--                <img class="image" v-lazy="imgSrc"/>-->
+          <lazy-component class="image" :style="`background-image:url(${imgSrc.src})`"/>
             <div class="info">
                 <div class="info-header"><h2>{{item.name}}</h2></div>
                 <div class="info-main">
@@ -25,12 +27,16 @@
     </div>
 </template>
 <script>
-import { mapActions, mapGetters} from 'vuex'
+import { mapActions, mapGetters} from 'vuex';
 export default {
     name:'BasePositionMenu',
     data(){
         return {
-            imgSrc:"https://www.askc.us/wp-content/uploads/2017/04/default-image-720x530.jpg",
+            imgSrc:{
+              src: "",
+              loading: "https://www.askc.us/wp-content/uploads/2017/04/default-image-720x530.jpg",
+              error: "https://www.askc.us/wp-content/uploads/2017/04/default-image-720x530.jpg"
+            },
         }
     },
     methods:{
@@ -50,8 +56,8 @@ export default {
         })
     },
     mounted(){
-        if(this.item.img_src && this.item.img_src!=""){
-            this.imgSrc = 'https://api.freshnhot.kz'+this.item.img_src;
+        if(this.item.img_src && this.item.img_src !== ""){
+            this.imgSrc.src = 'https://api.freshnhot.kz'+this.item.img_src;
         }
     },
     props: [
@@ -100,6 +106,13 @@ export default {
         background-color: black;
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
+    }
+    img.image {
+      grid-area: image;
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
     }
     div.info {
         grid-area: info;

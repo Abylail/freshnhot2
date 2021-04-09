@@ -3,11 +3,11 @@ module.exports = {
       config
           .plugin('html')
           .tap(args => {
-              args[0].title = "Frechnhot";
+              args[0].title = "Freshnhot";
               return args;
           })
   },
   devServer: {
     proxy: 'https://api.freshnhot.kz/'
-}
+  }
 }
