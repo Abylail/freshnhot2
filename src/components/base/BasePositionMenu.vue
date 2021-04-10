@@ -16,7 +16,7 @@
                     <p class="price">{{item.price}} тг</p>
                     <div class="add-drop">
                         <a class="drop" @click="removeItemInShopiingCart"><img src="@/assets/icons/minus.svg" /></a>
-                        <p>{{getItemAmount(item.id)}}</p>
+                        <p>{{itemAmount}}</p>
                         <a class="add" @click="addItemInShoppingCart">+</a>
                     </div>
                 </div>
@@ -31,17 +31,21 @@ export default {
     data(){
         return {
             imgSrc: null,
+            itemAmount: 0
         }
     },
     methods:{
-        addItemInShoppingCart(){
-            this.addItem(this.item)
+        async addItemInShoppingCart(){
+            await this.addItem(this.item);
+            this.itemAmount = this.getItemAmount(this.item.id);
         },
-        removeItemInShopiingCart(){
-            this.getItemAmount(this.item.id) > 0 && this.removeItem(this.item.id)
+        async removeItemInShopiingCart(){
+            await this.getItemAmount(this.item.id) > 0 && this.removeItem(this.item.id)
+            this.itemAmount = this.getItemAmount(this.item.id);
         },
-        removeAllItemInShopiingCart(){
-            this.removeAllItem(this.item.id)
+        async removeAllItemInShopiingCart(){
+            await this.removeAllItem(this.item.id)
+            this.itemAmount = this.getItemAmount(this.item.id);
         },
         ...mapActions({
             addItem:"shoppingCart/addItem",
@@ -50,7 +54,8 @@ export default {
         })
     },
     mounted(){
-        if(this.item.img_src && this.item.img_src !== ""){
+        this.itemAmount = this.getItemAmount(this.item.id);
+        if(this.item.img_src && this.item.img_src !== "") {
             this.imgSrc = 'https://api.freshnhot.kz'+this.item.img_src;
         }
     },
@@ -62,7 +67,7 @@ export default {
     computed:{
         ...mapGetters({
             getItemAmount:"shoppingCart/getItemAmount",
-        }),
+        })
     },
 }
 </script>

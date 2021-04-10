@@ -119,6 +119,7 @@ export default {
     .opening-block-promo-container{
         margin-left:auto;
         margin-right: auto;
+        overflow: hidden;
         
     }
     .categories{
@@ -165,7 +166,7 @@ export default {
             margin-left:auto;
             margin-right:auto;
             width:calc(100vw - 60px);
-            padding-top:110px;
+            padding-top:50px;
         }
         .opening-block-promo-container{
             background-color: #2C2C2C;
