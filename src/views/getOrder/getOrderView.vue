@@ -96,7 +96,7 @@
             <p>Стоимость может измениться в зависимости от адреса доставки</p>
         </div>
         <div class="create-order-container">
-            <a class="create-order-button" @click="createOrder">Сделать заказ</a>
+            <button class="create-order-button" @click="createOrder">Сделать заказ</button>
         </div>
     </div>
 </template>
@@ -345,6 +345,7 @@ export default {
 
         background-color: #ff0000d9;
         color:white;
+        border: none;
 
         display: flex;
         justify-content: center;
@@ -353,6 +354,12 @@ export default {
         -webkit-box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.3);
             -moz-box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.3);
             box-shadow: 0px 10px 11px 7px rgba(0, 0, 0, 0.3);
+            transition: .1s;
+    }
+    .create-order-button:active{
+        -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
     }
     .price-container{
         padding-left:3%;

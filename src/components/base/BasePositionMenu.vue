@@ -1,7 +1,9 @@
 <template>
     <div class="one-position" v-bind:class="{'one-position-fixed':fixed}">
         <div class="position-container" v-bind:class="{'position-container-fixed':fixed}" ref="container">
-            <div class="image" :style="`background-image: url(${imgSrc})`"></div>
+            <lazy-component @show="showImage = true">
+            <div class="image" :style="`background-image: url(${imgSrc})`" v-if="showImage"></div>
+            </lazy-component>
             <div class="info">
                 <div class="info-header"><h2>{{item.name}}</h2></div>
                 <div class="info-main">
@@ -31,7 +33,8 @@ export default {
     data(){
         return {
             imgSrc: null,
-            itemAmount: 0
+            itemAmount: 0,
+            showImage: false
         }
     },
     methods:{
@@ -105,6 +108,7 @@ export default {
         background-color: black;
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
+        height: 100%;
     }
     img.image {
       grid-area: image;
