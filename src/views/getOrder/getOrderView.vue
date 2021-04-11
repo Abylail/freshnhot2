@@ -127,7 +127,10 @@ export default {
         createOrder(){
             this.errorMessage = "";
             setTimeout(async ()=>{
-            if(this.name.length<2){
+            if(this.getAllprice < 3500) {
+                this.errorMessage = "Минимальная сумма заказа 3500"
+            }
+            else if(this.name.length<2){
                 this.errorMessage = "Имя не может быть короче 2-х символов"
             }
             else if(this.mobile.length<16){
@@ -142,11 +145,9 @@ export default {
 
             else {
                 const phone = await this.mobile.replaceAll("-", "").replaceAll("+","").replaceAll("(", "").replaceAll(")", "");
-                this.createOrderStore([this.name, this.address, phone, this.comment, this.deliveryType]);
                 this.showLoader = true;
-                setTimeout(() => {
+                await this.createOrderStore([this.name, this.address, phone, this.comment, this.deliveryType]);
                 this.$router.push("/");
-                }, 3000);
             }
 
             },5)
