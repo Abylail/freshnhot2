@@ -1,7 +1,7 @@
 <template>
     <div class="one-position" v-bind:class="{'one-position-fixed':fixed}">
         <div class="position-container" v-bind:class="{'position-container-fixed':fixed}" ref="container">
-            <div class="image" v-lazy:background-image="imgSrc"></div>
+            <div class="image" :style="`background-image: url(${imgSrc})`"></div>
             <div class="info">
                 <div class="info-header"><h2>{{item.name}}</h2></div>
                 <div class="info-main">
