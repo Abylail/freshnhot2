@@ -121,6 +121,12 @@ export default {
         }
     },
     methods:{
+        escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        },
+        replaceAll(str, match, replacement){
+            return str.replace(new RegExp(this.escapeRegExp(match), 'g'), ()=>replacement);
+        },
         ...mapActions({
             createOrderStore: "shoppingCart/createOrder"
         }),
@@ -143,7 +149,10 @@ export default {
                 this.errorMessage = "Введите сумму для сдачи"
             }
             else {
-                const phone = await this.mobile.replaceAll("-", "").replaceAll("+","").replaceAll("(", "").replaceAll(")", "");
+                let phone = await this.replaceAll(this.mobile, "-", "");
+                await this.replaceAll(phone,"+","");
+                await this.replaceAll(phone, "(", "");
+                await this.replaceAll(phone,")", "");
                 this.showLoader = true;
                 await this.createOrderStore([this.name, this.address, phone, this.comment, this.deliveryType]);
                 this.$router.push("/");

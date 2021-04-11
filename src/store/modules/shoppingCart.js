@@ -57,13 +57,13 @@ const actions = {
             phone: null,
             products:[],
             counts:[],
-            sale: getters["getSale"],
+            sale: getters["getSale"] || 0,
             descr: null
         };
         order.descr = `(Заказ с сайта) Имя: ${name}, коммент: ${descr}, адресс: ${street}, тип доставки: ${deliveryType}`;
         order.street = street;
         order.phone = phone;
-        getters["getAll"].forEach(product => {
+        await getters["getAll"].forEach(product => {
             order.products.push(product.vendor_code);
             order.counts.push(product.amount);
         });
