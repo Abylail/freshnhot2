@@ -96,7 +96,7 @@
             <p>Стоимость может измениться в зависимости от адреса доставки</p>
         </div>
         <div class="create-order-container">
-            <button class="create-order-button" @click="createOrder">Сделать заказ</button>
+            <button class="create-order-button" v-on:click="createOrder">Сделать заказ</button>
         </div>
     </div>
 </template>
@@ -142,7 +142,6 @@ export default {
             else if(this.paytype=="Cash" && this.cashText.length<3){
                 this.errorMessage = "Введите сумму для сдачи"
             }
-
             else {
                 const phone = await this.mobile.replaceAll("-", "").replaceAll("+","").replaceAll("(", "").replaceAll(")", "");
                 this.showLoader = true;
