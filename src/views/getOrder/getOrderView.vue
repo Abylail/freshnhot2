@@ -133,6 +133,8 @@ export default {
         createOrder(){
             this.errorMessage = "";
             setTimeout(async ()=>{
+            let d= new Date();
+            let h = d.getHours();
             if(this.getAllprice < 3500) {
                 this.errorMessage = "Минимальная сумма заказа 3500"
             }
@@ -147,6 +149,9 @@ export default {
             }
             else if(this.paytype=="Cash" && this.cashText.length<3){
                 this.errorMessage = "Введите сумму для сдачи"
+            }
+            else if(h <10 || h > 21) {
+                this.errorMessage = "К сожалению мы уже закрыты";
             }
             else {
                 let phone = await this.replaceAll(this.mobile, "-", "");

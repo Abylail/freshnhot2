@@ -1,12 +1,11 @@
 <template>
     <div class="opening-block">
-      <loader v-if="!dataReady" text="Вкус на максимум!"/>
+      <loader v-if="!dataReady" :text="loadertext"/>
         <div class="opening-block-promo-container" v-bind:style="{height:openingBlockHeightConst+'px'}">
             <div class="header-container">
                 <smartHeader
-                    :fixed="true"
-                    :logo="true"
-                    :phone="true"
+                    logo
+                    phone
                 />
             </div>
             <div class="opening-block-promo-container-main" v-bind:style="{'height':(openingBlockHeightConst-60)+'px'}">
@@ -49,6 +48,7 @@ export default {
             headerHeight:80,
             showShoppingCartButton:false,
             dataReady: false,
+            loadertext: "Вкус на максимум!"
         }
     },
     components:{
@@ -61,7 +61,7 @@ export default {
     },
     methods:{
         onScroll(){
-            if(window.scrollY>this.openingBlockHeightConst-60){ 
+            if(window.scrollY>this.openingBlockHeightConst){ 
                 if(!this.showFixedHeader){
                 this.showFixedHeader = true
                 this.showShoppingCartButton = true
@@ -80,14 +80,17 @@ export default {
         })
     },
     async mounted(){
+        this.onScroll();
+        let d = new Date();
+        let h = d.getHours();
         this.getList();
         await this.getCategories();
-        this.dataReady = true;
+        if(h > 10 && h < 21) this.dataReady = true;
+        else this.loadertext = "К сожалению мы спим, но в 10:00 будем вас ждать";
     },
     created(){
-        // this.onScroll() 
         window.addEventListener('scroll',this.onScroll)
-        this.openingBlockHeightConst = window.innerHeight-this.headerHeight
+        this.openingBlockHeightConst = window.innerHeight-this.headerHeight;
     },
     destroyed(){
         window.removeEventListener('scroll',this.onScroll)
@@ -132,7 +135,8 @@ export default {
     .fixed-categories{
         z-index: 51;
         position: fixed;
-        top:60px;
+        /* top:60px; */
+        top: 0;
         width:100%;
         background-color: #2C2C2C;
         opacity: .98;

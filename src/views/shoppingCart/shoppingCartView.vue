@@ -46,7 +46,7 @@
             </div>
             <div class="delivery-price">
                 <p>Доставка:</p>
-                <p v-bind:class="{'free-delivery':getAllprice>getFreeDeliveryMinimumPrice}">{{deliveryPriceText}}</p>
+                <p v-bind:class="{'free-delivery':deliveryPriceText === 'Бесплатно'}">{{deliveryPriceText}}</p>
             </div>
             <div class="text-price-block">
                 <p>Промокод</p>

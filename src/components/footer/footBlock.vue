@@ -3,9 +3,10 @@
         <div class="big-footer-top-container">
         <div class="links footer-block">
             <div class="name-container">
-                <p>Freshnhot</p>
+                <p class="primary">Freshnhot</p>
             </div>
             <div class="links-container">
+                <router-link to="/" class="link secondary">На главную</router-link>
 <!--                <router-link to="/text/about" class="link">О компании</router-link>-->
 <!--                <router-link to="/text/delivery" class="link">Доставка</router-link>-->
 <!--                <router-link to="/text/events" class="link">События</router-link>-->
@@ -15,7 +16,7 @@
         </div>
         <div class="info footer-block">
             <div class="name-container">
-                <p>Закажите</p>
+                <p class="primary">Закажите</p>
             </div>
             <div class="info-rows-container">
                 <div class="info-row">
@@ -24,10 +25,10 @@
                     </div>
                     <div class="info-row-text-block">
                         <div class="info-row-text-top">
-                            <p>Номер доставки</p>
+                            <p class="secondary">Номер доставки</p>
                         </div>
                         <div class="info-row-text-bottom">
-                            <p>8 (778) 010 06 90</p>
+                            <p class="secondary">8 (778) 010 06 90</p>
                         </div>
                     </div>
                 </div>
@@ -38,10 +39,10 @@
                     </div>
                     <div class="info-row-text-block">
                         <div class="info-row-text-top">
-                            <p>Работаем ежедневно</p>
+                            <p class="secondary">Работаем ежедневно</p>
                         </div>
                         <div class="info-row-text-bottom">
-                            <p>с 10:00 до 21:45</p>
+                            <p class="secondary">с 10:00 до 21:45</p>
                         </div>
                     </div>
                 </div>
@@ -49,7 +50,7 @@
         </div>
         <div class="socail-networks footer-block">
             <div class="name-container">
-                <p>Сдледите за нами</p>
+                <p class="primary">Следите за нами</p>
             </div>
             <div class="socail-networks-buttons-container">
                 <a class="info-row-logo" href="https://instagram.com/freshnhot.kz?igshid=ojm1tl08rmys" target="_blank">
@@ -70,7 +71,7 @@ export default {
 </script>
 <style scoped>
 footer{
-    background-color: lightgray;
+    background-color: #2C2C2C;
     padding-top:30px ;
     padding-bottom:30px;
 }
@@ -79,7 +80,6 @@ footer{
 }
 .name-container p{
     font-size:18px;
-    color:rgb(94, 94, 94);
 }
 
 .footer-block{
@@ -92,7 +92,6 @@ footer{
     width:49%;
     font-size:14px;
     text-decoration: none;
-    color:black;
 
     margin-top:5px;
     margin-bottom:5px;
@@ -137,5 +136,11 @@ footer{
 .big-footer-bottom-container{
     height: 30px;
     border-top:1px solid gray;
+}
+.primary {
+    color: white;
+}
+.secondary {
+    color:gray;
 }
 </style>
