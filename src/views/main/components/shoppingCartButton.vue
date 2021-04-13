@@ -57,7 +57,8 @@ export default {
         -moz-box-shadow: 0px 12px 12px -3px rgba(0, 0, 0, 0.6);
     }
     .shopping-cart-button-out{
-        right:-100px;
+      display: block;
+      right:-100px;
     }
     .amount-indicator{
         position: absolute;
@@ -92,7 +93,6 @@ export default {
         width: 70%;
     }
     .animation-item {
-      display: none;
       opacity: 0;
       height: 30px;
       width: 30px;
@@ -115,11 +115,15 @@ export default {
     .drop .animation-item {
       display: block;
       animation-name: drop;
-      animation-duration: .4s;
+      animation-duration: .35s;
       animation-timing-function: ease-in-out;
     }
     @keyframes drop {
       0% {
+        display: block;
+        opacity: .5;
+      }
+      20% {
         opacity: 1;
       }
       100% {

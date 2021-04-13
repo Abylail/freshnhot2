@@ -43,7 +43,7 @@ export default {
             if (shoppingCartButton) {
               shoppingCartButton.classList.add("drop");
               setTimeout(() => {
-                shoppingCartButton.classList.remove("drop");
+                document.getElementById('shopping-cart-button').classList.remove("drop");
               }, 500)
             }
             await this.addItem(this.item);
