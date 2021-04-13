@@ -21,9 +21,9 @@ export default {
     },
     props:['category'],
     methods:{
-        async itemClick(){
+        itemClick(){
             let elemTop = document.getElementById("categoryid-"+this.category.id).offsetTop
-            window.scrollTo({top:elemTop-160, behavior: "smooth"})
+            window.scrollTo({top:elemTop-105, behavior: 'smooth'})
         },
     }
 }

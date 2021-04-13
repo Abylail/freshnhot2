@@ -39,6 +39,13 @@ export default {
     },
     methods:{
         async addItemInShoppingCart(){
+            let shoppingCartButton = document.getElementById('shopping-cart-button');
+            if (shoppingCartButton) {
+              shoppingCartButton.classList.add("drop");
+              setTimeout(() => {
+                shoppingCartButton.classList.remove("drop");
+              }, 500)
+            }
             await this.addItem(this.item);
             this.itemAmount = this.getItemAmount(this.item.id);
         },
