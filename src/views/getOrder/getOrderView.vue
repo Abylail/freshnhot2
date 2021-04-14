@@ -150,7 +150,7 @@ export default {
             else if(this.paytype=="Cash" && this.cashText.length<3){
                 this.errorMessage = "Введите сумму для сдачи"
             }
-            else if(h <10 || h > 21) {
+            else if(h <10 || h > 22) {
                 this.errorMessage = "К сожалению мы уже закрыты";
             }
             else {

@@ -1,9 +1,13 @@
 <template>
     <div class="opening-block">
       <loader v-if="!dataReady" :text="loadertext"/>
-      <base-modal :show="showModal" @close="showModal = false">
+      <base-modal :show="sleepModal" @close="sleepModal = false">
         <div class="modal">
-          check
+          <div class="text">
+            <p>К сожалению мы уже спим, но откроемся снова в 10:00</p>
+          </div>
+          <div class="image"/>
+          <base-button primary class="button" @click="sleepModal = false">Хорошо</base-button>
         </div>
       </base-modal>
         <div class="opening-block-promo-container" v-bind:style="{height:openingBlockHeightConst+'px'}">
@@ -43,6 +47,7 @@ import BaseModal from "@/components/base/BaseModal";
 
 import slider from './components/slider'
 import { mapActions } from 'vuex';
+import BaseButton from '../../components/base/BaseButton.vue';
 
 export default {
     name:'mainView',
@@ -55,7 +60,7 @@ export default {
             showShoppingCartButton:false,
             dataReady: false,
             loadertext: "Вкус на максимум!",
-            showModal: false
+            sleepModal: false
         }
     },
     components:{
@@ -65,7 +70,8 @@ export default {
         slider,
         smartHeader,
         loader,
-      BaseModal
+      BaseModal,
+      BaseButton
     },
     methods:{
         onScroll(){
@@ -93,9 +99,8 @@ export default {
         let h = d.getHours();
         this.getList();
         await this.getCategories();
-        if(h > 9 && h < 21) this.dataReady = true;
-        else this.loadertext = "К сожалению мы спим, но в 10:00 будем вас ждать";
-        setTimeout(() => this.showModal = true, 2000)
+        this.dataReady = true;
+        if(h < 10 || h > 21) setTimeout(() => this.sleepModal = true, 1000);
     },
     created(){
         window.addEventListener('scroll',this.onScroll)
@@ -171,7 +176,26 @@ export default {
     .modal {
       height: 100%;
       width: 100%;
-      background-color: #2C2C2C;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .modal .image{
+        margin-top: 20px;
+        height: 150px;
+        width: 100%;
+        background: url("../../assets/images/sleep.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    .modal .text p{
+        text-align: center;
+        font-size: 18px;
+    }
+    .modal .button {
+        margin: 20px 0;
+        margin-bottom: 0;
     }
     @media (min-width: 500px){
         .opening-block-promo-container-main{

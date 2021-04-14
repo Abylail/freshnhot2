@@ -71,11 +71,12 @@ export default {
     display: block;
     min-height: 300px;
     margin: auto;
+    margin-top: 230px;
     width: 80%;
     max-width: 350px;
     background-color: white;
     border-radius: 10px;
-    padding: 10px;
+    padding: 30px 10px;
     padding-top: 0;
   }
   header {

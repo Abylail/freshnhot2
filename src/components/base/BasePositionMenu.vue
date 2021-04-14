@@ -206,6 +206,7 @@ export default {
     }
     a.drop {
         margin-right: 15px;
+        margin-left: 5px;
     }
     a.drop:before, a.add:before, a.add:after {
         content: "";
