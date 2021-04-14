@@ -39,8 +39,14 @@ export default {
   },
   watch: {
     show(val) {
-      if (val) this.$el.addEventListener("click", this.clickListener)
-      else this.$el.removeEventListener("click", this.clickListener)
+      if (val) {
+        document.body.style.overflow = "hidden";
+        this.$el.addEventListener("click", this.clickListener);
+      }
+      else {
+        document.body.style.overflow = "auto";
+        this.$el.removeEventListener("click", this.clickListener);
+      }
     }
   }
 }
