@@ -115,7 +115,7 @@ export default {
         grid-area: image;
         background-size: cover;
         background-position: 50% 50%;
-        background-color: black;
+        background-color: white;
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
         height: 100%;
