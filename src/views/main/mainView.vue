@@ -85,7 +85,7 @@ export default {
         let h = d.getHours();
         this.getList();
         await this.getCategories();
-        if(h > 10 && h < 21) this.dataReady = true;
+        if(h > 9 && h < 21) this.dataReady = true;
         else this.loadertext = "К сожалению мы спим, но в 10:00 будем вас ждать";
     },
     created(){
