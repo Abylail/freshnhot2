@@ -1,7 +1,11 @@
 <template>
     <div class="opening-block">
       <loader v-if="!dataReady" :text="loadertext"/>
-      <base-modal :show="showModal" @close="showModal = false"></base-modal>
+      <base-modal :show="showModal" @close="showModal = false">
+        <div class="modal">
+          check
+        </div>
+      </base-modal>
         <div class="opening-block-promo-container" v-bind:style="{height:openingBlockHeightConst+'px'}">
             <div class="header-container">
                 <smartHeader
@@ -163,6 +167,11 @@ export default {
         justify-content: center;
         align-items: center;
         min-height: 450px;
+    }
+    .modal {
+      height: 100%;
+      width: 100%;
+      background-color: #2C2C2C;
     }
     @media (min-width: 500px){
         .opening-block-promo-container-main{

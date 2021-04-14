@@ -1,6 +1,7 @@
 <template>
-  <div class="out" :class="{show: show}">
+  <div :class="[{show: show}, {dense:dense},'out']">
     <div class="container">
+      <header><p class="title">{{title}}</p><button @click="$emit('close')" class="close"><span class="close"/></button></header>
       <slot></slot>
     </div>
   </div>
@@ -18,6 +19,14 @@ export default {
     show: {
       type: Boolean,
       default: () => false
+    },
+    dense: {
+      type: Boolean,
+      default: () => false
+    },
+    title: {
+      type: String,
+      default:() => ""
     }
   },
   methods: {
@@ -51,9 +60,7 @@ export default {
     opacity: 0;
   }
   .show {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
     animation-delay: .1s;
     animation-duration: .3s;
     animation-name: show;
@@ -63,11 +70,48 @@ export default {
   .container {
     display: block;
     min-height: 300px;
-    margin: 10px;
+    margin: auto;
     width: 80%;
     max-width: 350px;
     background-color: white;
     border-radius: 10px;
+    padding: 10px;
+    padding-top: 0;
+  }
+  header {
+    height: 50px;
+    display: grid;
+    grid-template-columns: 1fr 40px;
+    grid-template-areas: "title close";
+  }
+  p.title {
+    grid-area: title;
+  }
+  button.close {
+    grid-area: close;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: none;
+  }
+  span.close {
+    padding-top: 10px;
+    height: 40px;
+    width: 40px;
+    transform: rotate(45deg);
+  }
+  span.close:before, span.close:after {
+    content: "";
+    position: absolute;
+    background-color: gray;
+    width: 3px;
+    height: 28px;
+    margin-left: -2px;
+    border-radius: 5px;
+  }
+  span.close:after {
+    transform: rotate(90deg);
   }
   @keyframes show {
     0% {opacity: 0}

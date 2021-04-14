@@ -44,7 +44,7 @@ html {
   }
   #app{
     margin:0;
-    min-width: 350px;
+    min-width: 300px;
     background-color: #2C2C2C;
   }
   .projectContainer{

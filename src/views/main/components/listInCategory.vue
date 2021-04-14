@@ -99,8 +99,8 @@ export default {
         width: 94%;
         white-space: nowrap;
 
-        padding-left:3%;
-        padding-right:3%;
+        padding-left:2%;
+        padding-right:2%;
 
     }
 

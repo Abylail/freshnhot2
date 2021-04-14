@@ -92,7 +92,7 @@ export default {
     }
     .one-position {
         min-height: 180px;
-        width: 100%;
+        width: calc(100% - 20px);
         padding: 5px 10px;
         color: black;
     }
@@ -211,7 +211,6 @@ export default {
         content: "";
         position: absolute;
         background-color: black;
-        margin-left: 50%;
         width: 3px;
         height: 22px;
         margin-left: -2px;
