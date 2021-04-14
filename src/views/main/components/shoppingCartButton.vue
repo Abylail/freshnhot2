@@ -57,8 +57,8 @@ export default {
         -moz-box-shadow: 0px 12px 12px -3px rgba(0, 0, 0, 0.6);
     }
     .shopping-cart-button-out{
-      display: block;
       right:-100px;
+      opacity: 0;
     }
     .amount-indicator{
         position: absolute;

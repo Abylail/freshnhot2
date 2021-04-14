@@ -1,6 +1,7 @@
 <template>
     <div class="opening-block">
       <loader v-if="!dataReady" :text="loadertext"/>
+      <base-modal :show="showModal" @close="showModal = false"></base-modal>
         <div class="opening-block-promo-container" v-bind:style="{height:openingBlockHeightConst+'px'}">
             <div class="header-container">
                 <smartHeader
@@ -34,6 +35,7 @@ import menuList from '@/views/main/components/menuList';
 import shoppingCartButton from './components/shoppingCartButton';
 import smartHeader from '@/components/header/smartHeader';
 import loader from "@/components/loader/loader";
+import BaseModal from "@/components/base/BaseModal";
 
 import slider from './components/slider'
 import { mapActions } from 'vuex';
@@ -48,7 +50,8 @@ export default {
             headerHeight:80,
             showShoppingCartButton:false,
             dataReady: false,
-            loadertext: "Вкус на максимум!"
+            loadertext: "Вкус на максимум!",
+            showModal: false
         }
     },
     components:{
@@ -57,7 +60,8 @@ export default {
         shoppingCartButton,
         slider,
         smartHeader,
-      loader
+        loader,
+      BaseModal
     },
     methods:{
         onScroll(){
@@ -87,6 +91,7 @@ export default {
         await this.getCategories();
         if(h > 9 && h < 21) this.dataReady = true;
         else this.loadertext = "К сожалению мы спим, но в 10:00 будем вас ждать";
+        setTimeout(() => this.showModal = true, 2000)
     },
     created(){
         window.addEventListener('scroll',this.onScroll)
