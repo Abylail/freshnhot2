@@ -77,7 +77,7 @@ export default {
     display: block;
     min-height: 300px;
     margin: auto;
-    margin-top: 230px;
+    margin-top: 180px;
     width: 80%;
     max-width: 350px;
     background-color: white;

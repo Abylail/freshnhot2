@@ -15,7 +15,10 @@ Vue.use(VueLazyload, {
   attempt: 1
 });
 
-Vue.config.productionTip = false
+import VueMeta from 'vue-meta';
+Vue.use(VueMeta);
+
+Vue.config.productionTip = false;
 
 new Vue({
   store,

@@ -34,6 +34,10 @@
             <menuList/>
         </div>
 
+        <div class="information">
+            <h1 class="page-title">Freshnhot, суши и пицца Алматы</h1>
+        </div>
+
         <shoppingCartButton v-bind:showShoppingCartButton="this.showShoppingCartButton"/>
     </div>
 </template>
@@ -98,13 +102,13 @@ export default {
         let d = new Date();
         let h = d.getHours();
         this.getList();
-        await this.getCategories();
-        this.dataReady = true;
         if(h < 10 || h > 21) setTimeout(() => this.sleepModal = true, 1000);
     },
-    created(){
+    async created(){
         window.addEventListener('scroll',this.onScroll)
         this.openingBlockHeightConst = window.innerHeight-this.headerHeight;
+        await this.getCategories();
+        this.dataReady = true;
     },
     destroyed(){
         window.removeEventListener('scroll',this.onScroll)
@@ -196,6 +200,19 @@ export default {
     .modal .button {
         margin: 20px 0;
         margin-bottom: 0;
+    }
+    .information {
+        height: 200px;
+        max-width: 300px;
+        margin-top: 50px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .page-title {
+        padding: 0 10px;
+        color: white;
+        text-align: center;
+        font-size: 22px;
     }
     @media (min-width: 500px){
         .opening-block-promo-container-main{

@@ -12,6 +12,10 @@ import footBlock from './components/footer/footBlock'
 
 export default {
   name: 'App',
+  metaInfo: {
+    title: "Суши и пицца Freshnhot",
+    description: "Freshnhot лучшие пицца и суши в алматы. Заказать суши и пиццу. Доставка 10:00-22:00."
+  },
   components:{
     footBlock,
   }
