@@ -6,7 +6,7 @@
             </lazy-component>
             <div class="info">
                 <div class="info-main">
-                    <div class="name"><h2 class="name">{{item.name}}</h2></div>
+                    <div class="name"><h3 class="name">{{item.name}}</h3></div>
                     <div><p class="description">{{item.description}}</p></div>
                     <div class="extra-description">
                         <p class="extra-description" v-if="item.calories">{{item.calories}} ккал</p>
@@ -140,7 +140,7 @@ export default {
         margin-top: 15px;
         margin-bottom: 10px;
     }
-    h2.name {
+    h3.name {
         padding: 0;
         color: black;
         font-size: 18px;

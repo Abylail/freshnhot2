@@ -36,6 +36,7 @@
 
         <div class="information">
             <h1 class="page-title">Freshnhot, суши и пицца Алматы</h1>
+            <h2>Пицца и суши в алматы, доставка еды</h2>
         </div>
 
         <shoppingCartButton v-bind:showShoppingCartButton="this.showShoppingCartButton"/>
@@ -63,7 +64,7 @@ export default {
             headerHeight:80,
             showShoppingCartButton:false,
             dataReady: false,
-            loadertext: "Вкус на максимум!",
+            loadertext: "Проводим технические работы. Скоро будет еще лучше.",
             sleepModal: false
         }
     },
@@ -108,7 +109,7 @@ export default {
         window.addEventListener('scroll',this.onScroll)
         this.openingBlockHeightConst = window.innerHeight-this.headerHeight;
         await this.getCategories();
-        this.dataReady = true;
+        // this.dataReady = true;
     },
     destroyed(){
         window.removeEventListener('scroll',this.onScroll)
