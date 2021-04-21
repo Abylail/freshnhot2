@@ -1,7 +1,7 @@
 <template>
     <div class="opening-block">
       <loader v-if="!dataReady" :text="loadertext"/>
-      <base-modal :show="sleepModal" @close="sleepModal = false">
+      <base-modal v-if="sleepModal" :show="sleepModal" @close="sleepModal = false">
         <div class="modal">
           <div class="text">
             <p>К сожалению мы уже спим, но откроемся снова в 10:00</p>
@@ -36,7 +36,7 @@
 
         <div class="information">
             <h1 class="page-title">Freshnhot, суши и пицца Алматы</h1>
-            <h2>Пицца и суши в алматы, доставка еды</h2>
+            <h2 class="page-description">Пицца и суши в алматы, доставка еды</h2>
         </div>
 
         <shoppingCartButton v-bind:showShoppingCartButton="this.showShoppingCartButton"/>
@@ -210,10 +210,16 @@ export default {
         margin-right: auto;
     }
     .page-title {
-        padding: 0 10px;
+        padding: 0 15px;
         color: white;
         text-align: center;
         font-size: 22px;
+    }
+    .page-description {
+      padding: 0 5px;
+      color: white;
+      text-align: center;
+      font-size: 18px;
     }
     @media (min-width: 500px){
         .opening-block-promo-container-main{
