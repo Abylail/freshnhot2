@@ -64,7 +64,7 @@ export default {
             headerHeight:80,
             showShoppingCartButton:false,
             dataReady: false,
-            loadertext: "Проводим технические работы. Скоро будет еще лучше.",
+            loadertext: "Вкус на максимум.",
             sleepModal: false
         }
     },
@@ -109,7 +109,7 @@ export default {
         window.addEventListener('scroll',this.onScroll)
         this.openingBlockHeightConst = window.innerHeight-this.headerHeight;
         await this.getCategories();
-        // this.dataReady = true;
+        this.dataReady = true;
     },
     destroyed(){
         window.removeEventListener('scroll',this.onScroll)
