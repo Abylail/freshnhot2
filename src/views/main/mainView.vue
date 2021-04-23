@@ -35,8 +35,8 @@
         </div>
 
         <div class="information">
-            <h1 class="page-title">Freshnhot, суши и пицца Алматы</h1>
-            <h2 class="page-description">Пицца и суши в алматы, доставка еды</h2>
+            <h1 class="page-title">Freshnhot, суши, роллы и пицца в Алматы</h1>
+            <h2 class="page-description">Пицца и суши в алматы, доставка еды. Используйте промокод FNH10 для скидки 10%</h2>
         </div>
 
         <shoppingCartButton v-bind:showShoppingCartButton="this.showShoppingCartButton"/>
@@ -216,10 +216,10 @@ export default {
         font-size: 22px;
     }
     .page-description {
-      padding: 0 5px;
-      color: white;
+      margin-top: 20px;
+      color: #cecece;
       text-align: center;
-      font-size: 18px;
+      font-size: 16px;
     }
     @media (min-width: 500px){
         .opening-block-promo-container-main{

@@ -61,7 +61,7 @@ export default {
     height: 100vh;
     width: 100vw;
     background-color: rgba(0, 0, 0, .3);
-    z-index: 51;
+    z-index: 61;
     transition: .3s;
     opacity: 0;
   }
@@ -77,7 +77,7 @@ export default {
     display: block;
     min-height: 300px;
     margin: auto;
-    margin-top: 180px;
+    margin-top: 130px;
     width: 80%;
     max-width: 350px;
     background-color: white;
