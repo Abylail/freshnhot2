@@ -30,13 +30,13 @@
             </div>
         </div>
 
-        <div class="list-container">
-            <menuList/>
-        </div>
-
         <div class="information">
             <h1 class="page-title">Freshnhot, суши, роллы и пицца в Алматы</h1>
             <h2 class="page-description">Пицца и суши в алматы, доставка еды. Используйте промокод FNH10 для скидки 10%</h2>
+        </div>
+
+        <div class="list-container">
+            <menuList/>
         </div>
 
         <shoppingCartButton v-bind:showShoppingCartButton="this.showShoppingCartButton"/>
@@ -203,7 +203,6 @@ export default {
         margin-bottom: 0;
     }
     .information {
-        height: 200px;
         max-width: 300px;
         margin-top: 50px;
         margin-left: auto;
@@ -237,5 +236,8 @@ export default {
         .opening-block-promo-container{
             background-color: #2C2C2C;
         }
+        .page-title {
+        color: black;
+    }
     }
 </style>
