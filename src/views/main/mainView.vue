@@ -1,15 +1,6 @@
 <template>
     <div class="opening-block">
       <loader v-if="!dataReady" :text="loadertext"/>
-      <base-modal v-if="sleepModal" :show="sleepModal" @close="sleepModal = false">
-        <div class="modal">
-          <div class="text">
-            <p>К сожалению мы уже спим, но откроемся снова в 10:00</p>
-          </div>
-          <div class="image"/>
-          <base-button primary class="button" @click="sleepModal = false">Хорошо</base-button>
-        </div>
-      </base-modal>
         <div class="opening-block-promo-container" v-bind:style="{height:openingBlockHeightConst+'px'}">
             <div class="header-container">
                 <smartHeader
@@ -40,6 +31,15 @@
         </div>
 
         <shoppingCartButton v-bind:showShoppingCartButton="this.showShoppingCartButton"/>
+      <base-modal v-if="sleepModal" :show="sleepModal" @close="sleepModal = false">
+        <div class="modal">
+          <div class="text">
+            <p>К сожалению мы уже спим, но откроемся снова в 10:00</p>
+          </div>
+          <div class="image"/>
+          <base-button primary class="button" @click="sleepModal = false">Хорошо</base-button>
+        </div>
+      </base-modal>
     </div>
 </template>
 <script> 
