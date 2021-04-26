@@ -187,9 +187,9 @@ export default {
     }
     .modal .image{
         margin-top: 20px;
-        height: 150px;
+        height: 140px;
         width: 100%;
-        background: url("../../assets/images/sleep.png");
+        background: url("../../assets/images/sleep.webp");
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center center;
