@@ -40,7 +40,7 @@ export default {
           slides: "slider/getList"
       })
   },
-  async mounted(){
+  async created(){
       await this.fetchSlides();
       this.isDataReady = true;
   }
