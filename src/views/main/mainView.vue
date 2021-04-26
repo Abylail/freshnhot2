@@ -189,7 +189,7 @@ export default {
         margin-top: 20px;
         height: 150px;
         width: 100%;
-        background: url("../../assets/images/sleep.webp");
+        background: url("../../assets/images/sleep.png");
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center center;
