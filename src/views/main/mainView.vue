@@ -102,12 +102,12 @@ export default {
         this.onScroll();
         let d = new Date();
         let h = d.getHours();
-        this.getList();
         if(h < 10 || h > 21) setTimeout(() => this.sleepModal = true, 1000);
     },
     async created(){
         window.addEventListener('scroll',this.onScroll)
         this.openingBlockHeightConst = window.innerHeight-this.headerHeight;
+        this.getList();
         await this.getCategories();
         this.dataReady = true;
     },
@@ -189,7 +189,7 @@ export default {
         margin-top: 20px;
         height: 150px;
         width: 100%;
-        background: url("../../assets/images/sleep.png");
+        background: url("../../assets/images/sleep.webp");
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center center;
