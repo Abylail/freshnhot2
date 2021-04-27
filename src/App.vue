@@ -16,14 +16,15 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' },
+      { name: 'keywords', content: 'доставка, доставка еды, доставка суши и пиццы, недорого, заказать, доставка, вкусно, быстро, Freshnhot, Алматы'},
+      { name: 'description', content: 'Доставка суши, роллов, пиццы, рамена, WOK - Freshnhot ➤ слишком вкусные суши, напитки ✅ Промокод на 10% FNH10 ☎ +7-778-010-06-90 ✈ быстрая доставка, низкие цены ✅ Алматы.'}
     ],
     link: [
       { rel: 'preconnect', href: 'https://freshnhot.kz'},
       { rel: 'dns-prefetch', href: 'https://freshnhot.kz'}
     ],
     title: "Суши и пицца Freshnhot",
-    ogImage: "@/public/logo.svg",
-    description: "Freshnhot доставка пицца, суши и роллы в алматы. Заказать суши и пиццу. Доставка 10:00-22:00."
+    description: "Доставка суши, роллов, пиццы, рамена, WOK - Freshnhot ➤ слишком вкусные суши, напитки ✅ Промокод на 10% FNH10 ☎ +7-778-010-06-90 ✈ быстрая доставка, низкие цены ✅ Алматы."
   },
   components:{
     footBlock,

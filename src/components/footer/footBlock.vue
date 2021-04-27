@@ -7,7 +7,7 @@
             </div>
             <div class="links-container">
                 <router-link to="/" class="link secondary">На главную</router-link>
-<!--                <router-link to="/text/about" class="link">О компании</router-link>-->
+               <router-link to="/about" class="link secondary">О компании</router-link>
 <!--                <router-link to="/text/delivery" class="link">Доставка</router-link>-->
 <!--                <router-link to="/text/events" class="link">События</router-link>-->
 <!--                <router-link to="/text/contacts" class="link">Контакты</router-link>-->

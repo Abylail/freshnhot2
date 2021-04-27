@@ -7,7 +7,9 @@ import shoppingCartView from '@/views/shoppingCart/shoppingCartView'
 import getOrderView from '@/views/getOrder/getOrderView'
 import adminLoginView from '@/views/adminLogin/adminLoginView'
 import adminPanelView from '@/views/adminPanel/adminPanelView'
-import textPageView from '@/views/textPage/textPageView'
+
+//text pages
+import aboutView from "@/views/textPage/aboutView";
 
 //import little
 import store from '../store/index'
@@ -48,9 +50,9 @@ const router = new VueRouter({
             component:adminLoginView,
         },
         {
-            name:'textPage',
-            path:'/text/:pageName',
-            component:textPageView,
+            name:'about',
+            path:'/about',
+            component:aboutView,
         },
         {
             name:'adminPanel',
