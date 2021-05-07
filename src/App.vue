@@ -39,7 +39,7 @@ export default {
 html {
   -webkit-tap-highlight-color: rgba(201, 224, 253, 0);
 }
-    h1,h2,h3,p,a,textarea{
+    h1,h2,h3,p,a,textarea, strong{
         margin:0;
         font-family: 'Open Sans', sans-serif;
         -moz-user-select: none;
