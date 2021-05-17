@@ -1,6 +1,7 @@
 <template>
     <div class="order-page" v-on:keyup.enter="createOrder">
         <loader v-if="showLoader" text="Отправляем ваш заказ"/>
+        <order-confirm v-if="showConfirmation"/>
         <div class="header-container">
             <smartHeader 
                 :backButton="true"
@@ -104,6 +105,7 @@
 import { mapActions, mapGetters } from 'vuex'
 import smartHeader from '@/components/header/smartHeader'
 import loader from '@/components/loader/loader'
+import OrderConfirm from '../../components/modal/orderConfirm.vue'
 
 export default {
     name:'getOrderView',
@@ -118,6 +120,7 @@ export default {
             cashText:"",
             errorMessage:"",
             showLoader:false,
+            showConfirmation: false
         }
     },
     methods:{
@@ -160,7 +163,9 @@ export default {
                 await this.replaceAll(phone,")", "");
                 this.showLoader = true;
                 await this.createOrderStore([this.name, this.address, phone, this.comment, this.deliveryType]);
-                this.$router.push("/");
+                this.showLoader = false;
+                this.showConfirmation = true;
+                setTimeout(() => this.$router.push("/"), 2000);
             }
 
             },5)
@@ -212,7 +217,8 @@ export default {
     },
     components:{
         smartHeader,
-        loader
+        loader,
+        OrderConfirm
     },
     computed:{
         ...mapGetters({
