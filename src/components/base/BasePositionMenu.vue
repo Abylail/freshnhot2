@@ -177,7 +177,7 @@ export default {
         padding-bottom: 15px;
     }
     p.price {
-        font-size: 22px;
+        font-size: 20px;
     }
     div.add-drop {
         display: flex;
